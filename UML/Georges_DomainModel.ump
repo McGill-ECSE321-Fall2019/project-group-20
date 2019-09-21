@@ -1,0 +1,84 @@
+class User{
+  name;
+  password;
+  email;
+  1 -> 1 UserRole role;
+}
+
+class UserRole {
+  abstract;
+}
+
+class CompanyManager {
+  isA UserRole;
+}
+
+class Tutor {
+  isA UserRole;
+  1 -> * SubjectMatter;
+  availability;
+  rate Double;
+}
+
+class Student {
+  isA UserRole;
+}
+
+class Company{
+  name;
+  email;
+  1--1 CompanyManager;
+  1--* Tutor;
+}
+
+class Room {
+  //lazy Boolean availabilitySchedule[][] = new Boolean[7][24];
+  availability;
+  number;
+  type;
+  *--1 Company;
+  1--* Session;
+}
+
+class Session{
+  *--1 Tutor;
+  *--1..* Student;
+  confirmed;
+  isAnonymous;
+  Time startTime;
+  Time endTime;
+}
+
+class Bill {
+  1--0..* Session;
+}
+
+class StudentReview{
+  0..1 -<@> 1 Session;
+}
+
+class TutorReview{
+  0..1 -<@> 1 Session;
+}
+
+class SystemFeedback{
+  0..2 -- 1 Session;
+  * <- * Company;
+}
+
+class SubjectMatter {
+  abstract;
+  1 <- 1..* Session;
+}
+
+class Course{
+  isA SubjectMatter;
+}
+
+class School{
+  *--* Course;
+}
+
+class Subject{
+  isA SubjectMatter;
+}
