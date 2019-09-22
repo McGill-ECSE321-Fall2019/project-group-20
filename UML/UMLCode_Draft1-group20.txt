@@ -1,0 +1,108 @@
+class User
+{
+    name;
+  email;
+  password;
+  unique id;
+  Boolean isRemoved;
+}
+
+class Student
+{
+    isA User;
+eduLevel;
+}
+
+class Tutor
+{
+    isA User;
+availability;
+  Double hourlyRate;
+  Boolean isVerified;
+}
+
+class Company
+{
+  name;
+  Double comissionRate;
+  1 -- * User;
+  * -> * Feedback;
+  1 -- 1 CompanyManager;
+}
+
+class Feedback
+{
+    0..2 -- 1 Session;
+}
+
+class SubjectMatter
+{
+  abstract;
+}
+
+class Session
+{
+  Boolean isRejected;
+  1..* ->1 SubjectMatter;
+  1 <@>- * StudentReview;
+  1 <@>- * TutorReview;
+}
+
+class Bill
+{
+  Double amount;
+  1..* -- 1 Session;
+}
+
+class Course
+{
+    isA SubjectMatter;
+Integer number;
+  1..* -- 1 School;
+}
+
+class Subject
+{
+    isA SubjectMatter;
+name;
+}
+
+class School
+{
+  name;
+}
+
+class RoomBooking
+{
+  unique requestNb;
+  1 -- 1 Session;
+}
+
+class Room
+{
+  number;
+  Type enum;
+  Boolean isAvailable;
+  1 -- 1 RoomBooking;
+}
+
+class TutorReview
+{
+}
+
+class StudentReview
+{
+  Boolean isAnonymous;
+}
+
+class CompanyManager
+{
+  name;
+}
+
+class Type
+{
+  Type Review;
+  Type Regular;
+}
+
