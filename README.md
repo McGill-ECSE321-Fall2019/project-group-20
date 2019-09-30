@@ -8,7 +8,7 @@ This team project for ECSE321 2019 is a tutoring company software and website. T
   - The database design has been generated using Postgres, which can be found in the `Database` folder.
   - Test cases with Travis CI and Gradle were instanciated each time a build was created, and can be found in the `Test` folder.
  
- All meetings for the Sprint 1 iteration can be found in the github `wiki`
+ All meetings for the Sprint 1 iteration can be found in the github `wiki`.
   
   ### Table - Individual Contributions
   
