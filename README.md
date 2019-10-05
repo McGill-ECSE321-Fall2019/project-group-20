@@ -4,7 +4,9 @@ This team project for ECSE321 2019 is a tutoring company software and website. T
 
 # Important note
 FOR EVERY BIG RELEASE DO NOT FORGET TO INCLUDE: 
+
 git push master
+
 git push heroku master
 
 ## Sprint 1 - Requirements, Domain Modeling, and Database Design
