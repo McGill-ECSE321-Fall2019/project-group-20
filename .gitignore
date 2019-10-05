@@ -1,9 +1,9 @@
-bin/
-.settings/
+/bin/
+/.settings/
 
-*.project
+\.project
 
-*.classpath
+\.classpath
 
 *.jar
 
