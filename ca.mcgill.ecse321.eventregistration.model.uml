@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLLabProfile="http:///schemas/UMLLabProfile/NS/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/UMLLabProfile/NS/0 pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile">
+  <uml:Model xmi:id="_dU-yQOICEemee_M04-nNAA" name="ca_mcgill_ecse321_eventregistration_model">
+    <eAnnotations xmi:id="_dycxYOICEemee_M04-nNAA" source="http://ns.yatta.de/umllab">
+      <contents xmi:type="ecore:EAnnotation" xmi:id="_dyfNoOICEemee_M04-nNAA" source="codegen">
+        <details xmi:id="_dyfNoeICEemee_M04-nNAA" key="codegenDirectory" value="/ca.mcgill.ecse321.eventregistration.model/src"/>
+        <details xmi:id="_dytQEOICEemee_M04-nNAA" key="observedFolders" value="/ca.mcgill.ecse321.eventregistration.model/src"/>
+      </contents>
+    </eAnnotations>
+    <profileApplication xmi:id="_dyhp4OICEemee_M04-nNAA">
+      <eAnnotations xmi:id="_dykGIOICEemee_M04-nNAA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLLabProfile:TargetLanguage xmi:id="_dyplsOICEemee_M04-nNAA" base_Package="_dU-yQOICEemee_M04-nNAA">
+    <languageName>java</languageName>
+  </UMLLabProfile:TargetLanguage>
+</xmi:XMI>
