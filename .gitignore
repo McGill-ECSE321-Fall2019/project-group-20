@@ -11,3 +11,10 @@
 
 *.zip
 *.pdf
+
+.gradle/
+build/
+gradle/
+gradle*
+
+.ds_store
