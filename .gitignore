@@ -1,0 +1,13 @@
+bin/
+*.settings
+
+*.project
+
+*.classpath
+
+*.jar
+
+*.prefs
+
+*.zip
+*.pdf
