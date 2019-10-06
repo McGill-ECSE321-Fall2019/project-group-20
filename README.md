@@ -2,7 +2,7 @@
 
 This team project for ECSE321 2019 is a tutoring company software and website. Through this company, we cater to the needs of students at the high school, CÉGEP, and university levels. Any student looking for a tutor in any subject taught at those levels can approach the company and ask its help to find an appropriate tutor. Our view point is the tutor view point. 
 
-# Important note
+# Important notes
 FOR EVERY BIG RELEASE DO NOT FORGET TO INCLUDE: 
 
 git push master
