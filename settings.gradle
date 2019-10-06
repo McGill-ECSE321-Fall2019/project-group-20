@@ -8,3 +8,5 @@
  */
 
 rootProject.name = 'project-group-20'
+
+include ':project-group-20'
