@@ -18,5 +18,3 @@ git push heroku master
  All meetings for the Sprint 1 iteration can be found in the github `wiki`.
   
   ### Table - Individual Contributions
-  
-(Given by the teacher, then we can fill it in)
