@@ -18,3 +18,12 @@ git push heroku master
  All meetings for the Sprint 1 iteration can be found in the github `wiki`.
   
   ### Table - Individual Contributions
+
+|Deliverable number|Name |Team Role| Individual Efforts (hours)|
+|:------------:|:-----------|:------------|:-----------|
+|1|Adam Babs|||
+|1|Georges Mourant|||
+|1|Imane Chafi|||
+|1|Mahroo Rahman|||
+|1|Sofia Dieguez|||
+
