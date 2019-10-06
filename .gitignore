@@ -15,7 +15,7 @@ gradle/
 gradle*
 *.gradle
 
-.ds_store
+.DS_Store
 
 src/main/
 src/test/
