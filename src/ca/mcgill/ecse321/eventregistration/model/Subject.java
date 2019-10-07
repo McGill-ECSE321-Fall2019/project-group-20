@@ -1,3 +1,4 @@
+import javax.persistence.Id;
 import javax.persistence.Entity;
 
 @Entity
@@ -7,6 +8,7 @@ public class Subject extends SubjectMatter{
 public void setName(String value) {
     this.name = value;
 }
+@Id
 public String getName() {
     return this.name;
 }

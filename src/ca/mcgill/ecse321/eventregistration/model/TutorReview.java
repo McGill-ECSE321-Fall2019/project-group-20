@@ -1,3 +1,4 @@
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
 
@@ -19,6 +20,7 @@ public class TutorReview{
 public void setRating(int value) {
     this.rating = value;
 }
+@Id
 public int getRating() {
     return this.rating;
 }

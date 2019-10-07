@@ -1,4 +1,5 @@
 import javax.persistence.OneToOne;
+import javax.persistence.Id;
 import javax.persistence.Entity;
 
 @Entity
@@ -8,6 +9,7 @@ public class RoomBooking{
 public void setRequestNb(String value) {
     this.requestNb = value;
 }
+@Id
 public String getRequestNb() {
     return this.requestNb;
 }

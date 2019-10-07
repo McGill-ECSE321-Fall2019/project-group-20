@@ -1,3 +1,4 @@
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Entity;
@@ -27,6 +28,7 @@ public class Company{
 public void setName(String value) {
     this.name = value;
 }
+@Id
 public String getName() {
     return this.name;
 }

@@ -1,4 +1,5 @@
 import javax.persistence.OneToOne;
+import javax.persistence.Id;
 import javax.persistence.Entity;
 
 @Entity
@@ -8,6 +9,7 @@ public class Room{
 public void setNumber(int value) {
     this.number = value;
 }
+@Id
 public int getNumber() {
     return this.number;
 }

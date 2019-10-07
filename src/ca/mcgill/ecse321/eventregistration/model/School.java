@@ -1,3 +1,4 @@
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Entity;
 import java.util.Set;
@@ -15,6 +16,7 @@ public class School{
 public void setName(String value) {
     this.name = value;
 }
+@Id
 public String getName() {
     return this.name;
 }

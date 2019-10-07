@@ -1,4 +1,5 @@
 import javax.persistence.ManyToOne;
+import javax.persistence.Id;
 import javax.persistence.Entity;
 
 @Entity
@@ -32,6 +33,7 @@ private String ID;
 public void setID(String value) {
     this.ID = value;
 }
+@Id
 public String getID() {
     return this.ID;
 }

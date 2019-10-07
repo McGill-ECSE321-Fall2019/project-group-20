@@ -4,7 +4,7 @@
     <eAnnotations xmi:id="_d5BFgOkrEemsmYBLy4E0UA" source="http://ns.yatta.de/umllab">
       <contents xmi:type="ecore:EAnnotation" xmi:id="_d5BFgekrEemsmYBLy4E0UA" source="codegen">
         <details xmi:id="_d5BskOkrEemsmYBLy4E0UA" key="codegenDirectory" value="/project-group-20/src/ca/mcgill/ecse321/eventregistration/model"/>
-        <details xmi:id="_hQVmoOkrEemsmYBLy4E0UA" key="AssociatedSourceCode" value="/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/Bill.java;948964344/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/Company.java;47707173/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/Course.java;3301027366/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/Feedback.java;1423549275/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/Room.java;721805711/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/RoomBooking.java;4093808519/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/School.java;3901316993/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/SubjectMatter.java;3873536854/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/SessionType.java;2820346541/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/Subject.java;230699585/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/Session.java;1625402746/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/Tutor.java;1874784343/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/TutorReview.java;1529199314/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/User.java;3696003699/1;"/>
+        <details xmi:id="_hQVmoOkrEemsmYBLy4E0UA" key="AssociatedSourceCode" value="/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/Bill.java;2460982115/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/Company.java;2474147238/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/Course.java;4245140421/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/Feedback.java;1290474166/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/Room.java;3199056458/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/RoomBooking.java;4156613491/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/School.java;4062489433/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/SubjectMatter.java;2830050469/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/SessionType.java;1491560510/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/Subject.java;2075608467/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/Session.java;3196276428/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/Tutor.java;3362447961/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/TutorReview.java;4106662397/1;/project-group-20/src/ca/mcgill/ecse321/eventregistration/model/User.java;1941176646/1;"/>
       </contents>
     </eAnnotations>
     <elementImport xmi:id="_gsXW4OkrEemsmYBLy4E0UA">
@@ -214,4 +214,13 @@
   <UMLLabProfile:Reference xmi:id="_gxB0cOkrEemsmYBLy4E0UA" base_Element="_gw_YMOkrEemsmYBLy4E0UA"/>
   <UMLLabProfile:Reference xmi:id="_gxFe0OkrEemsmYBLy4E0UA" base_Element="_gxDCkOkrEemsmYBLy4E0UA"/>
   <Persistency:JPA1StyledElement xmi:id="_iqMYsOkvEemsmYBLy4E0UA" base_Element="_deN_4OkrEemsmYBLy4E0UA"/>
+  <Persistency:PrimaryKey xmi:id="_AccZIOkzEemsmYBLy4E0UA" base_Property="_gzLwkOkrEemsmYBLy4E0UA"/>
+  <Persistency:PrimaryKey xmi:id="_I1OB8OkzEemsmYBLy4E0UA" base_Property="_gyChEOkrEemsmYBLy4E0UA"/>
+  <Persistency:PrimaryKey xmi:id="_L07UUOkzEemsmYBLy4E0UA" base_Property="_gyUN4OkrEemsmYBLy4E0UA"/>
+  <Persistency:PrimaryKey xmi:id="_NiWfcOkzEemsmYBLy4E0UA" base_Property="_gyyH8OkrEemsmYBLy4E0UA"/>
+  <Persistency:PrimaryKey xmi:id="_OqnIAOkzEemsmYBLy4E0UA" base_Property="_gyi3YOkrEemsmYBLy4E0UA"/>
+  <Persistency:PrimaryKey xmi:id="_Ppcu0OkzEemsmYBLy4E0UA" base_Property="_gyKc4OkrEemsmYBLy4E0UA"/>
+  <Persistency:PrimaryKey xmi:id="_SXheoOkzEemsmYBLy4E0UA" base_Property="_gybioOkrEemsmYBLy4E0UA"/>
+  <Persistency:PrimaryKey xmi:id="_TJAl8OkzEemsmYBLy4E0UA" base_Property="_bw330OksEemsmYBLy4E0UA"/>
+  <Persistency:PrimaryKey xmi:id="_UJFi4OkzEemsmYBLy4E0UA" base_Property="_gyzWEOkrEemsmYBLy4E0UA"/>
 </xmi:XMI>

@@ -1,4 +1,5 @@
 import javax.persistence.OneToOne;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
@@ -45,6 +46,7 @@ public class Session{
 public void setIsRejected(boolean value) {
     this.isRejected = value;
 }
+@Id
 public boolean isIsRejected() {
     return this.isRejected;
 }
