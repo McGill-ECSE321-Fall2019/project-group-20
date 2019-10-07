@@ -1,13 +1,13 @@
+import javax.persistence.Entity;
 
-public class Subject extends SubjectMatter {
-	private String name;
+@Entity
+public class Subject extends SubjectMatter{
+   private String name;
 
-	public void setName(String value) {
-		this.name = value;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
+public void setName(String value) {
+    this.name = value;
+}
+public String getName() {
+    return this.name;
+}
 }

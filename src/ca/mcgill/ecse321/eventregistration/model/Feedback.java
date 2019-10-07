@@ -1,20 +1,17 @@
+import javax.persistence.ManyToOne;
+import javax.persistence.Entity;
 
-public class Feedback {
-	/**
-	* <pre>
-	*           0..2     1..1
-	* Feedback ------------------------- Session
-	*           feedback        &gt;       session
-	* </pre>
-	*/
-	private Session session;
-
-	public void setSession(Session value) {
-		this.session = value;
-	}
-
-	public Session getSession() {
-		return this.session;
-	}
-
-}
+@Entity
+public class Feedback{
+   private Session session;
+   
+   @ManyToOne(optional=false)
+   public Session getSession() {
+      return this.session;
+   }
+   
+   public void setSession(Session session) {
+      this.session = session;
+   }
+   
+   }

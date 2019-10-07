@@ -1,33 +1,29 @@
+import javax.persistence.Entity;
 
-public class Tutor extends User {
-	private String availability;
+@Entity
+public class Tutor extends User{
+   private String availability;
 
-	public void setAvailability(String value) {
-		this.availability = value;
-	}
+public void setAvailability(String value) {
+    this.availability = value;
+}
+public String getAvailability() {
+    return this.availability;
+}
+private double hourlyRate;
 
-	public String getAvailability() {
-		return this.availability;
-	}
+public void setHourlyRate(double value) {
+    this.hourlyRate = value;
+}
+public double getHourlyRate() {
+    return this.hourlyRate;
+}
+private boolean isVerified;
 
-	private double hourlyRate;
-
-	public void setHourlyRate(double value) {
-		this.hourlyRate = value;
-	}
-
-	public double getHourlyRate() {
-		return this.hourlyRate;
-	}
-
-	private boolean isVerified;
-
-	public void setIsVerified(boolean value) {
-		this.isVerified = value;
-	}
-
-	public boolean isIsVerified() {
-		return this.isVerified;
-	}
-
+public void setIsVerified(boolean value) {
+    this.isVerified = value;
+}
+public boolean isIsVerified() {
+    return this.isVerified;
+}
 }

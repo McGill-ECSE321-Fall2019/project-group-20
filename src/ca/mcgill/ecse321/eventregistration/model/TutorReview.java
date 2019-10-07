@@ -1,20 +1,33 @@
+import javax.persistence.ManyToOne;
+import javax.persistence.Entity;
 
-public class TutorReview {
-	/**
-	* <pre>
-	*           0..*     1..1
-	* TutorReview ------------------------- Session
-	*           tutorReview        &lt;       session
-	* </pre>
-	*/
-	private Session session;
+@Entity
+public class TutorReview{
+   private Session session;
+   
+   @ManyToOne(optional=false)
+   public Session getSession() {
+      return this.session;
+   }
+   
+   public void setSession(Session session) {
+      this.session = session;
+   }
+   
+   private int rating;
 
-	public void setSession(Session value) {
-		this.session = value;
-	}
+public void setRating(int value) {
+    this.rating = value;
+}
+public int getRating() {
+    return this.rating;
+}
+private String txtReview;
 
-	public Session getSession() {
-		return this.session;
-	}
-
+public void setTxtReview(String value) {
+    this.txtReview = value;
+}
+public String getTxtReview() {
+    return this.txtReview;
+}
 }

@@ -1,41 +1,47 @@
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Entity;
 import java.util.Set;
 import java.util.HashSet;
 
-public class Company {
-	private String name;
+@Entity
+public class Company{
+   @OneToMany(mappedBy="company")
+   public Set<User> getUser() {
+      return this.user;
+   }
+   
+   private Set<Feedback> feedback;
+   
+   @ManyToMany
+   public Set<Feedback> getFeedback() {
+      return this.feedback;
+   }
+   
+   public void setFeedback(Set<Feedback> feedbacks) {
+      this.feedback = feedbacks;
+   }
+   
+   private String name;
 
-	public void setName(String value) {
-		this.name = value;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	private double commissionRate;
-
-	public void setCommissionRate(double value) {
-		this.commissionRate = value;
-	}
-
-	public double getCommissionRate() {
-		return this.commissionRate;
-	}
-
-	/**
-	* <pre>
-	*           1..1     0..*
-	* Company ------------------------- User
-	*           company        &lt;       user
-	* </pre>
-	*/
-	private Set<User> user;
-
-	public Set<User> getUser() {
-		if (this.user == null) {
-			this.user = new HashSet<User>();
-		}
-		return this.user;
-	}
-
+public void setName(String value) {
+    this.name = value;
 }
+public String getName() {
+    return this.name;
+}
+private double commissionRate;
+
+public void setCommissionRate(double value) {
+    this.commissionRate = value;
+}
+public double getCommissionRate() {
+    return this.commissionRate;
+}
+   private Set<User> user;
+   
+   public void setUser(Set<User> users) {
+      this.user = users;
+   }
+   
+   }

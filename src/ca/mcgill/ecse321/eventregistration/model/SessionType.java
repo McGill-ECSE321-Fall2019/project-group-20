@@ -1,25 +1,21 @@
+import javax.persistence.Entity;
 
-public enum SessionType {
-	;
+@Entity
+public enum SessionType{
+   private String group;
 
-	private String group;
+public void setGroup(String value) {
+    this.group = value;
+}
+public String getGroup() {
+    return this.group;
+}
+private String individual;
 
-	public void setGroup(String value) {
-		this.group = value;
-	}
-
-	public String getGroup() {
-		return this.group;
-	}
-
-	private String individual;
-
-	public void setIndividual(String value) {
-		this.individual = value;
-	}
-
-	public String getIndividual() {
-		return this.individual;
-	}
-
+public void setIndividual(String value) {
+    this.individual = value;
+}
+public String getIndividual() {
+    return this.individual;
+}
 }

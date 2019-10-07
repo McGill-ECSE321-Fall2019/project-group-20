@@ -1,30 +1,25 @@
+import javax.persistence.ManyToOne;
+import javax.persistence.Entity;
 
-public class Bill {
-	private double amount;
+@Entity
+public class Bill{
+   private double amount;
 
-	public void setAmount(double value) {
-		this.amount = value;
-	}
-
-	public double getAmount() {
-		return this.amount;
-	}
-
-	/**
-	* <pre>
-	*           1..*     1..1
-	* Bill ------------------------- Session
-	*           bill        &gt;       session
-	* </pre>
-	*/
-	private Session session;
-
-	public void setSession(Session value) {
-		this.session = value;
-	}
-
-	public Session getSession() {
-		return this.session;
-	}
-
+public void setAmount(double value) {
+    this.amount = value;
 }
+public double getAmount() {
+    return this.amount;
+}
+   private Session session;
+   
+   @ManyToOne(optional=false)
+   public Session getSession() {
+      return this.session;
+   }
+   
+   public void setSession(Session session) {
+      this.session = session;
+   }
+   
+   }

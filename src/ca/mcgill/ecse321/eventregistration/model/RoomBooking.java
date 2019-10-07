@@ -1,47 +1,36 @@
+import javax.persistence.OneToOne;
+import javax.persistence.Entity;
 
-public class RoomBooking {
-	private String requestNb;
+@Entity
+public class RoomBooking{
+   private String requestNb;
 
-	public void setRequestNb(String value) {
-		this.requestNb = value;
-	}
-
-	public String getRequestNb() {
-		return this.requestNb;
-	}
-
-	/**
-	* <pre>
-	*           1..1     1..1
-	* RoomBooking ------------------------- Session
-	*           roomBooking        &gt;       session
-	* </pre>
-	*/
-	private Session session;
-
-	public void setSession(Session value) {
-		this.session = value;
-	}
-
-	public Session getSession() {
-		return this.session;
-	}
-
-	/**
-	* <pre>
-	*           1..1     1..1
-	* RoomBooking ------------------------- Room
-	*           roomBooking        &lt;       room
-	* </pre>
-	*/
-	private Room room;
-
-	public void setRoom(Room value) {
-		this.room = value;
-	}
-
-	public Room getRoom() {
-		return this.room;
-	}
-
+public void setRequestNb(String value) {
+    this.requestNb = value;
 }
+public String getRequestNb() {
+    return this.requestNb;
+}
+   private Session session;
+   
+   @OneToOne(mappedBy="roomBooking", optional=false)
+   public Session getSession() {
+      return this.session;
+   }
+   
+   public void setSession(Session session) {
+      this.session = session;
+   }
+   
+   private Room room;
+   
+   @OneToOne(optional=false)
+   public Room getRoom() {
+      return this.room;
+   }
+   
+   public void setRoom(Room room) {
+      this.room = room;
+   }
+   
+   }

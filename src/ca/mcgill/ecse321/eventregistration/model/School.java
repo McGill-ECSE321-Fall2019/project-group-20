@@ -1,31 +1,27 @@
+import javax.persistence.OneToMany;
+import javax.persistence.Entity;
 import java.util.Set;
 import java.util.HashSet;
 
-public class School {
-	private String name;
+@Entity
+public class School{
+   @OneToMany(mappedBy="school")
+   public Set<Course> getCourse() {
+      return this.course;
+   }
+   
+   private String name;
 
-	public void setName(String value) {
-		this.name = value;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	/**
-	* <pre>
-	*           1..1     0..*
-	* School ------------------------- Course
-	*           school        &lt;       course
-	* </pre>
-	*/
-	private Set<Course> course;
-
-	public Set<Course> getCourse() {
-		if (this.course == null) {
-			this.course = new HashSet<Course>();
-		}
-		return this.course;
-	}
-
+public void setName(String value) {
+    this.name = value;
 }
+public String getName() {
+    return this.name;
+}
+   private Set<Course> course;
+   
+   public void setCourse(Set<Course> courses) {
+      this.course = courses;
+   }
+   
+   }
