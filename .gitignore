@@ -5,7 +5,14 @@
 build
 
 # Created by https://www.gitignore.io/api/java,gradle
-
+build
+.gradle
+.idea
+out
+*.iml
+*.ipr
+*.iws
+.DS_Store
 ### Java ###
 *.class
 
