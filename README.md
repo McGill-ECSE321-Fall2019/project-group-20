@@ -23,7 +23,7 @@ git push heroku master
 |:------------:|:-----------|:------------|:-----------|
 |1|Adam Babs|||
 |1|Georges Mourant|||
-|1|Imane Chafi|||
+|1|Imane Chafi|Project Manager||
 |1|Mahroo Rahman|||
 |1|Sofia Dieguez|||
 
