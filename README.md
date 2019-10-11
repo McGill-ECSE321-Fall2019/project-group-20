@@ -24,6 +24,6 @@ git push heroku master
 |1|Adam Babs|||
 |1|Georges Mourant|||
 |1|Imane Chafi|Project Manager||
-|1|Mahroo Rahman|||
+|1|Mahroo Rahman|UML Software Lead||
 |1|Sofia Dieguez|||
 
