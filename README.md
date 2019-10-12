@@ -24,6 +24,6 @@ git push heroku master
 |1|Adam Babs|Domain Model and Requirements Model|30|
 |1|Georges Mourant|Documentation Manager|30|
 |1|Imane Chafi|Project Manager|30|
-|1|Mahroo Rahman|Non-Functional requirements Software Lead|30|
+|1|Mahroo Rahman|Non-Functional Requirements Software Lead|30|
 |1|Sofia Dieguez|UML Software Lead|30|
 
