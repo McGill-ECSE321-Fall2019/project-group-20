@@ -22,8 +22,8 @@ git push heroku master
 |Deliverable number|Name |Team Role| Individual Efforts (hours)|
 |:------------:|:-----------|:------------|:-----------|
 |1|Adam Babs|Domain Model and Requirements Model||
-|1|Georges Mourant|||
+|1|Georges Mourant|Documentation Manager||
 |1|Imane Chafi|Project Manager||
-|1|Mahroo Rahman|UML Software Lead||
-|1|Sofia Dieguez|||
+|1|Mahroo Rahman|Non-functional requirements Software Lea||
+|1|Sofia Dieguez|UML Software Lead||
 
