@@ -1,7 +1,8 @@
+package ca.mcgill.ecse321.projectGroup20.model;
 import javax.persistence.Entity;
 
 @Entity
-public enum SessionType{
+public enum SessionType{;
    private String group;
 
 public void setGroup(String value) {

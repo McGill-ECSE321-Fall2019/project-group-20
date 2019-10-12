@@ -1,3 +1,4 @@
+package ca.mcgill.ecse321.projectGroup20.model;
 import javax.persistence.OneToOne;
 import javax.persistence.Id;
 import javax.persistence.Entity;

@@ -1,3 +1,4 @@
+package ca.mcgill.ecse321.projectGroup20.model;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
