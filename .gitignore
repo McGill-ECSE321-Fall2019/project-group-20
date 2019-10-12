@@ -5,7 +5,14 @@
 build
 
 # Created by https://www.gitignore.io/api/java,gradle
-
+build
+.gradle
+.idea
+out
+*.iml
+*.ipr
+*.iws
+.DS_Store
 ### Java ###
 *.class
 
@@ -25,7 +32,7 @@ hs_err_pid*
 
 
 ### Gradle ###
-.gradle
+.gradle/
 /build/
 
 # Ignore Gradle GUI config
@@ -41,3 +48,4 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 # End of https://www.gitignore.io/api/java,gradle
+/bin/
