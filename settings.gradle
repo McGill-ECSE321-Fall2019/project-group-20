@@ -10,3 +10,4 @@
 rootProject.name = 'project-group-20'
 
 include ':project-group-20'
+enableFeaturePreview('IMPROVED_POM_SUPPORT')
