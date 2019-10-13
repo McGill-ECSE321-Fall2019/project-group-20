@@ -20,6 +20,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+     compile("org.springframework.boot:spring-boot-starter-web")
 compile 'postgresql:postgresql:42.2.8'
 compile group: 'javax.persistence', name: 'persistence-api', version: '1.0'
     components {
