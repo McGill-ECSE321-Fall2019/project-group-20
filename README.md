@@ -9,6 +9,8 @@ git push master
 
 git push heroku master
 
+The first stable version deployed to heroku as a SpringBoot application can be found on https://ecse321-group20-2020.herokuapp.com/
+
 ## Sprint 1 - Requirements, Domain Modeling, and Database Design
   - The domain model was made with UMLLab and can be found under the `UML` folder.
   - The use cases and requirements for the functional and non-functional requirements are in the `Requirements` folder. 
