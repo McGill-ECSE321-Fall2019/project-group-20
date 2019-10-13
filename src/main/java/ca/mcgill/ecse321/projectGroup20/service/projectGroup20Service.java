@@ -133,14 +133,109 @@ public class projectGroup20Service {
 
 	@Transactional
 	public RoomBooking getRoomBooking(Session session) {
-		RoomBooking roomBooking = tutorReviewRepository.findTutorReviewbySession(session);
+		RoomBooking roomBooking = roomBookingRepository.findRoomBookingBySession(session);
 		return roomBooking;
 	}
 
 	@Transactional
-	public List<TutorReview> getAllTutorReviews() {
-		return toList(tutorReviewRepository.findAll());
+	public List<RoomBooking> getAllRoomBooking() {
+		return toList(roomBookingRepository.findAll());
 	}
+	
+	//Room
+	@Transactional
+	public Room createRoom(int number, String sessionType, boolean isAvailable) {
+		Room room = new Room();
+		room.setNumber(number);
+		room.setSessionType(sessionType);
+		room.setIsAvailable(isAvailable);
+		roomRepository.save(room);
+		return room;
+	}
+
+	@Transactional
+	public Room getRoom(int number) {
+		Room room = roomRepository.findRoomByNumber(number);
+		return room;
+	}
+
+	@Transactional
+	public List<Room> getAllRooms() {
+		return toList(roomRepository.findAll());
+	}
+	
+	//SubjectMatter
+
+	@Transactional
+	public SubjectMatter getSubjectMatter(int number) {
+		SubjectMatter subjectMatter = subjectMatterRepository.findSubjectMatterbyId(number);
+		return subjectMatter;
+	}
+
+	@Transactional
+	public List<SubjectMatter> getAllSubjectMatters() {
+		return toList(subjectMatterRepository.findAll());
+	}
+	
+	//Subject
+	@Transactional
+	public Subject createSubject(String name) {
+		Subject subject = new Subject();
+		subject.setName(name);
+		subjectMatterRepository.save(subject);
+		return subject;
+	}
+
+	@Transactional
+	public Subject getSubject(String name) {
+		Subject subject = subjectRepository.findSubjectbyName(name);
+		return subject;
+	}
+
+	@Transactional
+	public List<Subject> getAllSubjects() {
+		return toList(subjectRepository.findAll());
+	}
+	
+	//Course
+	@Transactional
+	public Course createCourse(int number) {
+		Course course = new Course();
+		course.setNumber(number);
+		subjectMatterRepository.save(course);
+		return course;
+	}
+
+	@Transactional
+	public Course getCourse(int number) {
+		Course course = courseRepository.findCourseById(number);
+		return course;
+	}
+
+	@Transactional
+	public List<Course> getAllCourses() {
+		return toList(courseRepository.findAll());
+	}
+	
+	//School
+		@Transactional
+		public School createSchool(String name) {
+			School school = new School();
+			school.setName(name);
+			schoolRepository.save(school);
+			return school;
+		}
+
+		@Transactional
+		public School getSchool(String name) {
+			School school = schoolRepository.findSchoolByName(name);
+			return school;
+		}
+
+		@Transactional
+		public List<School> getAllSchools() {
+			return toList(schoolRepository.findAll());
+		}
 	
 	//Feedback
 	
@@ -163,6 +258,7 @@ public class projectGroup20Service {
 		return toList(feedbackRepository.findAll());
 	}
 	
+	//Tutor
 	@Transactional
 	public Tutor createTutor(String availability, double hourlyRate, boolean isVerified) {
 		Tutor tutor = new Tutor();
@@ -183,7 +279,8 @@ public class projectGroup20Service {
 	public List<Tutor> getAllTutors() {
 		return toList(tutorRepository.findAll());
 	}
-
+	
+	//Company
 	@Transactional
 	public Company createCompany(String name, double commissionRate) {
 		Company company = new Company();
@@ -204,6 +301,7 @@ public class projectGroup20Service {
 		return toList(companyRepository.findAll());
 	}
 
+	//Sessions
 	@Transactional
 	public Session createSession(boolean isRejected, SubjectMatter subjectMatter, RoomBooking roomBooking, int ID, Set<Feedback> feedback) {
 		Session registration = new Session();
@@ -222,14 +320,6 @@ public class projectGroup20Service {
 		return toList(sessionRepository.findAll());
 	}
 
-	@Transactional
-	public List<Event> getEventsAttendedByPerson(Person person) {
-		List<Event> eventsAttendedByPerson = new ArrayList<>();
-		for (Registration r : registrationRepository.findByPerson(person)) {
-			eventsAttendedByPerson.add(r.getEvent());
-		}
-		return eventsAttendedByPerson;
-	}
 
 	private <T> List<T> toList(Iterable<T> iterable){
 		List<T> resultList = new ArrayList<T>();

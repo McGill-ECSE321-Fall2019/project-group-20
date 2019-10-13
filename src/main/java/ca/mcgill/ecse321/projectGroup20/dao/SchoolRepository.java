@@ -5,6 +5,6 @@ import ca.mcgill.ecse321.projectGroup20.model.*;
 
 public interface SchoolRepository extends CrudRepository<School, String>{
 	
-	SchoolRepository findSchoolByName(String name);
+	School findSchoolByName(String name);
 
 }

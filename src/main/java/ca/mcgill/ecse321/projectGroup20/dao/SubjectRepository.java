@@ -5,6 +5,6 @@ import ca.mcgill.ecse321.projectGroup20.model.*;
 
 public interface SubjectRepository extends CrudRepository<Subject, String>{
 	
-	SubjectRepository findSubjectbyName(String name);
+	Subject findSubjectbyName(String name);
 
 }

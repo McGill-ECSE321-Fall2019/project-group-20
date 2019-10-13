@@ -5,6 +5,6 @@ import ca.mcgill.ecse321.projectGroup20.model.*;
 
 public interface CourseRepository extends CrudRepository<Course, String>{
 	
-	CourseRepository findCourseById(int number);
+	Course findCourseById(int number);
 
 }

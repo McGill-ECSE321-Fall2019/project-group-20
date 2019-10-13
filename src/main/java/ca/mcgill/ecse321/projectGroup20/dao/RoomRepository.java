@@ -5,6 +5,6 @@ import ca.mcgill.ecse321.projectGroup20.model.*;
 
 public interface RoomRepository extends CrudRepository<Room, String>{
 	
-	RoomRepository findRoomByNumber(int number);
+	Room findRoomByNumber(int number);
 
 }
