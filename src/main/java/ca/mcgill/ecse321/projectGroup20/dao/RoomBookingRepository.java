@@ -5,6 +5,6 @@ import ca.mcgill.ecse321.projectGroup20.model.*;
 
 public interface RoomBookingRepository extends CrudRepository<RoomBooking, String>{
 	
-	RoomBookingRepository findRoomBookingBySession(SessionRepository session);
+	RoomBooking findRoomBookingBySession(Session session);
 
 }

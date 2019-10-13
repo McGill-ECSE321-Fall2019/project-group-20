@@ -5,5 +5,5 @@ import ca.mcgill.ecse321.projectGroup20.model.User;
 
 public interface UserRepository extends CrudRepository<User, String>{
 	
-	User findUserByName(String name);
+	User findUserByID(String ID);
 }

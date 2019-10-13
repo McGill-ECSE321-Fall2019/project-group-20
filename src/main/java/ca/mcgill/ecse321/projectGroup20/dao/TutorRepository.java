@@ -5,6 +5,6 @@ import ca.mcgill.ecse321.projectGroup20.model.*;
 
 public interface TutorRepository extends CrudRepository<Tutor, String>{
 	
-	TutorRepository findTutorbyName(String name); //I don't think we need this interface since Tutor extends User
+	Tutor findTutorbyName(String name); //I don't think we need this interface since Tutor extends User
 
 }

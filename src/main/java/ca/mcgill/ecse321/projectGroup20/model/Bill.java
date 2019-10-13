@@ -10,12 +10,12 @@ public class Bill{
 public void setAmount(double value) {
     this.amount = value;
 }
-@Id
+
 public double getAmount() {
     return this.amount;
 }
    private Session session;
-   
+   @Id  
    @ManyToOne(optional=false)
    public Session getSession() {
       return this.session;

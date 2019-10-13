@@ -5,6 +5,6 @@ import ca.mcgill.ecse321.projectGroup20.model.*;
 
 public interface FeedbackRepository extends CrudRepository<Feedback, String>{
 	
-	FeedbackRepository findFeedbackBySession(SessionRepository session);
+	Feedback findFeedbackBySession(Session session);
 
 }

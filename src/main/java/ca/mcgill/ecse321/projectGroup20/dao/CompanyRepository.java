@@ -5,6 +5,6 @@ import ca.mcgill.ecse321.projectGroup20.model.*;
 
 public interface CompanyRepository extends CrudRepository<Company, String>{
 	
-	CompanyRepository findCompanyByName(String name);
+	Company findCompanyByName(String name);
 
 }

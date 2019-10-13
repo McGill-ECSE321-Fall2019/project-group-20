@@ -5,5 +5,5 @@ import ca.mcgill.ecse321.projectGroup20.model.*;
 
 public interface BillRepository extends CrudRepository<Bill, String>{
 	
-	BillRepository findBillBySession(SessionRepository session);
+	Bill findBillBySession(Session session);
 }
