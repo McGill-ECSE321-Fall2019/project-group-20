@@ -52,14 +52,9 @@ dependencies {
 }
 apply plugin: 'java'
 apply plugin: 'application'
-task stage(type: Copy, dependsOn: [clean, build]) {
-    from jar.archivePath
-    into project.rootDir
-    rename {
-        'app.jar'
-    }
-}
-stage.mustRunAfter(clean)
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
 
-mainClassName='java/projectGroup20Application.java'
+mainClassName='model.tutor'
+
 
