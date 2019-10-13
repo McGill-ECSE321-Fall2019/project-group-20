@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.projectGroup20.model;
 import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Bill{
@@ -9,6 +10,7 @@ public class Bill{
 public void setAmount(double value) {
     this.amount = value;
 }
+@Id
 public double getAmount() {
     return this.amount;
 }
