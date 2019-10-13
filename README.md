@@ -27,3 +27,7 @@ git push heroku master
 |1|Mahroo Rahman|Non-Functional Requirements Software Lead|30|
 |1|Sofia Dieguez|UML Software Lead|30|
 
+# Project Wiki
+Project progress documentation including summaries and meeting minutes.
+
+https://github.com/McGill-ECSE321-Fall2019/project-group-20/wiki
