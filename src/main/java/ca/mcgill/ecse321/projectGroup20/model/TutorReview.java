@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 public class TutorReview{
    private Session session;
    
+   @Id
    @ManyToOne(optional=false)
    public Session getSession() {
       return this.session;
@@ -21,7 +22,7 @@ public class TutorReview{
 public void setRating(int value) {
     this.rating = value;
 }
-@Id
+
 public int getRating() {
     return this.rating;
 }

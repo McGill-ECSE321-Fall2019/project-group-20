@@ -47,7 +47,17 @@ public class Session{
 public void setIsRejected(boolean value) {
     this.isRejected = value;
 }
+private int id;
+
+public void setId(int value) {
+	this.id = value;
+}
+
 @Id
+public int getId() {
+	return this.id;
+}
+
 public boolean isIsRejected() {
     return this.isRejected;
 }
