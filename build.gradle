@@ -52,10 +52,6 @@ dependencies {
 }
 apply plugin: 'java'
 apply plugin: 'application'
-jar {
-    baseName = 'app'
-    version = '0.0.1'
-}
 task stage(dependsOn: ['build', 'clean'])
 build.mustRunAfter clean
 
