@@ -52,9 +52,20 @@ dependencies {
 }
 apply plugin: 'java'
 apply plugin: 'application'
-task stage(dependsOn: ['build', 'clean'])
-build.mustRunAfter clean
 
-mainClassName='model.tutor'
+sourceSets{
+main{
+java{ srcDir 'src/main/java'}
+}
+test{
+java {srcDir 'src/test/java'}
+}
+}
 
+task compile(type: JavaCompile){
 
+classpath = sourceSets.main.compileClasspath
+sourceSets.main.java.outputDir = file('build/bin')
+}
+
+mainClassName = 'ca.mcgill.ecse321.projectGroup20.projectGroup20Application'
