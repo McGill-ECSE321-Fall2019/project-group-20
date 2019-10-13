@@ -1,1 +1,1 @@
-web: java -jar ../build/libs/project-group-20.jar
+web: java $JAVA_OPTS -jar app.jar
