@@ -1,5 +1,4 @@
 package ca.mcgill.ecse321.projectGroup20.service;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import java.util.List;
@@ -9,8 +8,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 //import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.*;
+
 
 import ca.mcgill.ecse321.projectGroup20.dao.*;
 import ca.mcgill.ecse321.projectGroup20.model.*;
@@ -20,7 +22,7 @@ import ca.mcgill.ecse321.projectGroup20.model.*;
  * */
 @RunWith(SpringRunner.class)
 //@SpringBootTest
-@ComponentScan({"ca.mcgill.ecse321.projectGroup20.service.TestprojectGroup20Service"})
+@Configuration
 public class TestProjectGroup20Service {
 
 	@Autowired

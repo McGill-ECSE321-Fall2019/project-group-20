@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +28,6 @@ import ca.mcgill.ecse321.projectGroup20.model.*;
 
 
 @Service
-@ComponentScan({"ca.mcgill.ecse321.projectGroup20.service.projectGroup20Service"})
 public class projectGroup20Service {
 
 	@Autowired
@@ -60,6 +60,15 @@ public class projectGroup20Service {
 	//Users
 	@Transactional
 	public User createUser(String name, String email, String password, String ID, boolean isRemoved) {
+		if (name == null || name.trim().length() == 0 ) {
+	        throw new IllegalArgumentException("Username cannot be null!");
+	    }
+		if (email == null || email.trim().length() == 0 ) {
+	        throw new IllegalArgumentException("User email cannot be null!");
+	    }
+		if (ID == null || ID.trim().length() == 0 ) {
+	        throw new IllegalArgumentException("User ID cannot be null!");
+	    }
 		User person = new User();
 		person.setName(name);
 		person.setEmail(email);
@@ -84,6 +93,9 @@ public class projectGroup20Service {
 	//Bills
 	@Transactional
 	public Bill createBill(double amount, Session session) {
+		if (amount == 0 ) {
+	        throw new IllegalArgumentException("The bill cannot be of 0$!");
+	    }
 		Bill bill = new Bill();
 		bill.setAmount(amount);
 		bill.setSession(session);
@@ -105,6 +117,7 @@ public class projectGroup20Service {
 	//Tutor Review
 	@Transactional
 	public TutorReview createTutorReview(int rating, String txtReview) {
+		//Text review is an optional field, it could be null
 		TutorReview tutorRev = new TutorReview();
 		tutorRev.setRating(rating);
 		tutorRev.setTxtReview(txtReview);
@@ -126,6 +139,9 @@ public class projectGroup20Service {
 	//RoomBooking
 	@Transactional
 	public RoomBooking createRoomBooking(String requestNb) {
+		if (requestNb == null || requestNb.trim().length() == 0 ) {
+	        throw new IllegalArgumentException("request Number name cannot be null!");
+	    }
 		RoomBooking roomBook = new RoomBooking();
 		roomBook.setRequestNb(requestNb);
 		roomBookingRepository.save(roomBook);
@@ -146,6 +162,9 @@ public class projectGroup20Service {
 	//Room
 	@Transactional
 	public Room createRoom(int number, String sessionType, boolean isAvailable) {
+		if (sessionType == null || sessionType.trim().length() == 0 ) {
+	        throw new IllegalArgumentException("SessionType cannot be null!");
+	    }
 		Room room = new Room();
 		room.setNumber(number);
 		room.setSessionType(sessionType);
@@ -193,6 +212,9 @@ public class projectGroup20Service {
 
 	@Transactional
 	public Subject getSubject(String name) {
+		if (name == null || name.trim().length() == 0 ) {
+	        throw new IllegalArgumentException("Subject name cannot be null!");
+	    }
 		Subject subject = subjectRepository.findSubjectbyName(name);
 		return subject;
 	}
@@ -205,6 +227,9 @@ public class projectGroup20Service {
 	//Course
 	@Transactional
 	public Course createCourse(int number) {
+		if (number < 0) {
+	        throw new IllegalArgumentException("Course number cannot be negative!");
+	    }
 		Course course = new Course();
 		course.setNumber(number);
 		subjectMatterRepository.save(course);
@@ -213,6 +238,9 @@ public class projectGroup20Service {
 
 	@Transactional
 	public Course getCourse(int number) {
+		if (number < 0) {
+	        throw new IllegalArgumentException("Course number cannot be negative!");
+	    }
 		Course course = courseRepository.findCourseById(number);
 		return course;
 	}
@@ -225,6 +253,9 @@ public class projectGroup20Service {
 	//School
 		@Transactional
 		public School createSchool(String name) {
+			if (name == null || name.trim().length() == 0 ) {
+		        throw new IllegalArgumentException("School name cannot be null!");
+		    }
 			School school = new School();
 			school.setName(name);
 			schoolRepository.save(school);
@@ -233,6 +264,9 @@ public class projectGroup20Service {
 
 		@Transactional
 		public School getSchool(String name) {
+			if (name == null || name.trim().length() == 0 ) {
+		        throw new IllegalArgumentException("School name cannot be null!");
+		    }
 			School school = schoolRepository.findSchoolByName(name);
 			return school;
 		}
