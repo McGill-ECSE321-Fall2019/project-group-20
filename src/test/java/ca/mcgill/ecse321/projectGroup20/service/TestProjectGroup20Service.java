@@ -2,20 +2,14 @@ package ca.mcgill.ecse321.projectGroup20.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-
-import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
+//import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import ca.mcgill.ecse321.projectGroup20.dao.*;
@@ -26,40 +20,41 @@ import ca.mcgill.ecse321.projectGroup20.model.*;
  * */
 @RunWith(SpringRunner.class)
 //@SpringBootTest
+@ComponentScan({"ca.mcgill.ecse321.projectGroup20.service.TestprojectGroup20Service"})
 public class TestProjectGroup20Service {
 
 	@Autowired
 	private projectGroup20Service service;
 
 	@Autowired
-	BillRepository billRepository;
+	private BillRepository billRepository;
 	@Autowired
-	CompanyRepository companyRepository;
+	private CompanyRepository companyRepository;
 	@Autowired
-	UserRepository userRepository;
+	private UserRepository userRepository;
 	@Autowired
-	CourseRepository courseRepository;
+	private CourseRepository courseRepository;
 	@Autowired
-	FeedbackRepository feedbackRepository;
+	private FeedbackRepository feedbackRepository;
 	@Autowired
-	RoomRepository roomRepository;
+	private RoomRepository roomRepository;
 	@Autowired
-	RoomBookingRepository roomBookingRepository;
+	private RoomBookingRepository roomBookingRepository;
 	@Autowired
-	SchoolRepository schoolRepository;
+	private SchoolRepository schoolRepository;
 	@Autowired
-	SessionRepository sessionRepository;
+	private SessionRepository sessionRepository;
 	@Autowired
-	SubjectMatterRepository subjectMatterRepository;
+	private SubjectMatterRepository subjectMatterRepository;
 	@Autowired
-	SubjectRepository subjectRepository;
+	private SubjectRepository subjectRepository;
 	@Autowired
-	TutorRepository tutorRepository;
+	private TutorRepository tutorRepository;
 	@Autowired
 	TutorReviewRepository tutorReviewRepository;
 
 	@After
-	public void clearDatabase() {
+	public void clearDatabase() { //We're cleaning the contents of the database
 		// Fisrt, we clear registrations to avoid exceptions due to inconsistencies
 		sessionRepository.deleteAll();
 		// Then we can clear the other tables
@@ -79,7 +74,7 @@ public class TestProjectGroup20Service {
 
 	//User
 	@Test
-	public void testCreateUser() {
+	public void testCreateUser() { //This creates a user and checks if we can create users
 		assertEquals(0, service.getAllPersons().size());
 
 		String name = "Oscar";
@@ -98,11 +93,11 @@ public class TestProjectGroup20Service {
 		List<User> allPersons = service.getAllPersons();
 
 		assertEquals(1, allPersons.size());
-		assertEquals(name, allPersons.get(0).getName());
+		assertEquals(name, allPersons.get(0).getName()); //Getters to the application to read the data and assess if its equal to the one we created. 
 	}
 
 	@Test
-	public void testCreatePersonNull() {
+	public void testCreatePersonNull() {//This reads the create user method to make sure that they are not null
 		assertEquals(0, service.getAllPersons().size());
 
 		String name = null;
@@ -322,13 +317,12 @@ public class TestProjectGroup20Service {
 
 				@Test
 				public void testCreateSubjectNull() {
-					assertEquals(0, service.getAllRooms().size());
 
 					String name = null;
 					
 					String error = null;
 					try {
-						service.createSubject( name);
+						service.createSubject(name);
 					} catch (IllegalArgumentException e) {
 						error = e.getMessage();
 					}
@@ -570,7 +564,7 @@ public class TestProjectGroup20Service {
 					assertEquals("Company name cannot be empty (and it needs to make profit)!", error);
 
 					// check no change in memory
-					assertEquals(0, service.getAllTutors().size());
+					assertEquals(0, service.getAllCompanies().size());
 
 				}
 				

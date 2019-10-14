@@ -1,12 +1,12 @@
 package ca.mcgill.ecse321.projectGroup20.service;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +27,7 @@ import ca.mcgill.ecse321.projectGroup20.model.*;
 
 
 @Service
+@ComponentScan({"ca.mcgill.ecse321.projectGroup20.service.projectGroup20Service"})
 public class projectGroup20Service {
 
 	@Autowired
@@ -168,6 +169,7 @@ public class projectGroup20Service {
 
 	@Transactional
 	public SubjectMatter getSubjectMatter(int number) {
+		
 		SubjectMatter subjectMatter = subjectMatterRepository.findSubjectMatterbyId(number);
 		return subjectMatter;
 	}
@@ -180,9 +182,12 @@ public class projectGroup20Service {
 	//Subject
 	@Transactional
 	public Subject createSubject(String name) {
+		if (name == null || name.trim().length() == 0 ) {
+	        throw new IllegalArgumentException("Subject name cannot be null!");
+	    }
 		Subject subject = new Subject();
 		subject.setName(name);
-		subjectMatterRepository.save(subject);
+		subjectRepository.save(subject);
 		return subject;
 	}
 
@@ -288,6 +293,9 @@ public class projectGroup20Service {
 	//Company
 	@Transactional
 	public Company createCompany(String name, double commissionRate) {
+		if(name == null || name.trim().length() == 0 || commissionRate == 0) {
+			throw new IllegalArgumentException("Cannot be null");
+		}
 		Company company = new Company();
 		company.setName(name);
 		company.setCommissionRate(commissionRate);
