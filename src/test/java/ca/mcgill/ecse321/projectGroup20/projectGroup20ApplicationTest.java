@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+//@SpringBootTest - This doesn't work since we're referring to no class in particular
 public class projectGroup20ApplicationTest {
 
     @Test 

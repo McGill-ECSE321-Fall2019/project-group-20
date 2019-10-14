@@ -260,8 +260,13 @@ public class projectGroup20Service {
 	
 	//Tutor
 	@Transactional
-	public Tutor createTutor(String availability, double hourlyRate, boolean isVerified) {
+	public Tutor createTutor(String name, String email, String password, String ID, boolean isRemoved, String availability, double hourlyRate, boolean isVerified) {
 		Tutor tutor = new Tutor();
+		tutor.setName(name);
+		tutor.setEmail(email);
+		tutor.setID(ID);
+		tutor.setID(password);
+		tutor.setIsRemoved(isRemoved);
 		tutor.setAvailability(availability);
 		tutor.setHourlyRate(hourlyRate);
 		tutor.setIsVerified(isVerified);
@@ -303,14 +308,14 @@ public class projectGroup20Service {
 
 	//Sessions
 	@Transactional
-	public Session createSession(boolean isRejected, SubjectMatter subjectMatter, RoomBooking roomBooking, int ID, Set<Feedback> feedback) {
+	public Session createSession(boolean isRejected, RoomBooking roomBooking, int ID) {
 		Session registration = new Session();
 		registration.setRoomBooking(roomBooking);
 
-		registration.setSubjectMatter(subjectMatter);
+		registration.getSubjectMatter();
 		registration.setIsRejected(isRejected);
 		registration.setId(ID);
-		registration.setFeedback(feedback);
+		registration.getFeedback();
 		sessionRepository.save(registration);
 		return registration;
 	}
