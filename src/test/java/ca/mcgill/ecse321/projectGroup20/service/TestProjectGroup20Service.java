@@ -7,8 +7,16 @@ import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.stereotype.Component;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 //import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.*;
@@ -21,42 +29,41 @@ import ca.mcgill.ecse321.projectGroup20.model.*;
  * @author Imane Chafi
  * */
 @RunWith(SpringRunner.class)
-//@SpringBootTest
-@Configuration
-public class TestProjectGroup20Service {
-
+@ContextConfiguration(classes = projectGroup20Service.class)
+public class TestProjectGroup20Service  {
+	ApplicationContext context = new AnnotationConfigApplicationContext(projectGroup20Service.class);
 	@Autowired
 	private projectGroup20Service service;
 
-	@Autowired
+//	@Autowired
 	private BillRepository billRepository;
-	@Autowired
+	//@Autowired
 	private CompanyRepository companyRepository;
-	@Autowired
+	//@Autowired
 	private UserRepository userRepository;
-	@Autowired
+	//@Autowired
 	private CourseRepository courseRepository;
-	@Autowired
+	//@Autowired
 	private FeedbackRepository feedbackRepository;
-	@Autowired
+	//@Autowired
 	private RoomRepository roomRepository;
-	@Autowired
+	//@Autowired
 	private RoomBookingRepository roomBookingRepository;
-	@Autowired
+	//@Autowired
 	private SchoolRepository schoolRepository;
-	@Autowired
+	//@Autowired
 	private SessionRepository sessionRepository;
-	@Autowired
+	//@Autowired
 	private SubjectMatterRepository subjectMatterRepository;
-	@Autowired
+	//@Autowired
 	private SubjectRepository subjectRepository;
-	@Autowired
+	//@Autowired
 	private TutorRepository tutorRepository;
-	@Autowired
+	//@Autowired
 	TutorReviewRepository tutorReviewRepository;
 
 	@After
-	public void clearDatabase() { //We're cleaning the contents of the database
+	public void clearDatabase()  { //We're cleaning the contents of the database
 		// Fisrt, we clear registrations to avoid exceptions due to inconsistencies
 		sessionRepository.deleteAll();
 		// Then we can clear the other tables
@@ -99,7 +106,7 @@ public class TestProjectGroup20Service {
 	}
 
 	@Test
-	public void testCreatePersonNull() {//This reads the create user method to make sure that they are not null
+	public void testCreateUserNull() {//This reads the create user method to make sure that they are not null
 		assertEquals(0, service.getAllPersons().size());
 
 		String name = null;
