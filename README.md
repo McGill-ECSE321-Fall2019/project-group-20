@@ -7,8 +7,6 @@ The first stable version deployed to heroku as a SpringBoot application can be f
 # Important notes
 FOR EVERY BIG RELEASE DO NOT FORGET TO INCLUDE: 
 
-git push master
-
 git push heroku master
 
 ## Sprint 1 - Requirements, Domain Modeling, and Database Design
