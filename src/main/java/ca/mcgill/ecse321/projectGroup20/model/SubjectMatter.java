@@ -4,8 +4,12 @@ import javax.persistence.Id;
 @Entity
 
 public abstract class SubjectMatter{
-	@Id	
+	
 	private int id;
+	public void setId(int value) {
+		this.id = value;
+	}
+	@Id	
 	public int getId() {
 		return this.id;
 	}
