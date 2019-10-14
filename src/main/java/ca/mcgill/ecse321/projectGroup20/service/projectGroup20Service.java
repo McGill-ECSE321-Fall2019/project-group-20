@@ -3,7 +3,10 @@ package ca.mcgill.ecse321.projectGroup20.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
@@ -26,35 +29,34 @@ import ca.mcgill.ecse321.projectGroup20.dao.TutorReviewRepository;
 import ca.mcgill.ecse321.projectGroup20.dao.UserRepository;
 import ca.mcgill.ecse321.projectGroup20.model.*;
 
-
 @Service
+@Repository
 public class projectGroup20Service {
 
-	//@Autowired
 	BillRepository billRepository;
-	//@Autowired
+
 	CompanyRepository companyRepository;
-	//@Autowired
+
 	UserRepository userRepository;
-	//@Autowired
+
 	CourseRepository courseRepository;
-	//@Autowired
+
 	FeedbackRepository feedbackRepository;
-	//@Autowired
+
 	RoomRepository roomRepository;
-	//@Autowired
+
 	RoomBookingRepository roomBookingRepository;
-	//@Autowired
+
 	SchoolRepository schoolRepository;
-	//@Autowired
+	
 	SessionRepository sessionRepository;
-	//@Autowired
+
 	SubjectMatterRepository subjectMatterRepository;
-	//@Autowired
+	
 	SubjectRepository subjectRepository;
-	//@Autowired
+
 	TutorRepository tutorRepository;
-	//@Autowired
+
 	TutorReviewRepository tutorReviewRepository;
 
 	//Users
@@ -202,7 +204,7 @@ public class projectGroup20Service {
 	@Transactional
 	public Subject createSubject(String name) {
 		if (name == null || name.trim().length() == 0 ) {
-	        throw new IllegalArgumentException("Subject name cannot be null!");
+	        throw new IllegalArgumentException("Subject name cannot be empty!");
 	    }
 		Subject subject = new Subject();
 		subject.setName(name);
@@ -213,7 +215,7 @@ public class projectGroup20Service {
 	@Transactional
 	public Subject getSubject(String name) {
 		if (name == null || name.trim().length() == 0 ) {
-	        throw new IllegalArgumentException("Subject name cannot be null!");
+	        throw new IllegalArgumentException("Subject name cannot be empty!");
 	    }
 		Subject subject = subjectRepository.findSubjectbyName(name);
 		return subject;
@@ -221,6 +223,10 @@ public class projectGroup20Service {
 
 	@Transactional
 	public List<Subject> getAllSubjects() {
+		if (subjectRepository == null ) {
+	        throw new IllegalArgumentException("Subject name cannot be empty!");
+	        
+	    }
 		return toList(subjectRepository.findAll());
 	}
 	
@@ -329,6 +335,9 @@ public class projectGroup20Service {
 	public Company createCompany(String name, double commissionRate) {
 		if(name == null || name.trim().length() == 0 || commissionRate == 0) {
 			throw new IllegalArgumentException("Cannot be null");
+		}
+		if(companyRepository == null) {
+			throw new IllegalArgumentException("Company name cannot be empty (and it needs to make profit)!");
 		}
 		Company company = new Company();
 		company.setName(name);
