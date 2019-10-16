@@ -1,4 +1,4 @@
-# ECSE321 Group 20
+# ECSE321 Group 20 [![Build Status](https://travis-ci.com/McGill-ECSE321-Fall2019/project-group-20.svg?token=ERzxJp8gWsvgA1YgDGwo&branch=master)](https://travis-ci.com/McGill-ECSE321-Fall2019/project-group-20)
 
 This team project for ECSE321 2019 is a tutoring company software and website. Through this company, we cater to the needs of students at the high school, CÉGEP, and university levels. Any student looking for a tutor in any subject taught at those levels can approach the company and ask its help to find an appropriate tutor. Our view point is the tutor view point. 
 
