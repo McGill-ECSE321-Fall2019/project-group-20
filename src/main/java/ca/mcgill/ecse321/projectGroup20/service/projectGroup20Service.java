@@ -32,31 +32,31 @@ import ca.mcgill.ecse321.projectGroup20.model.*;
 @Service
 @Repository
 public class projectGroup20Service {
-
+	@Autowired
 	BillRepository billRepository;
-
+	@Autowired
 	CompanyRepository companyRepository;
-
+	@Autowired
 	UserRepository userRepository;
-
+	@Autowired
 	CourseRepository courseRepository;
-
+	@Autowired
 	FeedbackRepository feedbackRepository;
-
+	@Autowired
 	RoomRepository roomRepository;
-
+	@Autowired
 	RoomBookingRepository roomBookingRepository;
-
+	@Autowired
 	SchoolRepository schoolRepository;
-	
+	@Autowired
 	SessionRepository sessionRepository;
-
+	@Autowired
 	SubjectMatterRepository subjectMatterRepository;
-	
+	@Autowired
 	SubjectRepository subjectRepository;
-
+	@Autowired
 	TutorRepository tutorRepository;
-
+	@Autowired
 	TutorReviewRepository tutorReviewRepository;
 
 	//Users
