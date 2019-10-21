@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import ca.mcgill.ecse321.projectGroup20.dao.BillRepository;
 import ca.mcgill.ecse321.projectGroup20.dao.CompanyRepository;
 import ca.mcgill.ecse321.projectGroup20.dao.CourseRepository;
@@ -28,6 +29,10 @@ import ca.mcgill.ecse321.projectGroup20.dao.TutorRepository;
 import ca.mcgill.ecse321.projectGroup20.dao.TutorReviewRepository;
 import ca.mcgill.ecse321.projectGroup20.dao.UserRepository;
 import ca.mcgill.ecse321.projectGroup20.model.*;
+import ca.mcgill.ecse321.projectGroup20.dao.PersonRepository;
+import ca.mcgill.ecse321.projectGroup20.model.Person;
+
+
 
 @Service
 @Repository
@@ -57,7 +62,9 @@ public class projectGroup20Service {
 	@Autowired
 	TutorRepository tutorRepository;
 	@Autowired
-	TutorReviewRepository tutorReviewRepository;
+	TutorReviewRepository tutorReviewRepository; 
+	@Autowired
+	PersonRepository personRepository;
 
 	//Users
 	@Transactional
@@ -80,7 +87,19 @@ public class projectGroup20Service {
 		userRepository.save(person);
 		return person;
 	}
-
+	
+	// just for tests with REST
+	@Transactional
+	public Person createPerson(String name) {
+		if (name == null || name.trim().length() == 0) {
+			throw new IllegalArgumentException("Person name cannot be empty!");
+		}
+		Person person = new Person();
+		person.setName(name);
+		personRepository.save(person);
+		return person;
+	}	
+	
 	@Transactional
 	public User getUser(String ID) {
 		User person = userRepository.findUserByID(ID);
