@@ -15,9 +15,7 @@ public class projectGroup20Application {
 
   @RequestMapping("/")
   public String greeting(){
-    return "Hello world, this is group 20's backend! "
-    		+ "There is nothing for the moment but we are testing the CRUD operations "
-    		+ "to make sure that everything is up to date!";
+    return "Hello world, this is group 20's backend!";
   }
 
 }

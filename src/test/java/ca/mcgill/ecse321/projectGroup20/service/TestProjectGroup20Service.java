@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -24,33 +23,33 @@ import ca.mcgill.ecse321.projectGroup20.model.*;
 public class TestProjectGroup20Service  {
 	ApplicationContext context = new AnnotationConfigApplicationContext(projectGroup20Service.class);
 	
-	@Mock
+	@Autowired
 	private projectGroup20Service service;
-	@Mock
+	@Autowired
 	private BillRepository billRepository;
-	@Mock
+	@Autowired
 	private CompanyRepository companyRepository;
-	@Mock
+	@Autowired
 	private UserRepository userRepository;
-	@Mock
+	@Autowired
 	private CourseRepository courseRepository;
-	@Mock
+	@Autowired
 	private FeedbackRepository feedbackRepository;
-	@Mock
+	@Autowired
 	private RoomRepository roomRepository;
-	@Mock
+	@Autowired
 	private RoomBookingRepository roomBookingRepository;
-	@Mock
+	@Autowired
 	private SchoolRepository schoolRepository;
-	@Mock
+	@Autowired
 	private SessionRepository sessionRepository;
-	@Mock
+	@Autowired
 	private SubjectMatterRepository subjectMatterRepository;
-	@Mock
+	@Autowired
 	private SubjectRepository subjectRepository;
-	@Mock
+	@Autowired
 	private TutorRepository tutorRepository;
-	@Mock
+	@Autowired
 	TutorReviewRepository tutorReviewRepository;
 
 	@After
