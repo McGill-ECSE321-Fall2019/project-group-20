@@ -73,25 +73,23 @@ public class ProjectGroup20ServiceTests {
 
 		@Test
 		public void testCreateUserNull() {//This reads the create user method to make sure that they are not null
-			assertEquals(0, service.getAllPersons().size());
-
+			
 			String name = null;
 			String email = null;
 			String password = null;
 			String ID = null;
 			String error = null;
+			
+			User user = new User();
 
 			try {
-				service.createUser(name, email, password, ID, true);
+				user = service.createUser(name, email, password, ID, true);
 			} catch (IllegalArgumentException e) {
 				error = e.getMessage();
 			}
 
 			// check error
-			assertEquals("User name cannot be empty!", error);
-
-			// check no change in memory
-			assertEquals(0, service.getAllPersons().size());
+			assertEquals("User fields cannot be empty!", error);
 
 		}
 
