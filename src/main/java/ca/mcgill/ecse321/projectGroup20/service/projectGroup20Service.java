@@ -115,7 +115,7 @@ public class projectGroup20Service {
 	@Transactional
 	public Bill createBill(double amount, Session session) {
 		if (amount == 0 ) {
-	        throw new IllegalArgumentException("The bill cannot be of 0$!");
+	        throw new IllegalArgumentException("Bill cannot be empty!");
 	    }
 		Bill bill = new Bill();
 		bill.setAmount(amount);

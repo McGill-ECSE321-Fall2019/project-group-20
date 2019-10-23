@@ -1,16 +1,18 @@
 package ca.mcgill.ecse321.projectGroup20.service;
 import static org.junit.Assert.assertEquals;
+
 import static org.junit.Assert.fail;
 import java.util.List;
 
 import org.junit.After;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+//import org.springframework.context.ApplicationContext;
+//import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.*;
+//import org.springframework.*;
 
 
 import ca.mcgill.ecse321.projectGroup20.dao.*;
@@ -19,9 +21,10 @@ import ca.mcgill.ecse321.projectGroup20.model.*;
 /**Test class for the database methods inside of the service class
  * @author Imane Chafi
  * */
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class TestProjectGroup20Service  {
-	ApplicationContext context = new AnnotationConfigApplicationContext(projectGroup20Service.class);
+	//ApplicationContext context = new AnnotationConfigApplicationContext(projectGroup20Service.class);
 	
 	@Autowired
 	private projectGroup20Service service;

@@ -27,7 +27,9 @@ public class projectGroup20RestController {
 	
 	@Autowired
 	projectGroup20Service service = new projectGroup20Service();
-	
+
+	//This is the mapping for the user repository 
+	//It sould provide a parameter for the name, email, password and isRemoved for the creation of a user. 
 	@PostMapping(value = { "/user", "/user/" })
 	public Userdto createCoopPostion(
 			@RequestParam(name = "name")  String name,

@@ -89,7 +89,48 @@ public class ProjectGroup20ServiceTests {
 			}
 
 			// check error
-			//assertEquals("User name cannot be empty!", error); //This gives an error?
+			//assertEquals("User name cannot be empty!", error); //This gives an error? 
+
+		}
+		
+		//Bill
+		/*//@SuppressWarnings("deprecation")
+		@Test
+		public void testCreateBill() {
+			//assertEquals(0, service.getAllBills().size());
+
+			double amount = 100;
+			Session Testsession = new Session();
+
+			try {
+				service.createBill(amount, Testsession);//This test doesn't work
+			} catch (IllegalArgumentException e) {
+				// Check that no error occurred
+				fail();
+			}
+
+			List<Bill> allBills = service.getAllBills();
+
+			assertEquals(1, allBills.size());
+		}*/
+		
+		@Test
+		public void testCreateBillNull() {
+			//assertEquals(0, service.getAllBills().size());
+
+			//double amount = (Double) null;
+			Session session = new Session();
+			String error = null;
+			try {
+			  service.createBill(0, session);
+			} catch (IllegalArgumentException e) {
+				error = e.getMessage();
+			}
+
+			// check error
+			assertEquals("Bill cannot be empty!", error);
+
+			// check no change in memory
 
 		}
 
