@@ -54,8 +54,8 @@ public class TestProjectGroup20Service  {
 
 	@After
 	public void clearDatabase()  { //We're cleaning the contents of the database
-		// Fisrt, we clear registrations to avoid exceptions due to inconsistencies
-		/*sessionRepository.deleteAll();
+		 //Fisrt, we clear registrations to avoid exceptions due to inconsistencies
+		sessionRepository.deleteAll();
 		// Then we can clear the other tables
 		subjectMatterRepository.deleteAll();
 		schoolRepository.deleteAll();
@@ -68,7 +68,7 @@ public class TestProjectGroup20Service  {
 		courseRepository.deleteAll();
 		subjectRepository.deleteAll();
 		tutorRepository.deleteAll();
-		tutorReviewRepository.deleteAll();*/
+		tutorReviewRepository.deleteAll();
 	}
 	
 
