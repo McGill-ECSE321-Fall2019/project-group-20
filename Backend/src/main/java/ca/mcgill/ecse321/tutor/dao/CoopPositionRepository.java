@@ -9,13 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface CoopPositionRepository extends CrudRepository<CoopPosition, Integer> {
-    List<CoopPosition> findCoopPositionByStudent(Student student);
+s
+    List<CoopPosition> findAvailabilityByDescription(String description);
 
-    List<CoopPosition> findCoopPositionByTerm(String term);
-
-    List<CoopPosition> findCoopPositionByStatus(Status status);
-
-    List<CoopPosition> findCoopPositionByTermInstructor(TermInstructor termInstructor);
-
-    CoopPosition findByCoopId(int coopId);
 }

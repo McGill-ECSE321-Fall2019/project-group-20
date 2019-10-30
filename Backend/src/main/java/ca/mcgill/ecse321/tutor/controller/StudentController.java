@@ -1,12 +1,9 @@
 package ca.mcgill.ecse321.cooperator.controller;
 
-import ca.mcgill.ecse321.cooperator.dto.RequiredDocumentDto;
-import ca.mcgill.ecse321.cooperator.dto.StudentDto;
-import ca.mcgill.ecse321.cooperator.model.CoopPosition;
-import ca.mcgill.ecse321.cooperator.model.Student;
-import ca.mcgill.ecse321.cooperator.model.TermInstructor;
-import ca.mcgill.ecse321.cooperator.services.StudentService;
-import ca.mcgill.ecse321.cooperator.services.UserEntityService;
+
+import ca.mcgill.ecse321.cooperator.dto.*;
+import ca.mcgill.ecse321.cooperator.model.*;
+import ca.mcgill.ecse321.cooperator.services.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
