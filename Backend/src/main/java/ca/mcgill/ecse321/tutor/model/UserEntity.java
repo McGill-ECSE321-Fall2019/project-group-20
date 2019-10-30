@@ -9,6 +9,7 @@ public abstract class UserEntity {
     private String lastName;
     private String passwordHash;
     private String email;
+    private boolean isRemoved;
 
     public void setFirstName(String value) {
         this.firstName = value;
@@ -41,5 +42,12 @@ public abstract class UserEntity {
     @Id
     public String getEmail() {
         return this.email;
+    }
+    
+    public void setIsRemoved(boolean value) {
+        this.isRemoved = value;
+    }
+    public boolean isIsRemoved() {
+        return this.isRemoved;
     }
 }
