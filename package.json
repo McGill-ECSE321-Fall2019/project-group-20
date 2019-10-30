@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "postinstall": "cd Frontend && npm install",
+    "start": "cd Frontend/ && node build/dev-server.js"
+  },
+  "dependencies": {
+    "bootstrap-vue": "^2.0.0-rc.15"
+  }
+}

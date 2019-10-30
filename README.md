@@ -1,33 +1,65 @@
-# ECSE321 Group 20 [![Build Status](https://travis-ci.com/McGill-ECSE321-Fall2019/project-group-20.svg?token=ERzxJp8gWsvgA1YgDGwo&branch=master)](https://travis-ci.com/McGill-ECSE321-Fall2019/project-group-20)
+# ECSE321 Project Group 19 [![Build Status](https://travis-ci.com/McGill-ECSE321-Winter2019/ecse321-group-project-19-1.svg?token=E9CzzJJTQAzyqtGXvYx8&branch=master)](https://travis-ci.com/McGill-ECSE321-Winter2019/ecse321-group-project-19-1)
 
-This team project for ECSE321 2019 is a tutoring company software and website. Through this company, we cater to the needs of students at the high school, CÉGEP, and university levels. Any student looking for a tutor in any subject taught at those levels can approach the company and ask its help to find an appropriate tutor. Our view point is the tutor view point. 
+We would like to make this project public!
 
-The first stable version deployed to heroku as a SpringBoot application can be found on https://ecse321-group20-2020.herokuapp.com/
+## Academic Program Manager view point - Unit 3
 
-# Important notes
-FOR EVERY BIG RELEASE DO NOT FORGET TO INCLUDE: 
+Welcome to ECSE 321 - Winter 2019 project - Group 19 edition.
 
-git push heroku master
+Please check the wiki for information on the architecture of the system and how to use it.
 
-## Sprint 1 - Requirements, Domain Modeling, and Database Design
-  - The domain model was made with UMLLab and can be found under the `UML` folder.
-  - The use cases and requirements for the functional and non-functional requirements are in the `Requirements` folder. 
-  - The database design has been generated using Postgres, which can be found in the `Database` folder.
-  - Test cases with Travis CI and Gradle were instanciated each time a build was created, and can be found in the `Test` folder.
- 
- All meetings for the Sprint 1 iteration can be found in the github `wiki`.
+App hosted [here](https://cooperator-backend-260.herokuapp.com/)
+
+## Scope of Project:
+  The Co-Operator application is designed to seamlessly integrate a co-op program into the McGill software engineering degree. The application shall allow a mixture of McGill students, staff and prospective employers to interact in order efficiently keep track of students progress in the program. The Co-Operator application provides a hub for is a tool to help McGill track student progress and administrate the system. Students involved in the program will be taking multiple semesters to work in the industry, aptly named "Co-Op semesters". The scope of the software engineering group project of the Winter 2019 offering of ECSE321 is to develop the software system for managing co-op terms for such co-op program
   
-  ### Table - Individual Contributions
+  Our application supports the scenarios described in the user story for the Co-Op Academic program manager and the Co-Op Term Instructor. Additionally this application is designed to integrate with the viewpoints of other stake-holders created by seperate teams via service calls. 3. All functionality of the system is to be accessible via the web frontend for respective stakeholders. In addition, a mobile (Android) frontend allows easy execution of the most important functionality for the givenstakeholder having both read and write access to the backend via RESTful service call.
 
-|Deliverable number|Name |Team Role| Individual Efforts (hours)|
-|:------------:|:-----------|:------------|:-----------|
-|1|Adam Babs|Domain Model and Requirements Model|30|
-|1|Georges Mourant|Documentation Manager|30|
-|1|Imane Chafi|Project and Database Manager|30|
-|1|Mahroo Rahman|Non-Functional Requirements Software Lead|30|
-|1|Sofia Dieguez|UML Software Lead|30|
 
-# Project Wiki
-Project progress documentation including summaries and meeting minutes.
+## Deliverable 1:
+The report can be found [here](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-19-1/wiki/Deliverable-1-Report)
 
-https://github.com/McGill-ECSE321-Fall2019/project-group-20/wiki
+|Team member's name |Total hours |Responsibility         |
+|-------------------|------------|-----------------------|
+|Sophie Deng        |    15      |         Domain model implementation and report              |
+|Andre Kaba         |    18      |         Build system and domain model              |
+|Mia Zhou           |    15      |         Persistance layer and use case diagram             |
+|Max Brodeur        |    15      |         System requirements, use case and report             |
+|Carl Elkhoury      |    15      |         Test cases and System requirements              |
+* Every Member is responsible for the project management, generate issues wherever applicable
+
+## Deliverable 2: Due March 3rd, 2019
+The report can be found [here](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-19-1/wiki/Deliverable-2-Report)
+
+|Team member's name |Total hours |Responsibility         |
+|-------------------|------------|-----------------------|
+|Sophie Deng        |     20       |         RESTful services and documentation              |
+|Andre Kaba         |     20       |         Build system and integration testing              |
+|Mia Zhou           |     20       |         RESTful services and integration testing             |
+|Max Brodeur        |     20      |         Sprint 1 corrections and unit testing             |
+|Carl Elkhoury      |     20       |         Unit and integration testing              |
+* Every Member is responsible for the project management, generate issues wherever applicable
+
+## Deliverable 3: Due March 24th, 2019
+The report can be found [here](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-19-1/wiki/Deliverable-3-Report)
+
+|Team member's name |Total hours |Responsibility         |
+|-------------------|------------|-----------------------|
+|Sophie Deng        |     35       |         Frontend and login              |
+|Andre Kaba         |     35       |         Build system, deployment and connecting REST              |
+|Mia Zhou           |     35       |         Backend fixes and frontend             |
+|Max Brodeur        |     35      |         Frontend and design             |
+|Carl Elkhoury      |     35       |          Frontend and design             |
+* Every Member is responsible for the project management, generate issues wherever applicable
+
+## Deliverable 4: Due April 7th, 2019
+The report can be found [here](https://github.com/McGill-ECSE321-Winter2019/ecse321-group-project-19-1/wiki/Deliverable-4-Report)
+
+|Team member's name |Total hours |Responsibility         |
+|-------------------|------------|-----------------------|
+|Sophie Deng        |     10       |         Frontend             |
+|Andre Kaba         |     10       |         Build system, deployment and frontend fixes              |
+|Mia Zhou           |     10       |         Documentation            |
+|Max Brodeur        |     10      |         Frontend fixes            |
+|Carl Elkhoury      |     10       |          JavaDoc and android login             |
+* Every Member is responsible for the project management, generate issues wherever applicable
