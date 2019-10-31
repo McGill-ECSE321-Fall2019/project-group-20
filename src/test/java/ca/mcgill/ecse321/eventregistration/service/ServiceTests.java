@@ -230,6 +230,37 @@ public class ServiceTests {
 		assertEquals("SessionType cannot be null!", error);
 	}
 	
+	//School
+		@Test
+		public void testCreateSchool() {
+			assertEquals(0, service.getAllSchools().size());
+
+			String name = "McGill University";
+
+			try {
+				school = service.createSchool(name);
+			} catch (IllegalArgumentException e) {
+				// Check that no error occurred
+				fail();
+			}
+
+			assertEquals(name, school.getName());
+		}
+		@Test
+		public void testCreateSchoolNull() {
+			String name = null;
+			String error = null;
+
+			try {
+				school = service.createSchool(name);
+			} catch (IllegalArgumentException e) {
+				error = e.getMessage();
+			}
+
+			// check error
+			assertEquals("School name cannot be null!", error);
+		}
+	
 
 	@Test
 	public void testCreateBill() {
