@@ -10,8 +10,19 @@ public class Subject {
 	  public void setName(String value) {
 	      this.name = value;
 	  }
-	  @Id
+	  
 	  public String getName() {
 	      return this.name;
 	  }
+	  
+	  private int id;
+
+		public void setId(int value) {
+			this.id = value;
+		}
+
+		@Id
+		public int getId() {
+			return this.id;
+		}
 }
