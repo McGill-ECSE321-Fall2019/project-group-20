@@ -15,17 +15,35 @@ import java.util.List;
 
 
 @Service
-public class RateService {
+public class RequestService {
 
 @Autowired
 RateRepository rateRepository;
+
+@Autowired
+RequestRepository requestRepository;
 
 /**
  * Get all rates from the system.
  *
  * @return a list of rates representing all rates in the system.
  */
+
 @Transactional
-public List<Rate> getAllRates() {
-    return (List<Rate>) rateRepository.findAll();
+public List<Reviews> getAllReviews() {
+    return (List<Reviews>) requestRepository.findAllReviews();
 }
+
+@Transactional
+public List<Rate> getAllRequests() {
+    return (List<Requests>) requestRepository.findAllRequests();
+}
+
+@Transactional
+public List<Rate> getAllSessions() {
+    return (List<Sessions>) requestRepository.findAllSessions();
+}
+
+
+
+

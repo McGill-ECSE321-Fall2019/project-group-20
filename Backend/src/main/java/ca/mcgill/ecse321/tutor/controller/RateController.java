@@ -30,7 +30,7 @@ public class RateController {
 	
 	@Autowired
 	UserService userService;
-	/profile/rate
+
 
 	@PostMapping(value = { "/profile/rate/", "/profile/rate" })
 	public UserDto createUser(@PathVariable("user") String name,
