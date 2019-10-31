@@ -11,23 +11,30 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcgill.ecse321.eventregistration.dao.BillRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RoomBookingRepository;
+import ca.mcgill.ecse321.eventregistration.dao.FeedbackRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RoomRepository;
 import ca.mcgill.ecse321.eventregistration.dao.CompanyRepository;
 import ca.mcgill.ecse321.eventregistration.dao.SchoolRepository;
+import ca.mcgill.ecse321.eventregistration.dao.SessionRepository;
+import ca.mcgill.ecse321.eventregistration.dao.SubjectRepository;
 import ca.mcgill.ecse321.eventregistration.dao.CourseRepository;
 import ca.mcgill.ecse321.eventregistration.dao.EventRepository;
 import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RegistrationRepository;
 import ca.mcgill.ecse321.eventregistration.dao.TutorRepository;
+import ca.mcgill.ecse321.eventregistration.dao.TutorReviewRepository;
 import ca.mcgill.ecse321.eventregistration.model.Bill;
 import ca.mcgill.ecse321.eventregistration.model.Company;
 import ca.mcgill.ecse321.eventregistration.model.Course;
 import ca.mcgill.ecse321.eventregistration.model.Event;
+import ca.mcgill.ecse321.eventregistration.model.Feedback;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
 import ca.mcgill.ecse321.eventregistration.model.Room;
 import ca.mcgill.ecse321.eventregistration.model.RoomBooking;
 import ca.mcgill.ecse321.eventregistration.model.School;
+import ca.mcgill.ecse321.eventregistration.model.Session;
+import ca.mcgill.ecse321.eventregistration.model.Subject;
 import ca.mcgill.ecse321.eventregistration.model.Tutor;
 
 @Service
@@ -49,6 +56,14 @@ public class EventRegistrationService {
 	RoomRepository roomRepository;
 	@Autowired
 	RoomBookingRepository roomBookingRepository;
+	@Autowired
+	FeedbackRepository feedBackRepository;
+	@Autowired
+	SessionRepository sessionRepository;
+	@Autowired
+	SubjectRepository subjectRepository;
+	@Autowired
+	TutorReviewRepository tutorReviewRepository;
 	@Autowired
 	CourseRepository courseRepository;
 	@Autowired
@@ -83,6 +98,88 @@ public class EventRegistrationService {
 		return toList(personRepository.findAll());
 	}
 	
+	//Feedback
+	@Transactional
+	public Feedback createFeedback(int ID, Session session) {
+		if (ID == 0) {
+			throw new IllegalArgumentException("Session name cannot be empty!");
+		}
+		Feedback feedback = new Feedback();
+		feedback.setId(ID);
+		feedback.setSession(session);
+		feedBackRepository.save(feedback);
+		return feedback;
+	}
+
+	@Transactional
+	public Feedback getFeedback(Session session) {
+	    if (session == null) {
+	        throw new IllegalArgumentException("Session cannot be empty!");
+	    }
+		Feedback feedback = feedBackRepository.findFeedbackBySession(session);
+		return feedback;
+	}
+
+	@Transactional
+	public List<Feedback> getAllFeedbacks() {
+		return toList(feedBackRepository.findAll());
+	}
+	
+	//Session
+		@Transactional
+		public Session createSession(int ID, boolean isRejected) {
+			if (ID == 0) {
+				throw new IllegalArgumentException("Session name cannot be empty!");
+			}
+			Session session = new Session();
+			session.setId(ID);
+			session.setIsRejected(isRejected);
+			sessionRepository.save(session);
+			return session;
+		}
+
+		@Transactional
+		public Session getSession(String ID) {
+		    if (ID == null) {
+		        throw new IllegalArgumentException("ID cannot be empty!");
+		    }
+			Session session = sessionRepository.findSessionById(ID);
+			return session;
+		}
+
+		@Transactional
+		public List<Session> getAllSessions() {
+			return toList(sessionRepository.findAll());
+		}
+		
+		
+		//Subject
+				@Transactional
+				public Subject createSubject(String name, int Id) {
+					if (name == null) {
+						throw new IllegalArgumentException("Session name cannot be empty!");
+					}
+					Subject subject = new Subject();
+					subject.setId(Id);
+					subject.setName(name);
+					subjectRepository.save(subject);
+					return subject;
+				}
+
+				@Transactional
+				public Subject getSubject(String name) {
+				    if (name == null) {
+				        throw new IllegalArgumentException("ID cannot be empty!");
+				    }
+					Subject subject = subjectRepository.findSubjectById(name);
+					return subject;
+				}
+
+				@Transactional
+				public List<Session> getAllSubjects() {
+					return toList(sessionRepository.findAll());
+				}
+				
 	//Company
 	@Transactional
 	public Company createCompany(String name, double commissionRate ) {
