@@ -22,15 +22,21 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
+import ca.mcgill.ecse321.eventregistration.dao.BillRepository;
 import ca.mcgill.ecse321.eventregistration.dao.CourseRepository;
 import ca.mcgill.ecse321.eventregistration.dao.EventRepository;
 import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RegistrationRepository;
+import ca.mcgill.ecse321.eventregistration.dao.RoomRepository;
+import ca.mcgill.ecse321.eventregistration.dao.SchoolRepository;
 import ca.mcgill.ecse321.eventregistration.dao.TutorRepository;
+import ca.mcgill.ecse321.eventregistration.model.Bill;
 import ca.mcgill.ecse321.eventregistration.model.Course;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
+import ca.mcgill.ecse321.eventregistration.model.Room;
+import ca.mcgill.ecse321.eventregistration.model.School;
 import ca.mcgill.ecse321.eventregistration.model.Tutor;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
@@ -44,6 +50,15 @@ public class ServiceTests {
 	
 	@Mock
 	private CourseRepository courseDao;
+	
+	@Mock
+	private RoomRepository roomDao;
+	
+	@Mock
+	private SchoolRepository schoolDao;
+	
+	@Mock
+	private BillRepository billDao;
 
 	@Mock
 	private RegistrationRepository registrationDao;
@@ -60,6 +75,9 @@ public class ServiceTests {
 	private Tutor tutor;
 	private Course course;
 	private Event event;
+	private Bill bill;
+	private Room room;
+	private School school;
 	private Registration registration;
 
 	@Before
@@ -81,6 +99,9 @@ public class ServiceTests {
 		when(tutorDao.save(any(Tutor.class))).thenAnswer(returnParameterAsAnswer);
 		when(courseDao.save(any(Course.class))).thenAnswer(returnParameterAsAnswer);
 		when(eventDao.save(any(Event.class))).thenAnswer(returnParameterAsAnswer);
+		when(roomDao.save(any(Room.class))).thenAnswer(returnParameterAsAnswer);
+		when(billDao.save(any(Bill.class))).thenAnswer(returnParameterAsAnswer);
+		when(schoolDao.save(any(School.class))).thenAnswer(returnParameterAsAnswer);
 		when(registrationDao.save(any(Registration.class))).thenAnswer(returnParameterAsAnswer);
 	}
 
@@ -174,7 +195,70 @@ public class ServiceTests {
 		// check error
 		assertEquals("Course number cannot be 0!", error);
 	}
+	
+	//Room
+	@Test
+	public void testCreateRoom() {
+		assertEquals(0, service.getAllRooms().size());
 
+		int number = 12345;
+		String sessionType = "individual";
+		boolean isAvailable = false;
+
+		try {
+			room = service.createRoom(number, sessionType, isAvailable);
+		} catch (IllegalArgumentException e) {
+			// Check that no error occurred
+			fail();
+		}
+
+		assertEquals(number, room.getNumber());
+	}
+	@Test
+	public void testCreateRoomNull() {
+		int number = 0;
+		String sessionType = null;
+		String error = null;
+
+		try {
+			room = service.createRoom(number, sessionType, false);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		// check error
+		assertEquals("SessionType cannot be null!", error);
+	}
+	
+
+	@Test
+	public void testCreateBill() {
+		assertEquals(0, service.getAllBills().size());
+
+		double amount = 212;
+
+		try {
+			bill = service.createBill(amount);
+		} catch (IllegalArgumentException e) {
+			// Check that no error occurred
+			fail();
+		}
+
+	}
+	@Test
+	public void testCreateBillnull() {
+		double number = 0;
+		String error = null;
+
+		try {
+			bill = service.createBill(number);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		// check error
+		assertEquals("Bill cannot be empty!", error);
+	}
 	@Test
 	public void testCreatePersonNull() {
 		String name = null;

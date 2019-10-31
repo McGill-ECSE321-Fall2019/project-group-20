@@ -13,9 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import ca.mcgill.ecse321.eventregistration.dao.BillRepository;
 import ca.mcgill.ecse321.eventregistration.dao.CourseRepository;
 import ca.mcgill.ecse321.eventregistration.dao.EventRegistrationRepository;
 import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
+import ca.mcgill.ecse321.eventregistration.dao.RoomRepository;
+import ca.mcgill.ecse321.eventregistration.dao.SchoolRepository;
 import ca.mcgill.ecse321.eventregistration.dao.TutorRepository;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.service.EventRegistrationService;
@@ -39,12 +42,24 @@ public class PersistenceTests {
 	
 	@Autowired
 	private CourseRepository courseRepository;
+	
+	@Autowired
+	private RoomRepository roomRepository;
+	
+	@Autowired
+	private BillRepository billRepository;
+	
+	@Autowired
+	private SchoolRepository schoolRepository;
 
 	@After
 	public void clearDatabase() {
 		personRepository.deleteAll();
 		tutorRepository.deleteAll();
 		courseRepository.deleteAll();
+		roomRepository.deleteAll();
+		billRepository.deleteAll();
+		schoolRepository.deleteAll();
 	}
 
 	@Ignore
