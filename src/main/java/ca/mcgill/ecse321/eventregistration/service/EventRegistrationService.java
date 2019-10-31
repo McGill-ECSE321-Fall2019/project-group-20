@@ -27,12 +27,16 @@ public class EventRegistrationService {
 	RegistrationRepository registrationRepository;
 
 	@Transactional
-	public Person createPerson(String name) {
+	public Person createPerson(String name, String email, String password, String ID, boolean isRemoved) {
 		if (name == null || name.trim().length() == 0) {
 			throw new IllegalArgumentException("Person name cannot be empty!");
 		}
 		Person person = new Person();
 		person.setName(name);
+		person.setEmail(email);
+		person.setID(ID);
+		person.setPassword(password);
+		person.setIsRemoved(false);
 		personRepository.save(person);
 		return person;
 	}

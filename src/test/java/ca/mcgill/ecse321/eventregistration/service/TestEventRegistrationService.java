@@ -52,9 +52,13 @@ public class TestEventRegistrationService {
 		assertEquals(0, service.getAllPersons().size());
 
 		String name = "Oscar";
+		String email = "oscar@helloworld.com";
+		String password = "123";
+		String ID = "123321";
+		boolean isRemoved = false;
 
 		try {
-			service.createPerson(name);
+			service.createPerson(name, email, password, ID, isRemoved);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			fail();
@@ -71,10 +75,13 @@ public class TestEventRegistrationService {
 		assertEquals(0, service.getAllPersons().size());
 
 		String name = null;
+		String email = null;
+		String password = null;
+		String ID = null;
 		String error = null;
 
 		try {
-			service.createPerson(name);
+			service.createPerson(name, email, password, ID, false);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -92,10 +99,13 @@ public class TestEventRegistrationService {
 		assertEquals(0, service.getAllPersons().size());
 
 		String name = "";
+		String email = "";
+		String password = "";
+		String ID = "";
 		String error = null;
 
 		try {
-			service.createPerson(name);
+			service.createPerson(name, email, password, ID, false);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -113,10 +123,13 @@ public class TestEventRegistrationService {
 		assertEquals(0, service.getAllPersons().size());
 
 		String name = " ";
+		String email = " ";
+		String password = " ";
+		String ID = " ";
 		String error = null;
 
 		try {
-			service.createPerson(name);
+			service.createPerson(name, email, password, ID, false);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -167,8 +180,12 @@ public class TestEventRegistrationService {
 		assertEquals(0, service.getAllRegistrations().size());
 
 		String nameP = "Oscar";
+		String email = "oscar@helloworld.com";
+		String password = "123";
+		String ID = "123321";
+		boolean isRemoved = false;
 
-		Person person = service.createPerson(nameP);
+		Person person = service.createPerson(nameP, email, password, ID, isRemoved);
 
 		assertEquals(1, service.getAllPersons().size());
 

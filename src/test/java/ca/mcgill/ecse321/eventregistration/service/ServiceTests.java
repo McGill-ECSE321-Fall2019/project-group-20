@@ -75,9 +75,13 @@ public class ServiceTests {
 		assertEquals(0, service.getAllPersons().size());
 
 		String name = "Oscar";
+		String email = "oscar@helloworld.com";
+		String password = "123";
+		String ID = "123321";
+		boolean isRemoved = false;
 
 		try {
-			person = service.createPerson(name);
+			person = service.createPerson(name, email, password, ID, isRemoved);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			fail();
@@ -89,10 +93,13 @@ public class ServiceTests {
 	@Test
 	public void testCreatePersonNull() {
 		String name = null;
+		String email = null;
+		String password = null;
+		String ID = null;
 		String error = null;
 
 		try {
-			person = service.createPerson(name);
+			person = service.createPerson(name, email, password, ID, false);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -104,10 +111,13 @@ public class ServiceTests {
 	@Test
 	public void testCreatePersonEmpty() {
 		String name = "";
+		String email = "";
+		String password = "";
+		String ID = "";
 		String error = null;
 
 		try {
-			person = service.createPerson(name);
+			person = service.createPerson(name, email, password, ID, false);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -120,10 +130,13 @@ public class ServiceTests {
 	public void testCreatePersonSpaces() {
 
 		String name = " ";
+		String email = " ";
+		String password = " ";
+		String ID = " ";
 		String error = null;
 
 		try {
-			person = service.createPerson(name);
+			person = service.createPerson(name, email, password, ID, false);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -162,6 +175,9 @@ public class ServiceTests {
 	@Test
 	public void testRegister() {
 		String nameP = "Oscar2";
+		String email = "oscar@mail.mcgill.ca";
+		String password = "111";
+		String ID = "222";
 		String nameE = "Soccer Game2";
 		Calendar c = Calendar.getInstance();
 		c.set(2017, Calendar.MARCH, 16, 9, 0, 0);
@@ -169,7 +185,7 @@ public class ServiceTests {
 		Time startTime = new Time(c.getTimeInMillis());
 		c.set(2017, Calendar.MARCH, 16, 10, 30, 0);
 		Time endTime = new Time(c.getTimeInMillis());
-		person = service.createPerson(nameP);
+		person = service.createPerson(nameP, email, password, ID, false);
 		event = service.createEvent(nameE, eventDate, startTime, endTime);
 		when(personDao.existsById(anyString())).thenReturn(true);
 		when(eventDao.existsById(anyString())).thenReturn(true);

@@ -48,7 +48,7 @@ public class PersistenceTests {
 	//@Ignore
 	@Test
 	public void serviceTest( ) {
-		service.createPerson("ServicePerson");
+		service.createPerson("ServicePerson", "ServiceEmail", "ServicePassword", "ServiceID", false);
 	}
 
 }

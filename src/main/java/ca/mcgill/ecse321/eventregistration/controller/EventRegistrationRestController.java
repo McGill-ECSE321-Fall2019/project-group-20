@@ -33,7 +33,8 @@ public class EventRegistrationRestController {
 	@PostMapping(value = { "/persons/{name}", "/persons/{name}/" })
 	public PersonDto createPerson(@PathVariable("name") String name) throws IllegalArgumentException {
 		// @formatter:on
-		Person person = service.createPerson(name);
+		String tmp = "tmp"; //tmp variable until I get the data from Adam
+		Person person = service.createPerson(name, tmp, tmp, tmp, false);
 		return convertToDto(person);
 	}
 
