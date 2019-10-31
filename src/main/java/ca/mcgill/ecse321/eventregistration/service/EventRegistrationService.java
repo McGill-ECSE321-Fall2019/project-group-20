@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcgill.ecse321.eventregistration.dao.BillRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RoomBookingRepository;
+import ca.mcgill.ecse321.eventregistration.dao.RoomRepository;
 import ca.mcgill.ecse321.eventregistration.dao.CourseRepository;
 import ca.mcgill.ecse321.eventregistration.dao.EventRepository;
 import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
@@ -21,6 +22,7 @@ import ca.mcgill.ecse321.eventregistration.model.Course;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
+import ca.mcgill.ecse321.eventregistration.model.Room;
 import ca.mcgill.ecse321.eventregistration.model.RoomBooking;
 import ca.mcgill.ecse321.eventregistration.model.Tutor;
 
@@ -35,6 +37,8 @@ public class EventRegistrationService {
 	TutorRepository tutorRepository;
 	@Autowired
 	BillRepository billRepository;
+	@Autowired
+	RoomRepository roomRepository;
 	@Autowired
 	RoomBookingRepository roomBookingRepository;
 	@Autowired
@@ -141,6 +145,31 @@ public class EventRegistrationService {
 		@Transactional
 		public List<RoomBooking> getAllRoomBooking() {
 			return toList(roomBookingRepository.findAll());
+		}
+		
+		//Room
+		@Transactional
+		public Room createRoom(int number, String sessionType, boolean isAvailable) {
+			if (sessionType == null || sessionType.trim().length() == 0 ) {
+		        throw new IllegalArgumentException("SessionType cannot be null!");
+		    }
+			Room room = new Room();
+			room.setNumber(number);
+			room.setSessionType(sessionType);
+			room.setIsAvailable(isAvailable);
+			roomRepository.save(room);
+			return room;
+		}
+
+		@Transactional
+		public Room getRoom(int number) {
+			Room room = roomRepository.findRoomByNumber(number);
+			return room;
+		}
+
+		@Transactional
+		public List<Room> getAllRooms() {
+			return toList(roomRepository.findAll());
 		}
 	
 	//Tutor
