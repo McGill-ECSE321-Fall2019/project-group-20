@@ -34,6 +34,7 @@ public class EventRegistrationRestController {
 	@Autowired
 	EventRegistrationService service;
 	
+	//Person post mapping to create it!
 	@PostMapping(value = { "/persons/{name}", "/persons/{name}/" })
 	public PersonDto createPerson(@PathVariable("name") String name) throws IllegalArgumentException {
 		// @formatter:on
@@ -41,6 +42,7 @@ public class EventRegistrationRestController {
 		Person person = service.createPerson(name, tmp, tmp, tmp, false);
 		return convertToDto(person);
 	}
+	//Tutor post mapping to create a tutor
 	@PostMapping(value = { "/tutors/{name}", "/tutors/{name}/" })
 	public TutorDto createTutor(@PathVariable("name") String name) throws IllegalArgumentException {
 		// @formatter:on
@@ -48,15 +50,27 @@ public class EventRegistrationRestController {
 		Tutor person = service.createTutor(name, tmp, tmp, tmp, false, tmp, false, 1);
 		return convertToDto(person);
 	}
-
-	@PostMapping(value = { "/events/{name}", "/events/{name}/" })
-	public EventDto createEvent(@PathVariable("name") String name, @RequestParam Date date,
-	@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime startTime,
-	@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime endTime)
-	throws IllegalArgumentException {
-		Event event = service.createEvent(name, date, Time.valueOf(startTime), Time.valueOf(endTime));
-		return convertToDto(event);
+	
+	//Get tutors
+	@GetMapping(value = { "/tutors", "/tutors/" })
+	public List<Tutor> getAllTutors() {
+		List<Tutor> tutorDtos = new ArrayList<>();
+		for (Tutor tutor : service.getAllTutors()) {
+			tutorDtos.addAll(tutorDtos);
+		}
+		return tutorDtos;
 	}
+	
+	//Get users : 
+	@GetMapping(value = { "/persons", "/persons/" })
+	public List<Person> getAllPersons() {
+		List<Person> personDtos = new ArrayList<>();
+		for (Person person : service.getAllPersons()) {
+			personDtos.addAll(personDtos);
+		}
+		return personDtos;
+	}
+
 	/**
 	 * Create a new course in the system.
 	 *
