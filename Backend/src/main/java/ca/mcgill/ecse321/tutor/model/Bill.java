@@ -7,7 +7,7 @@ import javax.persistence.OneToMany;
 import java.util.Set;
 
 @Entity
-public class CooperatorManager {
+public class Bill {
     private Set<UserEntity> userEntity;
     private Set<CoopPosition> coopPosition;
     private Set<Student> student;

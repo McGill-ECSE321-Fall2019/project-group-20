@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-public class CoopPosition {
+public class Company {
     private Integer coopId;
     private Status status = Status.PENDING;
     private Set<TermInstructor> termInstructor = new HashSet<>();

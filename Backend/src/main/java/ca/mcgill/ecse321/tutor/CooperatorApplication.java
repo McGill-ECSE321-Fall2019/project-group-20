@@ -16,6 +16,6 @@ public class CooperatorApplication {
 
     @RequestMapping("/")
     public String greeting() {
-        return "Hello we are group 19!";
+        return "Hello world! This is group 20's backend!";
     }
 }
