@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ca.mcgill.ecse321.eventregistration.dao.CourseRepository;
 import ca.mcgill.ecse321.eventregistration.dao.EventRepository;
 import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RegistrationRepository;
 import ca.mcgill.ecse321.eventregistration.dao.TutorRepository;
+import ca.mcgill.ecse321.eventregistration.model.Course;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
@@ -27,6 +29,8 @@ public class EventRegistrationService {
 	PersonRepository personRepository;
 	@Autowired
 	TutorRepository tutorRepository;
+	@Autowired
+	CourseRepository courseRepository;
 	@Autowired
 	RegistrationRepository registrationRepository;
 
@@ -57,6 +61,32 @@ public class EventRegistrationService {
 	@Transactional
 	public List<Person> getAllPersons() {
 		return toList(personRepository.findAll());
+	}
+	
+	//Course
+	@Transactional
+	public Course createCourse(int number) {
+		if (number == 0) {
+			throw new IllegalArgumentException("Course number cannot be 0!");
+		}
+		Course course = new Course();
+		course.setNumber(number);
+		courseRepository.save(course);
+		return course;
+	}
+
+	@Transactional
+	public Course getCourse(int number) {
+	    if (number == 0) {
+	        throw new IllegalArgumentException("Course number cannot be 0!");
+	    }
+		Course course = courseRepository.findCourseByNumber(number);
+		return course;
+	}
+
+	@Transactional
+	public List<Course> getAllCourses() {
+		return toList(courseRepository.findAll());
 	}
 	
 	//Tutor

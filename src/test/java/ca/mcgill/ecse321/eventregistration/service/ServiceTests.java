@@ -22,10 +22,12 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
+import ca.mcgill.ecse321.eventregistration.dao.CourseRepository;
 import ca.mcgill.ecse321.eventregistration.dao.EventRepository;
 import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RegistrationRepository;
 import ca.mcgill.ecse321.eventregistration.dao.TutorRepository;
+import ca.mcgill.ecse321.eventregistration.model.Course;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
@@ -39,6 +41,9 @@ public class ServiceTests {
 	
 	@Mock
 	private TutorRepository tutorDao;
+	
+	@Mock
+	private CourseRepository courseDao;
 
 	@Mock
 	private RegistrationRepository registrationDao;
@@ -53,6 +58,7 @@ public class ServiceTests {
 	private static final String NONEXISTING_KEY = "NotAPerson";
 	private Person person;
 	private Tutor tutor;
+	private Course course;
 	private Event event;
 	private Registration registration;
 
@@ -73,6 +79,7 @@ public class ServiceTests {
 		};
 		when(personDao.save(any(Person.class))).thenAnswer(returnParameterAsAnswer);
 		when(tutorDao.save(any(Tutor.class))).thenAnswer(returnParameterAsAnswer);
+		when(courseDao.save(any(Course.class))).thenAnswer(returnParameterAsAnswer);
 		when(eventDao.save(any(Event.class))).thenAnswer(returnParameterAsAnswer);
 		when(registrationDao.save(any(Registration.class))).thenAnswer(returnParameterAsAnswer);
 	}
@@ -137,6 +144,35 @@ public class ServiceTests {
 
 		// check error
 		assertEquals("Person name cannot be empty!", error);
+	}
+	@Test
+	public void testCreateCourse() {
+		assertEquals(0, service.getAllCourses().size());
+
+		int number = 212;
+
+		try {
+			course = service.createCourse(number);
+		} catch (IllegalArgumentException e) {
+			// Check that no error occurred
+			fail();
+		}
+
+		assertEquals(number, course.getNumber());
+	}
+	@Test
+	public void testCreateCourseNull() {
+		int number = 0;
+		String error = null;
+
+		try {
+			course = service.createCourse(number);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		// check error
+		assertEquals("Course number cannot be 0!", error);
 	}
 
 	@Test
