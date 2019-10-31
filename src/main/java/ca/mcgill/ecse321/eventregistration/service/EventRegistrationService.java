@@ -14,6 +14,7 @@ import ca.mcgill.ecse321.eventregistration.dao.RoomBookingRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RoomRepository;
 import ca.mcgill.ecse321.eventregistration.dao.CompanyRepository;
 import ca.mcgill.ecse321.eventregistration.dao.SchoolRepository;
+import ca.mcgill.ecse321.eventregistration.dao.SessionRepository;
 import ca.mcgill.ecse321.eventregistration.dao.CourseRepository;
 import ca.mcgill.ecse321.eventregistration.dao.EventRepository;
 import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
@@ -28,15 +29,14 @@ import ca.mcgill.ecse321.eventregistration.model.Registration;
 import ca.mcgill.ecse321.eventregistration.model.Room;
 import ca.mcgill.ecse321.eventregistration.model.RoomBooking;
 import ca.mcgill.ecse321.eventregistration.model.School;
+import ca.mcgill.ecse321.eventregistration.model.Session;
 import ca.mcgill.ecse321.eventregistration.model.Tutor;
 
 @Service
 public class EventRegistrationService {
 
 	@Autowired
-	EventRepository eventRepository;
-	@Autowired
-	PersonRepository personRepository;
+	PersonRepository studentRepository;
 	@Autowired
 	TutorRepository tutorRepository;
 	@Autowired
@@ -52,10 +52,10 @@ public class EventRegistrationService {
 	@Autowired
 	CourseRepository courseRepository;
 	@Autowired
-	RegistrationRepository registrationRepository;
+	SessionRepository sessionRepository;
 
 	@Transactional
-	public Person createPerson(String name, String email, String password, String ID, boolean isRemoved) {
+	public Person createStudent(String name, String email, String password, String ID, boolean isRemoved) {
 		if (name == null || name.trim().length() == 0) {
 			throw new IllegalArgumentException("Person name cannot be empty!");
 		}
@@ -65,7 +65,7 @@ public class EventRegistrationService {
 		person.setID(ID);
 		person.setPassword(password);
 		person.setIsRemoved(false);
-		personRepository.save(person);
+		studentRepository.save(person);
 		return person;
 	}
 
@@ -74,13 +74,13 @@ public class EventRegistrationService {
 	    if (name == null || name.trim().length() == 0) {
 	        throw new IllegalArgumentException("Person name cannot be empty!");
 	    }
-		Person person = personRepository.findPersonByName(name);
+		Person person = studentRepository.findPersonByName(name);
 		return person;
 	}
 
 	@Transactional
 	public List<Person> getAllPersons() {
-		return toList(personRepository.findAll());
+		return toList(studentRepository.findAll());
 	}
 	
 	//Company
@@ -145,101 +145,101 @@ public class EventRegistrationService {
 	}
 	
 	//Bills
-		@Transactional
-		public Bill createBill(double amount) {
-			if (amount == 0 ) {
-		        throw new IllegalArgumentException("Bill cannot be empty!");
-		    }
-			Bill bill = new Bill();
-			bill.setAmount(amount);
-			billRepository.save(bill);
-			return bill;
-		}
+	@Transactional
+	public Bill createBill(double amount) {
+		if (amount == 0 ) {
+	        throw new IllegalArgumentException("Bill cannot be empty!");
+	    }
+		Bill bill = new Bill();
+		bill.setAmount(amount);
+		billRepository.save(bill);
+		return bill;
+	}
 
-		@Transactional
-		public Bill getBill(double amount) {
-			Bill bill = billRepository.findBillByAmount(amount);
-			return bill;
-		}
+	@Transactional
+	public Bill getBill(double amount) {
+		Bill bill = billRepository.findBillByAmount(amount);
+		return bill;
+	}
 
-		@Transactional
-		public List<Bill> getAllBills() {
-			return toList(billRepository.findAll());
-		}
+	@Transactional
+	public List<Bill> getAllBills() {
+		return toList(billRepository.findAll());
+	}
 		
-		//RoomBooking
-		@Transactional
-		public RoomBooking createRoomBooking(String requestNb) {
-			if (requestNb == null || requestNb.trim().length() == 0 ) {
-		        throw new IllegalArgumentException("request Number name cannot be null!");
-		    }
-			RoomBooking roomBook = new RoomBooking();
-			roomBook.setRequestNb(requestNb);
-			roomBookingRepository.save(roomBook);
-			return roomBook;
-		}
+	//RoomBooking
+	@Transactional
+	public RoomBooking createRoomBooking(String requestNb) {
+		if (requestNb == null || requestNb.trim().length() == 0 ) {
+	        throw new IllegalArgumentException("request Number name cannot be null!");
+	    }
+		RoomBooking roomBook = new RoomBooking();
+		roomBook.setRequestNb(requestNb);
+		roomBookingRepository.save(roomBook);
+		return roomBook;
+	}
 
-		@Transactional
-		public RoomBooking getRoomBooking(String requestNb) {
-			RoomBooking roomBooking = roomBookingRepository.findRoomBookingByRequestNb(requestNb);
-			return roomBooking;
-		}
+	@Transactional
+	public RoomBooking getRoomBooking(String requestNb) {
+		RoomBooking roomBooking = roomBookingRepository.findRoomBookingByRequestNb(requestNb);
+		return roomBooking;
+	}
 
-		@Transactional
-		public List<RoomBooking> getAllRoomBooking() {
-			return toList(roomBookingRepository.findAll());
-		}
-		
-		//Room
-		@Transactional
-		public Room createRoom(int number, String sessionType, boolean isAvailable) {
-			if (sessionType == null || sessionType.trim().length() == 0 ) {
-		        throw new IllegalArgumentException("SessionType cannot be null!");
-		    }
-			Room room = new Room();
-			room.setNumber(number);
-			room.setSessionType(sessionType);
-			room.setIsAvailable(isAvailable);
-			roomRepository.save(room);
-			return room;
-		}
+	@Transactional
+	public List<RoomBooking> getAllRoomBooking() {
+		return toList(roomBookingRepository.findAll());
+	}
+	
+	//Room
+	@Transactional
+	public Room createRoom(int number, String sessionType, boolean isAvailable) {
+		if (sessionType == null || sessionType.trim().length() == 0 ) {
+	        throw new IllegalArgumentException("SessionType cannot be null!");
+	    }
+		Room room = new Room();
+		room.setNumber(number);
+		room.setSessionType(sessionType);
+		room.setIsAvailable(isAvailable);
+		roomRepository.save(room);
+		return room;
+	}
 
-		@Transactional
-		public Room getRoom(int number) {
-			Room room = roomRepository.findRoomByNumber(number);
-			return room;
-		}
+	@Transactional
+	public Room getRoom(int number) {
+		Room room = roomRepository.findRoomByNumber(number);
+		return room;
+	}
 
-		@Transactional
-		public List<Room> getAllRooms() {
-			return toList(roomRepository.findAll());
-		}
-		
-		//School
-				@Transactional
-				public School createSchool(String name) {
-					if (name == null || name.trim().length() == 0 ) {
-				        throw new IllegalArgumentException("School name cannot be null!");
-				    }
-					School school = new School();
-					school.setName(name);
-					schoolRepository.save(school);
-					return school;
-				}
+	@Transactional
+	public List<Room> getAllRooms() {
+		return toList(roomRepository.findAll());
+	}
+	
+	//School
+	@Transactional
+	public School createSchool(String name) {
+		if (name == null || name.trim().length() == 0 ) {
+	        throw new IllegalArgumentException("School name cannot be null!");
+	    }
+		School school = new School();
+		school.setName(name);
+		schoolRepository.save(school);
+		return school;
+	}
 
-				@Transactional
-				public School getSchool(String name) {
-					if (name == null || name.trim().length() == 0 ) {
-				        throw new IllegalArgumentException("School name cannot be null!");
-				    }
-					School school = schoolRepository.findSchoolByName(name);
-					return school;
-				}
+	@Transactional
+	public School getSchool(String name) {
+		if (name == null || name.trim().length() == 0 ) {
+	        throw new IllegalArgumentException("School name cannot be null!");
+	    }
+		School school = schoolRepository.findSchoolByName(name);
+		return school;
+	}
 
-				@Transactional
-				public List<School> getAllSchools() {
-					return toList(schoolRepository.findAll());
-				}
+	@Transactional
+	public List<School> getAllSchools() {
+		return toList(schoolRepository.findAll());
+	}
 	
 	//Tutor
 	@Transactional
@@ -273,14 +273,12 @@ public class EventRegistrationService {
 	public List<Tutor> getAllTutors() {
 		return toList(tutorRepository.findAll());
 	}
-
+	
+	// Session
 	@Transactional
-	public Event createEvent(String name, Date date, Time startTime, Time endTime) {
+	public Session createSession(Date date, Time startTime, Time endTime, Person tutor) {
 	    // Input validation
 	    String error = "";
-	    if (name == null || name.trim().length() == 0) {
-	        error = error + "Event name cannot be empty! ";
-	    }
 	    if (date == null) {
 	        error = error + "Event date cannot be empty! ";
 	    }
@@ -298,76 +296,72 @@ public class EventRegistrationService {
 	        throw new IllegalArgumentException(error);
 	    }
 
-		Event event = new Event();
-		event.setName(name);
-		event.setDate(date);
-		event.setStartTime(startTime);
-		event.setEndTime(endTime);
-		eventRepository.save(event);
-		return event;
+		Session session = new Session();
+		session.setDate(date);
+		session.setStartTime(startTime);
+		session.setEndTime(endTime);
+		sessionRepository.save(session);
+		return session;
 	}
 
 	@Transactional
-	public Event getEvent(String name) {
-	    if (name == null || name.trim().length() == 0) {
-	        throw new IllegalArgumentException("Event name cannot be empty!");
-	    }
-		Event event = eventRepository.findEventByName(name);
-		return event;
+	public Session getSession(int id) {
+		Session session = sessionRepository.findSessionById(id);
+		return session;
 	}
 
 	@Transactional
-	public List<Event> getAllEvents() {
-		return toList(eventRepository.findAll());
+	public List<Session> getAllSessions() {
+		return toList(sessionRepository.findAll());
 	}
 
-	@Transactional
-	public Registration register(Person person, Event event) {
-	    String error = "";
-	    if (person == null) {
-	        error = error + "Person needs to be selected for registration! ";
-	    } else if (!personRepository.existsById(person.getName())) {
-	        error = error + "Person does not exist! ";
-	    }
-	    if (event == null) {
-	        error = error + "Event needs to be selected for registration!";
-	    } else if (!eventRepository.existsById(event.getName())) {
-	        error = error + "Event does not exist!";
-	    }
-	    if (registrationRepository.existsByPersonAndEvent(person, event)) {
-	        error = error + "Person is already registered to this event!";
-	    }
-	    error = error.trim();
-
-	    if (error.length() > 0) {
-	        throw new IllegalArgumentException(error);
-	    }
-		Registration registration = new Registration();
-		registration.setId(person.getName().hashCode() * event.getName().hashCode());
-		registration.setPerson(person);
-		registration.setEvent(event);
-
-		registrationRepository.save(registration);
-
-		return registration;
-	}
-
-	@Transactional
-	public List<Registration> getAllRegistrations(){
-		return toList(registrationRepository.findAll());
-	}
-
-	@Transactional
-	public List<Event> getEventsAttendedByPerson(Person person) {
-	    if (person == null ) {
-	        throw new IllegalArgumentException("Person cannot be null!");
-	    }
-	    List<Event> eventsAttendedByPerson = new ArrayList<>();
-	    for (Registration r : registrationRepository.findByPerson(person)) {
-	        eventsAttendedByPerson.add(r.getEvent());
-	    }
-	    return eventsAttendedByPerson;
-	}
+//	@Transactional
+//	public Registration register(Person person, Event event) {
+//	    String error = "";
+//	    if (person == null) {
+//	        error = error + "Person needs to be selected for registration! ";
+//	    } else if (!personRepository.existsById(person.getName())) {
+//	        error = error + "Person does not exist! ";
+//	    }
+//	    if (event == null) {
+//	        error = error + "Event needs to be selected for registration!";
+//	    } else if (!eventRepository.existsById(event.getName())) {
+//	        error = error + "Event does not exist!";
+//	    }
+//	    if (registrationRepository.existsByPersonAndEvent(person, event)) {
+//	        error = error + "Person is already registered to this event!";
+//	    }
+//	    error = error.trim();
+//
+//	    if (error.length() > 0) {
+//	        throw new IllegalArgumentException(error);
+//	    }
+//		Registration registration = new Registration();
+//		registration.setId(person.getName().hashCode() * event.getName().hashCode());
+//		registration.setPerson(person);
+//		registration.setEvent(event);
+//
+//		registrationRepository.save(registration);
+//
+//		return registration;
+//	}
+//
+//	@Transactional
+//	public List<Registration> getAllRegistrations(){
+//		return toList(registrationRepository.findAll());
+//	}
+//
+//	@Transactional
+//	public List<Event> getEventsAttendedByPerson(Person person) {
+//	    if (person == null ) {
+//	        throw new IllegalArgumentException("Person cannot be null!");
+//	    }
+//	    List<Event> eventsAttendedByPerson = new ArrayList<>();
+//	    for (Registration r : registrationRepository.findByPerson(person)) {
+//	        eventsAttendedByPerson.add(r.getEvent());
+//	    }
+//	    return eventsAttendedByPerson;
+//	}
 
 	private <T> List<T> toList(Iterable<T> iterable){
 		List<T> resultList = new ArrayList<T>();

@@ -1,5 +1,11 @@
 package ca.mcgill.ecse321.eventregistration.dao;
 
-public interface SessionRepository {
+import org.springframework.data.repository.CrudRepository;
 
+import ca.mcgill.ecse321.eventregistration.model.Session;
+
+public interface SessionRepository extends CrudRepository<Session, Integer> {
+	
+	Session findSessionById(Integer id);
+	
 }

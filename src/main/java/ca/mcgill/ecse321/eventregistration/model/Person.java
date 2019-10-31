@@ -1,11 +1,17 @@
 package ca.mcgill.ecse321.eventregistration.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Person {
 	private String name;
+	
+	private Set<Session> sessions;
 
 	public void setName(String value) {
 		this.name = value;
@@ -47,5 +53,14 @@ public class Person {
 	}
 	public boolean isIsRemoved() {
 	    return this.isRemoved;
+	}
+	
+	@OneToMany(mappedBy="person",cascade={CascadeType.ALL})
+	public Set<Session> getSessions(){
+		return sessions;
+	}
+
+	public void setSessions(Set<Session> sessions) {
+		this.sessions = sessions;
 	}
 }
