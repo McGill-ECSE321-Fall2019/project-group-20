@@ -27,6 +27,7 @@ import ca.mcgill.ecse321.eventregistration.dao.CourseRepository;
 import ca.mcgill.ecse321.eventregistration.dao.EventRepository;
 import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RegistrationRepository;
+import ca.mcgill.ecse321.eventregistration.dao.RoomBookingRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RoomRepository;
 import ca.mcgill.ecse321.eventregistration.dao.SchoolRepository;
 import ca.mcgill.ecse321.eventregistration.dao.TutorRepository;
@@ -36,6 +37,7 @@ import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
 import ca.mcgill.ecse321.eventregistration.model.Room;
+import ca.mcgill.ecse321.eventregistration.model.RoomBooking;
 import ca.mcgill.ecse321.eventregistration.model.School;
 import ca.mcgill.ecse321.eventregistration.model.Tutor;
 
@@ -58,6 +60,9 @@ public class ServiceTests {
 	private SchoolRepository schoolDao;
 	
 	@Mock
+	private RoomBookingRepository roomBookingDao;
+	
+	@Mock
 	private BillRepository billDao;
 
 	@Mock
@@ -76,6 +81,7 @@ public class ServiceTests {
 	private Course course;
 	private Event event;
 	private Bill bill;
+	private RoomBooking roomBooking;
 	private Room room;
 	private School school;
 	private Registration registration;
@@ -260,6 +266,37 @@ public class ServiceTests {
 			// check error
 			assertEquals("School name cannot be null!", error);
 		}
+		
+		//RoomBooking
+				@Test
+				public void testCreateRoomBooking() {
+					assertEquals(0, service.getAllRoomBooking().size());
+
+					String name = "Request1";
+
+					try {
+						roomBooking = service.createRoomBooking(name);
+					} catch (IllegalArgumentException e) {
+						// Check that no error occurred
+						fail();
+					}
+
+					assertEquals(name, roomBooking.getRequestNb());
+				}
+				@Test
+				public void testCreateRoomBookingNull() {
+					String name = null;
+					String error = null;
+
+					try {
+						roomBooking = service.createRoomBooking(name);
+					} catch (IllegalArgumentException e) {
+						error = e.getMessage();
+					}
+
+					// check error
+					assertEquals("request Number name cannot be null!", error);
+				}
 	
 
 	@Test
