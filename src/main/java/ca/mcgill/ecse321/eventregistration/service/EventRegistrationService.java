@@ -36,6 +36,7 @@ import ca.mcgill.ecse321.eventregistration.model.School;
 import ca.mcgill.ecse321.eventregistration.model.Session;
 import ca.mcgill.ecse321.eventregistration.model.Subject;
 import ca.mcgill.ecse321.eventregistration.model.Tutor;
+import ca.mcgill.ecse321.eventregistration.model.TutorReview;
 
 @Service
 public class EventRegistrationService {
@@ -178,6 +179,33 @@ public class EventRegistrationService {
 				@Transactional
 				public List<Session> getAllSubjects() {
 					return toList(sessionRepository.findAll());
+				}
+				
+		//TutorReview
+				@Transactional
+				public TutorReview createTutorReview(int rating, String txtReview, int id) {
+					if (id == 0) {
+						throw new IllegalArgumentException("Review Id cannot be empty!");
+					}
+					TutorReview tutorReview = new TutorReview();
+					tutorReview.setRating(rating);
+					tutorReview.setTxtReview(txtReview);
+					tutorReviewRepository.save(tutorReview);
+					return tutorReview;
+				}
+
+				@Transactional
+				public TutorReview getTutorReview(String txtReview) {
+				    if (txtReview == null) {
+				        throw new IllegalArgumentException("ID cannot be empty!");
+				    }
+					TutorReview tutorReview = tutorReviewRepository.findTutorReviewById(txtReview);
+					return tutorReview;
+				}
+
+				@Transactional
+				public List<TutorReview> getAllTutorReviews() {
+					return toList(tutorReviewRepository.findAll());
 				}
 				
 	//Company
