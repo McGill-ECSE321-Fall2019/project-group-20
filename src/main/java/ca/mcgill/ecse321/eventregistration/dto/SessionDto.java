@@ -23,7 +23,45 @@ public class SessionDto {
 		this.endTime = endTime;
 	}
 	
-	public get
+	public void setStudentName(String name) {
+		this.studentName = name;
+	}
+	
+	public String getStudentName() {
+		return studentName;
+	}
+	
+	public void setTutorName(String name) {
+		this.tutorName = name;
+	}
+	
+	public String getTutorName() {
+		return tutorName;
+	}
+	
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+	public Date getDate() {
+		return date;
+	}
+	
+	public void setStartTime(Time startTime) {
+		this.startTime = startTime;
+	}
+	
+	public Time getStartTime() {
+		return startTime;
+	}
+	
+	public void setEndTime(Time endTime) {
+		this.endTime = endTime;
+	}
+	
+	public Time getEndTime() {
+		return endTime;
+	}
 	
 //	private String name;
 //	private List<EventDto> events;
