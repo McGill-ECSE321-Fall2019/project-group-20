@@ -22,14 +22,14 @@ public class TutorReview {
 	    return this.txtReview;
 	}
 	
-	private String ID;
+	  private int id;
 
-	public void setID(String value) {
-	    this.ID = value;
-	}
-	
-	@Id
-	public String getID() {
-	    return this.ID;
-	}
+			public void setId(int value) {
+				this.id = value;
+			}
+
+			@Id
+			public int getId() {
+				return this.id;
+			}
 }
