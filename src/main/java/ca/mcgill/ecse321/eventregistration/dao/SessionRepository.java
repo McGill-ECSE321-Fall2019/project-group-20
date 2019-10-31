@@ -6,6 +6,6 @@ import ca.mcgill.ecse321.eventregistration.model.Session;
 
 public interface SessionRepository extends CrudRepository<Session, String> {
 
-	Session findSchoolById(String ID);
+	Session findSessionById(String ID);
 
 }
