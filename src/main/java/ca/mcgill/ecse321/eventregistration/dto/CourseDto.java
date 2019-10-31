@@ -4,24 +4,24 @@ import java.util.Collections;
 import java.util.List;
 
 public class CourseDto {
-	private String name;
+	private int number;
 	private List<EventDto> events;
 
 	public CourseDto() {
 	}
 
 	@SuppressWarnings("unchecked")
-	public CourseDto(String name) {
-		this(name, Collections.EMPTY_LIST);
+	public CourseDto(int i) {
+		this(i, Collections.EMPTY_LIST);
 	}
 
-	public CourseDto(String name, List<EventDto> arrayList) {
-		this.name = name;
+	public CourseDto(int i, List<EventDto> arrayList) {
+		this.number = i;
 		this.events = arrayList;
 	}
 
-	public String getName() {
-		return name;
+	public int getNumber() {
+		return number;
 	}
 
 	public List<EventDto> getEvents() {

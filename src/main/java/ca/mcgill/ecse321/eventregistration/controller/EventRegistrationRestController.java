@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import ca.mcgill.ecse321.eventregistration.dto.CourseDto;
 import ca.mcgill.ecse321.eventregistration.dto.EventDto;
 import ca.mcgill.ecse321.eventregistration.dto.PersonDto;
 import ca.mcgill.ecse321.eventregistration.dto.RegistrationDto;
 import ca.mcgill.ecse321.eventregistration.dto.TutorDto;
+import ca.mcgill.ecse321.eventregistration.model.Course;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
@@ -54,6 +56,54 @@ public class EventRegistrationRestController {
 	throws IllegalArgumentException {
 		Event event = service.createEvent(name, date, Time.valueOf(startTime), Time.valueOf(endTime));
 		return convertToDto(event);
+	}
+	/**
+	 * Create a new course in the system.
+	 *
+	 * @param courseName The name of the course
+	 * @return A CourseDto representing the newly added course.
+	 * @throws IllegalArgumentException
+	 */
+	@PostMapping(value = { "/createCourse", "/createCourse/" })
+	public CourseDto createCourse(@RequestParam("courseName") int courseNumber) throws IllegalArgumentException {
+		try{
+			Course course = service.createCourse(courseNumber);
+			return convertToDto(course);
+		}
+		catch(Exception e){
+			throw new IllegalArgumentException("Could not create course");
+		}
+	}
+
+	/**
+	 * View all courses in the system
+	 *
+	 * @return a list of CourseDto representing all courses in the system.
+	 */
+	@GetMapping(value = { "/allCourses", "/allCourses/" })
+	public List<CourseDto> getAllCourses() {
+		try {
+			List<CourseDto> coursesDto = new ArrayList<>();
+			for (Course course : service.getAllCourses()) {
+				coursesDto.add(convertToDto(course));
+			}
+			return coursesDto;
+		}
+		catch(Exception e) {
+			throw new IllegalArgumentException("Could not retrieve information from service");
+		}
+	}
+	
+	/**
+	 * Delete a course
+	 * 
+	 * @param cId course id
+	 * @return true if success
+	 */
+	@PostMapping(value = { "/deleteCourse", "/deleteCourse/" })
+	public boolean deleteDocument(@RequestParam(name = "courseId") int cId) {
+		service.deleteCourse(cId);
+		return true;
 	}
 
 	@GetMapping(value = { "/events", "/events/" })
@@ -100,6 +150,13 @@ public class EventRegistrationRestController {
 		}
 		PersonDto personDto = new PersonDto(p.getName());
 		personDto.setEvents(createEventDtosForPerson(p));
+		return personDto;
+	}
+	private CourseDto convertToDto(Course p) {
+		if (p == null) {
+			throw new IllegalArgumentException("There is no such Person!");
+		}
+		CourseDto personDto = new CourseDto(p.getNumber());
 		return personDto;
 	}
 	private TutorDto convertToDto(Tutor p) {

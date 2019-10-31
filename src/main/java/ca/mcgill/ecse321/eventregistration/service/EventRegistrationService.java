@@ -90,6 +90,15 @@ public class EventRegistrationService {
 		courseRepository.save(course);
 		return course;
 	}
+	  @Transactional
+	    public boolean deleteCourse(int courseId) {
+	        Course c = courseRepository.findCourseByNumber(courseId);
+	        if (c == null) {
+	            throw new NullPointerException("No such course.");
+	        }
+	        courseRepository.deleteAll();
+	        return true;
+	    }
 
 	@Transactional
 	public Course getCourse(int number) {
