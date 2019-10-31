@@ -38,18 +38,26 @@ public class EventRegistrationRestController {
 	
 	//Person post mapping to create it!
 	@PostMapping(value = { "/persons/{name}", "/persons/{name}/" })
-	public PersonDto createPerson(@PathVariable("name") String name) throws IllegalArgumentException {
+	public PersonDto createPerson(	@PathVariable("name") String name, 
+									@RequestParam("email") String email, 
+									@RequestParam("password") String pwd,
+									@RequestParam("ID") String ID,
+									@RequestParam("isRemoved") boolean isRemoved 
+						) throws IllegalArgumentException {
 		// @formatter:on
-		String tmp = "tmp"; //tmp variable until I get the data from Adam
-		Person person = service.createPerson(name, tmp, tmp, tmp, false);
+		Person person = service.createPerson(name, email, pwd, ID, isRemoved);
 		return convertToDto(person);
 	}
 	//Tutor post mapping to create a tutor
 	@PostMapping(value = { "/tutors/{name}", "/tutors/{name}/" })
-	public TutorDto createTutor(@PathVariable("name") String name) throws IllegalArgumentException {
+	public TutorDto createTutor(	@PathVariable("name") String name,
+									@RequestParam("email") String email,
+									@RequestParam("password") String password,
+									@RequestParam("ID") String ID,
+									@RequestParam("availability") String availability
+						) throws IllegalArgumentException {
 		// @formatter:on
-		String tmp = "tmp"; //tmp variable until I get the data from Adam
-		Tutor person = service.createTutor(name, tmp, tmp, tmp, false, tmp, false, 1);
+		Tutor person = service.createTutor(name, email, password, ID, false, availability, false, 1);
 		return convertToDto(person);
 	}
 	
@@ -58,7 +66,7 @@ public class EventRegistrationRestController {
 	public List<Tutor> getAllTutors() {
 		List<Tutor> tutorDtos = new ArrayList<>();
 		for (Tutor tutor : service.getAllTutors()) {
-			tutorDtos.addAll(tutorDtos);
+			tutorDtos.add(tutor);
 		}
 		return tutorDtos;
 	}
@@ -68,38 +76,38 @@ public class EventRegistrationRestController {
 	public List<Person> getAllPersons() {
 		List<Person> personDtos = new ArrayList<>();
 		for (Person person : service.getAllPersons()) {
-			personDtos.addAll(personDtos);
+			personDtos.add(person);
 		}
 		return personDtos;
 	}
 	
 	//Get schools : 
-		@GetMapping(value = { "/schools", "/schools/" })
-		public List<School> getAllSchools() {
-			List<School> schoolDtos = new ArrayList<>();
-			for (Person person : service.getAllPersons()) {
-				schoolDtos.addAll(schoolDtos);
-			}
-			return schoolDtos;
+	@GetMapping(value = { "/schools", "/schools/" })
+	public List<School> getAllSchools() {
+		List<School> schoolDtos = new ArrayList<>();
+		for (School school : service.getAllSchools()) {
+			schoolDtos.add(school);
 		}
-		
-		/**
-		 * Create a new school in the system.
-		 *
-		 * @param courseName The name of the school
-		 * @return A CourseDto representing the newly added course.
-		 * @throws IllegalArgumentException
-		 */
-		@PostMapping(value = { "/createSchool", "/createSchool/" })
-		public SchoolDto createSchool(@RequestParam("schoolName") String name) throws IllegalArgumentException {
-			try{
-				School school = service.createSchool(name);
-				return convertToDto(school);
-			}
-			catch(Exception e){
-				throw new IllegalArgumentException("Could not create course");
-			}
+		return schoolDtos;
+	}
+	
+	/**
+	 * Create a new school in the system.
+	 *
+	 * @param courseName The name of the school
+	 * @return A CourseDto representing the newly added course.
+	 * @throws IllegalArgumentException
+	 */
+	@PostMapping(value = { "/createSchool", "/createSchool/" })
+	public SchoolDto createSchool(@RequestParam("schoolName") String name) throws IllegalArgumentException {
+		try{
+			School school = service.createSchool(name);
+			return convertToDto(school);
 		}
+		catch(Exception e){
+			throw new IllegalArgumentException("Could not create course");
+		}
+	}
 
 	/**
 	 * Create a new course in the system.
@@ -145,7 +153,7 @@ public class EventRegistrationRestController {
 	 * @return true if success
 	 */
 	@PostMapping(value = { "/deleteCourse", "/deleteCourse/" })
-	public boolean deleteDocument(@RequestParam(name = "courseId") int cId) {
+	public boolean deleteCourse(@RequestParam(name = "courseId") int cId) {
 		service.deleteCourse(cId);
 		return true;
 	}
