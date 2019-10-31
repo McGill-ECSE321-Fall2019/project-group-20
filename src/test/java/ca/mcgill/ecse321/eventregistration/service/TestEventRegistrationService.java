@@ -20,8 +20,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import ca.mcgill.ecse321.eventregistration.dao.EventRepository;
 import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RegistrationRepository;
+import ca.mcgill.ecse321.eventregistration.dao.TutorRepository;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
+import ca.mcgill.ecse321.eventregistration.model.Tutor;
 import ca.mcgill.ecse321.eventregistration.service.EventRegistrationService;
 
 @RunWith(SpringRunner.class)
@@ -34,6 +36,8 @@ public class TestEventRegistrationService {
 	@Autowired
 	private PersonRepository personRepository;
 	@Autowired
+	private TutorRepository tutorRepository;
+	@Autowired
 	private EventRepository eventRepository;
 	@Autowired
 	private RegistrationRepository registrationRepository;
@@ -44,6 +48,7 @@ public class TestEventRegistrationService {
 		registrationRepository.deleteAll();
 		// Then we can clear the other tables
 		personRepository.deleteAll();
+		tutorRepository.deleteAll();
 		eventRepository.deleteAll();
 	}
 
@@ -68,6 +73,57 @@ public class TestEventRegistrationService {
 
 		assertEquals(1, allPersons.size());
 		assertEquals(name, allPersons.get(0).getName());
+	}
+	@Test
+	public void testCreateTutor() {
+		assertEquals(0, service.getAllTutors().size());
+
+		String name = "Oscar";
+		String email = "oscar@helloworld.com";
+		String password = "123";
+		String ID = "123321";
+		boolean isRemoved = false;
+		String availability = "Monday-Friday";
+		double hourlyRate = 16.5;
+		boolean isVerified = true;
+
+		try {
+			service.createTutor(name, email, password, ID, isRemoved, availability, isVerified, hourlyRate);
+		} catch (IllegalArgumentException e) {
+			// Check that no error occurred
+			fail();
+		}
+
+		List<Tutor> allPersons = service.getAllTutors();
+
+		assertEquals(1, allPersons.size());
+		assertEquals(name, allPersons.get(0).getName());
+	}
+	@Test
+	public void testCreateTutorNull() {
+		assertEquals(0, service.getAllTutors().size());
+
+		String name = null;
+		String email = null;
+		String password = null;
+		String ID = null;
+		String availability = null;
+		double hourlyRate = 0;
+		boolean isVerified = false;
+		String error = null;
+
+		try {
+			service.createTutor(name, email, password, ID, false, availability, isVerified, hourlyRate);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		// check error
+		assertEquals("Person name cannot be empty!", error);
+
+		// check no change in memory
+		assertEquals(0, service.getAllTutors().size());
+
 	}
 
 	@Test
