@@ -194,7 +194,7 @@ public class EventRegistrationRestController {
 		if (s == null) {
 			throw new IllegalArgumentException("There is no such Event!");
 		}
-		SessionDto eventDto = new SessionDto(e.getDate(),e.getStartTime(),e.getEndTime());
+		SessionDto eventDto = new SessionDto(s.getStudent().getName(), s.getStudent().getName(), s.getDate(),s.getStartTime(),s.getEndTime());
 		return eventDto;
 	}
 
@@ -203,7 +203,7 @@ public class EventRegistrationRestController {
 			throw new IllegalArgumentException("There is no such Person!");
 		}
 		PersonDto personDto = new PersonDto(p.getName());
-		personDto.setEvents(createEventDtosForPerson(p));
+//		personDto.setEvents(createEventDtosForPerson(p));
 		return personDto;
 	}
 	private CourseDto convertToDto(Course p) {
@@ -244,13 +244,13 @@ public class EventRegistrationRestController {
 		return null;
 	}
 
-	private List<EventDto> createEventDtosForPerson(Person p) {
-		List<Event> eventsForPerson = service.getEventsAttendedByPerson(p);
-		List<EventDto> events = new ArrayList<>();
-		for (Event event : eventsForPerson) {
-			events.add(convertToDto(event));
-		}
-		return events;
-	}
+//	private List<SessionDto> createSessionDtosForPerson(Person p) {
+//		List<Session> sessionsForPerson = service.getSessionsAttendedByPerson(p);
+//		List<SessionDto> sessions = new ArrayList<>();
+//		for (Session session : sessionsForPerson) {
+//			sessions.add(convertToDto(session));
+//		}
+//		return sessions;
+//	}
 	
 }
