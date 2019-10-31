@@ -9,6 +9,12 @@ public class Session {
 	public void setIsRejected(boolean value) {
 	    this.isRejected = value;
 	}
+	
+
+	public boolean isIsRejected() {
+	    return this.isRejected;
+	}
+	
 	private int id;
 
 	public void setId(int value) {
@@ -20,8 +26,5 @@ public class Session {
 		return this.id;
 	}
 
-	public boolean isIsRejected() {
-	    return this.isRejected;
-	}
 
 }
