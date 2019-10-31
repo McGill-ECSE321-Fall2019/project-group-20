@@ -17,10 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import ca.mcgill.ecse321.eventregistration.dao.CourseRepository;
 import ca.mcgill.ecse321.eventregistration.dao.EventRepository;
 import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RegistrationRepository;
 import ca.mcgill.ecse321.eventregistration.dao.TutorRepository;
+import ca.mcgill.ecse321.eventregistration.model.Course;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Tutor;
@@ -38,6 +40,8 @@ public class TestEventRegistrationService {
 	@Autowired
 	private TutorRepository tutorRepository;
 	@Autowired
+	private CourseRepository courseRepository;
+	@Autowired
 	private EventRepository eventRepository;
 	@Autowired
 	private RegistrationRepository registrationRepository;
@@ -49,6 +53,7 @@ public class TestEventRegistrationService {
 		// Then we can clear the other tables
 		personRepository.deleteAll();
 		tutorRepository.deleteAll();
+		courseRepository.deleteAll();
 		eventRepository.deleteAll();
 	}
 
@@ -123,6 +128,45 @@ public class TestEventRegistrationService {
 
 		// check no change in memory
 		assertEquals(0, service.getAllTutors().size());
+
+	}
+	
+	@Test
+	public void testCreateCourse() {
+		assertEquals(0, service.getAllCourses().size());
+
+		int number = 123;
+
+
+		try {
+			service.createCourse(number);
+		} catch (IllegalArgumentException e) {
+			// Check that no error occurred
+			fail();
+		}
+
+		List<Course> allCourses = service.getAllCourses();
+
+		assertEquals(1, allCourses.size());
+	}
+	@Test
+	public void testCreateCourseNull() {
+		assertEquals(0, service.getAllCourses().size());
+
+		int number = 0;
+		String error = null;
+
+		try {
+			service.createCourse(number);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		// check error
+		assertEquals("Course number cannot be 0!", error);
+
+		// check no change in memory
+		assertEquals(0, service.getAllCourses().size());
 
 	}
 
