@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ca.mcgill.ecse321.eventregistration.dao.BillRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RoomBookingRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RoomRepository;
+import ca.mcgill.ecse321.eventregistration.dao.SchoolRepository;
 import ca.mcgill.ecse321.eventregistration.dao.CourseRepository;
 import ca.mcgill.ecse321.eventregistration.dao.EventRepository;
 import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
@@ -24,6 +25,7 @@ import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
 import ca.mcgill.ecse321.eventregistration.model.Room;
 import ca.mcgill.ecse321.eventregistration.model.RoomBooking;
+import ca.mcgill.ecse321.eventregistration.model.School;
 import ca.mcgill.ecse321.eventregistration.model.Tutor;
 
 @Service
@@ -35,6 +37,8 @@ public class EventRegistrationService {
 	PersonRepository personRepository;
 	@Autowired
 	TutorRepository tutorRepository;
+	@Autowired
+	SchoolRepository schoolRepository;
 	@Autowired
 	BillRepository billRepository;
 	@Autowired
@@ -171,6 +175,32 @@ public class EventRegistrationService {
 		public List<Room> getAllRooms() {
 			return toList(roomRepository.findAll());
 		}
+		
+		//School
+				@Transactional
+				public School createSchool(String name) {
+					if (name == null || name.trim().length() == 0 ) {
+				        throw new IllegalArgumentException("School name cannot be null!");
+				    }
+					School school = new School();
+					school.setName(name);
+					schoolRepository.save(school);
+					return school;
+				}
+
+				@Transactional
+				public School getSchool(String name) {
+					if (name == null || name.trim().length() == 0 ) {
+				        throw new IllegalArgumentException("School name cannot be null!");
+				    }
+					School school = schoolRepository.findSchoolByName(name);
+					return school;
+				}
+
+				@Transactional
+				public List<School> getAllSchools() {
+					return toList(schoolRepository.findAll());
+				}
 	
 	//Tutor
 	@Transactional
