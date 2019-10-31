@@ -6,6 +6,6 @@ import ca.mcgill.ecse321.eventregistration.model.Bill;
 
 public interface BillRepository extends CrudRepository<Bill, String> {
 
-	Bill findBillByAmount(int amount);
+	Bill findBillByAmount(double amount);
 
 }

@@ -9,15 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ca.mcgill.ecse321.eventregistration.dao.BillRepository;
+import ca.mcgill.ecse321.eventregistration.dao.RoomBookingRepository;
 import ca.mcgill.ecse321.eventregistration.dao.CourseRepository;
 import ca.mcgill.ecse321.eventregistration.dao.EventRepository;
 import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RegistrationRepository;
 import ca.mcgill.ecse321.eventregistration.dao.TutorRepository;
+import ca.mcgill.ecse321.eventregistration.model.Bill;
 import ca.mcgill.ecse321.eventregistration.model.Course;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
+import ca.mcgill.ecse321.eventregistration.model.RoomBooking;
 import ca.mcgill.ecse321.eventregistration.model.Tutor;
 
 @Service
@@ -29,6 +33,10 @@ public class EventRegistrationService {
 	PersonRepository personRepository;
 	@Autowired
 	TutorRepository tutorRepository;
+	@Autowired
+	BillRepository billRepository;
+	@Autowired
+	RoomBookingRepository roomBookingRepository;
 	@Autowired
 	CourseRepository courseRepository;
 	@Autowired
@@ -88,6 +96,52 @@ public class EventRegistrationService {
 	public List<Course> getAllCourses() {
 		return toList(courseRepository.findAll());
 	}
+	
+	//Bills
+		@Transactional
+		public Bill createBill(double amount) {
+			if (amount == 0 ) {
+		        throw new IllegalArgumentException("Bill cannot be empty!");
+		    }
+			Bill bill = new Bill();
+			bill.setAmount(amount);
+			billRepository.save(bill);
+			return bill;
+		}
+
+		@Transactional
+		public Bill getBill(double amount) {
+			Bill bill = billRepository.findBillByAmount(amount);
+			return bill;
+		}
+
+		@Transactional
+		public List<Bill> getAllBills() {
+			return toList(billRepository.findAll());
+		}
+		
+		//RoomBooking
+		@Transactional
+		public RoomBooking createRoomBooking(String requestNb) {
+			if (requestNb == null || requestNb.trim().length() == 0 ) {
+		        throw new IllegalArgumentException("request Number name cannot be null!");
+		    }
+			RoomBooking roomBook = new RoomBooking();
+			roomBook.setRequestNb(requestNb);
+			roomBookingRepository.save(roomBook);
+			return roomBook;
+		}
+
+		@Transactional
+		public RoomBooking getRoomBooking(String requestNb) {
+			RoomBooking roomBooking = roomBookingRepository.findRoomBookingByRequestNb(requestNb);
+			return roomBooking;
+		}
+
+		@Transactional
+		public List<RoomBooking> getAllRoomBooking() {
+			return toList(roomBookingRepository.findAll());
+		}
 	
 	//Tutor
 	@Transactional
