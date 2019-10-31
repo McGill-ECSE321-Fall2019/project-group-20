@@ -1,5 +1,11 @@
 package ca.mcgill.ecse321.eventregistration.dao;
 
-public interface BillRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import ca.mcgill.ecse321.eventregistration.model.Bill;
+
+public interface BillRepository extends CrudRepository<Bill, String> {
+
+	Bill findBillByAmount(int amount);
 
 }
