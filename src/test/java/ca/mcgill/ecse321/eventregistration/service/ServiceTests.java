@@ -25,15 +25,20 @@ import org.mockito.stubbing.Answer;
 import ca.mcgill.ecse321.eventregistration.dao.EventRepository;
 import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RegistrationRepository;
+import ca.mcgill.ecse321.eventregistration.dao.TutorRepository;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
+import ca.mcgill.ecse321.eventregistration.model.Tutor;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class ServiceTests {
 
 	@Mock
 	private PersonRepository personDao;
+	
+	@Mock
+	private TutorRepository tutorDao;
 
 	@Mock
 	private RegistrationRepository registrationDao;
@@ -47,6 +52,7 @@ public class ServiceTests {
 	private static final String PERSON_KEY = "TestPerson";
 	private static final String NONEXISTING_KEY = "NotAPerson";
 	private Person person;
+	private Tutor tutor;
 	private Event event;
 	private Registration registration;
 
@@ -88,6 +94,48 @@ public class ServiceTests {
 		}
 
 		assertEquals(name, person.getName());
+	}
+	@Test
+	public void testCreateTutor() {
+		assertEquals(0, service.getAllTutors().size());
+
+		String name = "Oscar";
+		String email = "oscar@helloworld.com";
+		String password = "123";
+		String ID = "123321";
+		String availability = "Monday-Friday";
+		double hourlyRate = 16.5;
+		boolean isVerified = true;
+		boolean isRemoved = false;
+
+		try {
+			tutor = service.createTutor(name, email, password, ID, isRemoved, availability, isVerified, hourlyRate);
+		} catch (IllegalArgumentException e) {
+			// Check that no error occurred
+			fail();
+		}
+
+		assertEquals(name, tutor.getName());
+	}
+	@Test
+	public void testCreateTutorNull() {
+		String name = null;
+		String email = null;
+		String password = null;
+		String ID = null;
+		String availability = null;
+		double hourlyRate = 0;
+		boolean isVerified = false;
+		String error = null;
+
+		try {
+			tutor = service.createTutor(name, email, password, ID, false, availability, isVerified, hourlyRate);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		// check error
+		assertEquals("Person name cannot be empty!", error);
 	}
 
 	@Test

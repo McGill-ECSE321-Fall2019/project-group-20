@@ -12,9 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 import ca.mcgill.ecse321.eventregistration.dao.EventRepository;
 import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RegistrationRepository;
+import ca.mcgill.ecse321.eventregistration.dao.TutorRepository;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
+import ca.mcgill.ecse321.eventregistration.model.Tutor;
 
 @Service
 public class EventRegistrationService {
@@ -23,6 +25,8 @@ public class EventRegistrationService {
 	EventRepository eventRepository;
 	@Autowired
 	PersonRepository personRepository;
+	@Autowired
+	TutorRepository tutorRepository;
 	@Autowired
 	RegistrationRepository registrationRepository;
 
@@ -53,6 +57,39 @@ public class EventRegistrationService {
 	@Transactional
 	public List<Person> getAllPersons() {
 		return toList(personRepository.findAll());
+	}
+	
+	//Tutor
+	@Transactional
+	public Tutor createTutor(String name, String email, String password, String ID, boolean isRemoved, String availability, boolean isVerified, double hourlyRate) {
+		if (name == null || name.trim().length() == 0) {
+			throw new IllegalArgumentException("Person name cannot be empty!");
+		}
+		Tutor person = new Tutor();
+		person.setName(name);
+		person.setAvailability(availability);//New
+		person.setHourlyRate(hourlyRate);//New
+		person.setIsVerified(isVerified);//New
+		person.setEmail(email);
+		person.setID(ID);
+		person.setPassword(password);
+		person.setIsRemoved(false);
+		tutorRepository.save(person);
+		return person;
+	}
+
+	@Transactional
+	public Tutor getTutor(String name) {
+	    if (name == null || name.trim().length() == 0) {
+	        throw new IllegalArgumentException("Person name cannot be empty!");
+	    }
+		Tutor person = tutorRepository.findTutorByName(name);
+		return person;
+	}
+
+	@Transactional
+	public List<Tutor> getAllTutors() {
+		return toList(tutorRepository.findAll());
 	}
 
 	@Transactional

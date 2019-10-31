@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import ca.mcgill.ecse321.eventregistration.dao.EventRegistrationRepository;
 import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
+import ca.mcgill.ecse321.eventregistration.dao.TutorRepository;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.service.EventRegistrationService;
 
@@ -31,10 +32,14 @@ public class PersistenceTests {
 
 	@Autowired
 	private PersonRepository personRepository;
+	
+	@Autowired
+	private TutorRepository tutorRepository;
 
 	@After
 	public void clearDatabase() {
 		personRepository.deleteAll();
+		tutorRepository.deleteAll();
 	}
 
 	@Ignore
