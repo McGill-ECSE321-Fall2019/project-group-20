@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ca.mcgill.ecse321.eventregistration.dao.BillRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RoomBookingRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RoomRepository;
+import ca.mcgill.ecse321.eventregistration.dao.CompanyRepository;
 import ca.mcgill.ecse321.eventregistration.dao.SchoolRepository;
 import ca.mcgill.ecse321.eventregistration.dao.CourseRepository;
 import ca.mcgill.ecse321.eventregistration.dao.EventRepository;
@@ -19,6 +20,7 @@ import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RegistrationRepository;
 import ca.mcgill.ecse321.eventregistration.dao.TutorRepository;
 import ca.mcgill.ecse321.eventregistration.model.Bill;
+import ca.mcgill.ecse321.eventregistration.model.Company;
 import ca.mcgill.ecse321.eventregistration.model.Course;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
@@ -41,6 +43,8 @@ public class EventRegistrationService {
 	SchoolRepository schoolRepository;
 	@Autowired
 	BillRepository billRepository;
+	@Autowired
+	CompanyRepository companyRepository;
 	@Autowired
 	RoomRepository roomRepository;
 	@Autowired
@@ -77,6 +81,32 @@ public class EventRegistrationService {
 	@Transactional
 	public List<Person> getAllPersons() {
 		return toList(personRepository.findAll());
+	}
+	
+	//Company
+	@Transactional
+	public Company createCompany(String name, double commissionRate ) {
+		if (name == null || name.trim().length() == 0) {
+			throw new IllegalArgumentException("Company name cannot be empty!");
+		}
+		Company company = new Company();
+		company.setName(name);
+		company.setCommissionRate(commissionRate);
+		return company;
+	}
+
+	@Transactional
+	public Company getCompany(String name) {
+	    if (name == null || name.trim().length() == 0) {
+	        throw new IllegalArgumentException("Company name cannot be empty!");
+	    }
+		Company company = companyRepository.findCompanyByName(name);
+		return company;
+	}
+
+	@Transactional
+	public List<Company> getAllCompanys() {
+		return toList(companyRepository.findAll());
 	}
 	
 	//Course

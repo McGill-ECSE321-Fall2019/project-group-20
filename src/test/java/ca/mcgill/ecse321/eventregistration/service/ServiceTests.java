@@ -23,6 +23,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
 import ca.mcgill.ecse321.eventregistration.dao.BillRepository;
+import ca.mcgill.ecse321.eventregistration.dao.CompanyRepository;
 import ca.mcgill.ecse321.eventregistration.dao.CourseRepository;
 import ca.mcgill.ecse321.eventregistration.dao.EventRepository;
 import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
@@ -32,6 +33,7 @@ import ca.mcgill.ecse321.eventregistration.dao.RoomRepository;
 import ca.mcgill.ecse321.eventregistration.dao.SchoolRepository;
 import ca.mcgill.ecse321.eventregistration.dao.TutorRepository;
 import ca.mcgill.ecse321.eventregistration.model.Bill;
+import ca.mcgill.ecse321.eventregistration.model.Company;
 import ca.mcgill.ecse321.eventregistration.model.Course;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
@@ -55,6 +57,9 @@ public class ServiceTests {
 	
 	@Mock
 	private RoomRepository roomDao;
+	
+	@Mock
+	private CompanyRepository companyDao;
 	
 	@Mock
 	private SchoolRepository schoolDao;
@@ -81,6 +86,7 @@ public class ServiceTests {
 	private Course course;
 	private Event event;
 	private Bill bill;
+	private Company company;
 	private RoomBooking roomBooking;
 	private Room room;
 	private School school;
@@ -172,6 +178,44 @@ public class ServiceTests {
 		// check error
 		assertEquals("Person name cannot be empty!", error);
 	}
+	
+	
+	//Company
+	@Test
+	public void testCreateCompany() {
+		assertEquals(0, service.getAllCompanys().size());
+
+		String name = "Oscar";
+		double commissionRate = 10.5;
+
+		try {
+			company = service.createCompany(name, commissionRate);
+		} catch (IllegalArgumentException e) {
+			// Check that no error occurred
+			fail();
+		}
+
+		assertEquals(name, company.getName());
+	}
+	@Test
+	public void testCreateCompanyNull() {
+		String name = null;
+		double commissionRate = 0;
+		String error = null;
+		
+
+		try {
+			company = service.createCompany(name, commissionRate);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		// check error
+		assertEquals("Company name cannot be empty!", error);
+	}
+	
+	
+	
 	@Test
 	public void testCreateCourse() {
 		assertEquals(0, service.getAllCourses().size());
