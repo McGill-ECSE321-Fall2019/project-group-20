@@ -72,6 +72,7 @@ public class ServiceTests {
 			return invocation.getArgument(0);
 		};
 		when(personDao.save(any(Person.class))).thenAnswer(returnParameterAsAnswer);
+		when(tutorDao.save(any(Tutor.class))).thenAnswer(returnParameterAsAnswer);
 		when(eventDao.save(any(Event.class))).thenAnswer(returnParameterAsAnswer);
 		when(registrationDao.save(any(Registration.class))).thenAnswer(returnParameterAsAnswer);
 	}

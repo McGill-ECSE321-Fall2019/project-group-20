@@ -83,8 +83,8 @@ public class EventRegistrationService {
 	    if (name == null || name.trim().length() == 0) {
 	        throw new IllegalArgumentException("Person name cannot be empty!");
 	    }
-		Tutor person = tutorRepository.findTutorByName(name);
-		return person;
+		Tutor tutor = tutorRepository.findTutorByName(name);
+		return tutor;
 	}
 
 	@Transactional
