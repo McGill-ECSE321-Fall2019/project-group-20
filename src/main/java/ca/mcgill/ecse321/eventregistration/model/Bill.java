@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.eventregistration.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Bill {
@@ -24,6 +25,16 @@ public class Bill {
 	public String getID() {
 	    return this.ID;
 	}
+  private Session session;	
+	 
+  @ManyToOne(optional=false)
+	   public Session getSession() {
+	      return this.session;
+	   }
+	   
+	   public void setSession(Session session) {
+	      this.session = session;
+	   }
 
 	
 }
