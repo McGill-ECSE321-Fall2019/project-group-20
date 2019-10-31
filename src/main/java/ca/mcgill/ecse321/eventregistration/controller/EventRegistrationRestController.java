@@ -19,11 +19,13 @@ import ca.mcgill.ecse321.eventregistration.dto.CourseDto;
 import ca.mcgill.ecse321.eventregistration.dto.EventDto;
 import ca.mcgill.ecse321.eventregistration.dto.PersonDto;
 import ca.mcgill.ecse321.eventregistration.dto.RegistrationDto;
+import ca.mcgill.ecse321.eventregistration.dto.SchoolDto;
 import ca.mcgill.ecse321.eventregistration.dto.TutorDto;
 import ca.mcgill.ecse321.eventregistration.model.Course;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
+import ca.mcgill.ecse321.eventregistration.model.School;
 import ca.mcgill.ecse321.eventregistration.model.Tutor;
 import ca.mcgill.ecse321.eventregistration.service.EventRegistrationService;
 
@@ -70,6 +72,34 @@ public class EventRegistrationRestController {
 		}
 		return personDtos;
 	}
+	
+	//Get schools : 
+		@GetMapping(value = { "/schools", "/schools/" })
+		public List<School> getAllSchools() {
+			List<School> schoolDtos = new ArrayList<>();
+			for (Person person : service.getAllPersons()) {
+				schoolDtos.addAll(schoolDtos);
+			}
+			return schoolDtos;
+		}
+		
+		/**
+		 * Create a new school in the system.
+		 *
+		 * @param courseName The name of the school
+		 * @return A CourseDto representing the newly added course.
+		 * @throws IllegalArgumentException
+		 */
+		@PostMapping(value = { "/createSchool", "/createSchool/" })
+		public SchoolDto createSchool(@RequestParam("schoolName") String name) throws IllegalArgumentException {
+			try{
+				School school = service.createSchool(name);
+				return convertToDto(school);
+			}
+			catch(Exception e){
+				throw new IllegalArgumentException("Could not create course");
+			}
+		}
 
 	/**
 	 * Create a new course in the system.
@@ -179,6 +209,13 @@ public class EventRegistrationRestController {
 		}
 		TutorDto personDto = new TutorDto(p.getName());
 		return personDto;
+	}
+	private SchoolDto convertToDto(School p) {
+		if (p == null) {
+			throw new IllegalArgumentException("There is no such Person!");
+		}
+		SchoolDto schoolDto = new SchoolDto(p.getName());
+		return schoolDto;
 	}
 
 	private RegistrationDto convertToDto(Registration r, Person p, Event e) {
