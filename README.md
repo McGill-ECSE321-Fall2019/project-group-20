@@ -1,4 +1,4 @@
-# ECSE321 Group 20 
+# ECSE321 Group 20  [![Build Status](https://travis-ci.com/McGill-ECSE321-Fall2019/project-group-20.svg?token=ERzxJp8gWsvgA1YgDGwo&branch=Tests)](https://travis-ci.com/McGill-ECSE321-Fall2019/project-group-20)
 
 HEROKU LINK : https://ecse321-group20-2020.herokuapp.com/
 
