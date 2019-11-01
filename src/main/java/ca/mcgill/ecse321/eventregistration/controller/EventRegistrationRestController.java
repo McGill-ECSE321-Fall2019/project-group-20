@@ -30,13 +30,20 @@ public class EventRegistrationRestController {
 	@Autowired
 	EventRegistrationService service;
 	
-	@PostMapping(value = { "/persons/{name}", "/persons/{name}/" })
-	public PersonDto createPerson(@PathVariable("name") String name) throws IllegalArgumentException {
-		// @formatter:on
-		String tmp = "1";
-		Person person = service.createPerson(name, tmp, tmp, tmp, false);
-		return convertToDto(person);
-	}
+	//Person post mapping to create it!
+		@PostMapping(value = { "/persons/{name}", "/persons/{name}/" })
+		public PersonDto createStudent(	@PathVariable("name") String name, 
+										@RequestParam("email") String email, 
+										@RequestParam("password") String pwd,
+										@RequestParam("ID") String ID,
+										@RequestParam("isRemoved") boolean isRemoved 
+							) throws IllegalArgumentException {
+			// @formatter:on
+			Person person = service.createStudent(name, email, pwd, ID, isRemoved);
+			return convertToDto(person);
+		}
+		
+	
 
 	@PostMapping(value = { "/events/{name}", "/events/{name}/" })
 	public EventDto createEvent(@PathVariable("name") String name, @RequestParam Date date,
