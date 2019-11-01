@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import ca.mcgill.ecse321.eventregistration.dto.EventDto;
 import ca.mcgill.ecse321.eventregistration.dto.PersonDto;
 import ca.mcgill.ecse321.eventregistration.dto.RegistrationDto;
+import ca.mcgill.ecse321.eventregistration.dto.TutorDto;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
+import ca.mcgill.ecse321.eventregistration.model.Tutor;
 import ca.mcgill.ecse321.eventregistration.service.EventRegistrationService;
 
 @CrossOrigin(origins = "*")
@@ -43,7 +45,18 @@ public class EventRegistrationRestController {
 			return convertToDto(person);
 		}
 		
-	
+		//Tutor post mapping to create a tutor
+		@PostMapping(value = { "/tutors/{name}", "/tutors/{name}/" })
+		public TutorDto createTutor(	@PathVariable("name") String name,
+										@RequestParam("email") String email,
+										@RequestParam("password") String password,
+										@RequestParam("ID") String ID,
+										@RequestParam("availability") String availability
+							) throws IllegalArgumentException {
+			// @formatter:on
+			Tutor person = service.createTutor(name, email, password, ID, false, availability, false, 1);
+			return convertToDto(person);
+		}
 
 	@PostMapping(value = { "/events/{name}", "/events/{name}/" })
 	public EventDto createEvent(@PathVariable("name") String name, @RequestParam Date date,
@@ -115,6 +128,13 @@ public class EventRegistrationRestController {
 			}
 		}
 		return null;
+	}
+	private TutorDto convertToDto(Tutor p) {
+		if (p == null) {
+			throw new IllegalArgumentException("There is no such Person!");
+		}
+		TutorDto personDto = new TutorDto(p.getName());
+		return personDto;
 	}
 
 	private List<EventDto> createEventDtosForPerson(Person p) {
