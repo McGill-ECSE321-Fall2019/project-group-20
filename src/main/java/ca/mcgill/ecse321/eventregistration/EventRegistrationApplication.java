@@ -15,7 +15,7 @@ public class EventRegistrationApplication {
 
   @RequestMapping("/")
   public String greeting(){
-    return "Hello world!";
+    return "Hello world! This is group 20's Backend! Testing has been made with Postman";
   }
 
 }

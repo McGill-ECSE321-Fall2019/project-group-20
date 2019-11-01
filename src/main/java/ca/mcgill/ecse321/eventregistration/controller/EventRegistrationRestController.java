@@ -9,19 +9,24 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import ca.mcgill.ecse321.eventregistration.dto.CourseDto;
 import ca.mcgill.ecse321.eventregistration.dto.EventDto;
 import ca.mcgill.ecse321.eventregistration.dto.PersonDto;
 import ca.mcgill.ecse321.eventregistration.dto.RegistrationDto;
+import ca.mcgill.ecse321.eventregistration.dto.SchoolDto;
 import ca.mcgill.ecse321.eventregistration.dto.TutorDto;
+import ca.mcgill.ecse321.eventregistration.model.Course;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
+import ca.mcgill.ecse321.eventregistration.model.School;
 import ca.mcgill.ecse321.eventregistration.model.Tutor;
 import ca.mcgill.ecse321.eventregistration.service.EventRegistrationService;
 
@@ -57,6 +62,124 @@ public class EventRegistrationRestController {
 			Tutor person = service.createTutor(name, email, password, ID, false, availability, false, 1);
 			return convertToDto(person);
 		}
+		
+		//Get tutors
+		@GetMapping(value = { "/tutors", "/tutors/" })
+		public List<Tutor> getAllTutors() {
+			List<Tutor> tutorDtos = new ArrayList<>();
+			for (Tutor tutor : service.getAllTutors()) {
+				tutorDtos.add(tutor);
+			}
+			return tutorDtos;
+		}
+		
+		//Get users : 
+		@GetMapping(value = { "/persons", "/persons/" })
+		public List<Person> getAllPersons() {
+			List<Person> personDtos = new ArrayList<>();
+			for (Person person : service.getAllPersons()) {
+				personDtos.add(person);
+			}
+			return personDtos;
+		}
+		
+		//Get schools : 
+		@GetMapping(value = { "/schools", "/schools/" })
+		public List<School> getAllSchools() {
+			List<School> schoolDtos = new ArrayList<>();
+			for (School school : service.getAllSchools()) {
+				schoolDtos.add(school);
+			}
+			return schoolDtos;
+		}
+		
+		/**
+		 * Create a new school in the system.
+		 *
+		 * @param courseName The name of the school
+		 * @return A CourseDto representing the newly added course.
+		 * @throws IllegalArgumentException
+		 */
+		@PostMapping(value = { "/createSchool", "/createSchool/" })
+		public SchoolDto createSchool(@RequestParam("schoolName") String name) throws IllegalArgumentException {
+			try{
+				School school = service.createSchool(name);
+				return convertToDto(school);
+			}
+			catch(Exception e){
+				throw new IllegalArgumentException("Could not create course");
+			}
+		}
+
+		/**
+		 * Create a new course in the system.
+		 *
+		 * @param courseName The name of the course
+		 * @return A CourseDto representing the newly added course.
+		 * @throws IllegalArgumentException
+		 */
+		@PostMapping(value = { "/createCourse", "/createCourse/" })
+		public CourseDto createCourse(@RequestParam("courseName") int courseNumber) throws IllegalArgumentException {
+			try{
+				Course course = service.createCourse(courseNumber);
+				return convertToDto(course);
+			}
+			catch(Exception e){
+				throw new IllegalArgumentException("Could not create course");
+			}
+		}
+
+		/**
+		 * View all courses in the system
+		 *
+		 * @return a list of CourseDto representing all courses in the system.
+		 */
+		@GetMapping(value = { "/allCourses", "/allCourses/" })
+		public List<CourseDto> getAllCourses() {
+			try {
+				List<CourseDto> coursesDto = new ArrayList<>();
+				for (Course course : service.getAllCourses()) {
+					coursesDto.add(convertToDto(course));
+				}
+				return coursesDto;
+			}
+			catch(Exception e) {
+				throw new IllegalArgumentException("Could not retrieve information from service");
+			}
+		}
+		
+		/**
+		 * Delete a course
+		 * 
+		 * @param cId course id
+		 * @return true if success
+		 */
+		@DeleteMapping(value = { "/deleteCourse", "/deleteCourse/" })
+		public boolean deleteCourse(@RequestParam(name = "courseId") int cId) {
+			service.deleteCourse(cId);
+			return true;
+		}
+		
+		/*@GetMapping(value = { "/events/{name}", "/events/{name}/" })
+	public SessionDto getSessionById(@PathVariable("id") int id) throws IllegalArgumentException {
+		return convertToDto(service.getSession(id));
+	}
+	@GetMapping(value = { "/events", "/events/" })
+	public List<SessionDto> getAllSessions() {
+		List<SessionDto> sessionDtos = new ArrayList<>();
+		for (Session session : service.getAllSessions()) {
+			sessionDtos.add(convertToDto(session));
+		}
+		return sessionDtos;
+	}
+
+	private SessionDto convertToDto(Session s) {
+		if (s == null) {
+			throw new IllegalArgumentException("There is no such Event!");
+		}
+		SessionDto eventDto = new SessionDto(s.getStudent().getName(), s.getStudent().getName(), s.getDate(),s.getStartTime(),s.getEndTime());
+		return eventDto;
+	}*/
 
 	@PostMapping(value = { "/events/{name}", "/events/{name}/" })
 	public EventDto createEvent(@PathVariable("name") String name, @RequestParam Date date,
@@ -97,12 +220,29 @@ public class EventRegistrationRestController {
 		return convertToDto(service.getEvent(name));
 	}
 
+
 	private EventDto convertToDto(Event e) {
 		if (e == null) {
 			throw new IllegalArgumentException("There is no such Event!");
 		}
 		EventDto eventDto = new EventDto(e.getName(),e.getDate(),e.getStartTime(),e.getEndTime());
 		return eventDto;
+	}
+	
+	private CourseDto convertToDto(Course p) {
+		if (p == null) {
+			throw new IllegalArgumentException("There is no such Person!");
+		}
+		CourseDto personDto = new CourseDto(p.getNumber());
+		return personDto;
+	}
+	
+	private SchoolDto convertToDto(School p) {
+		if (p == null) {
+			throw new IllegalArgumentException("There is no such Person!");
+		}
+		SchoolDto schoolDto = new SchoolDto(p.getName());
+		return schoolDto;
 	}
 
 	private PersonDto convertToDto(Person p) {
