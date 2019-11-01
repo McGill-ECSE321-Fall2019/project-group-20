@@ -38,12 +38,12 @@ git push heroku master
 |:------------:|:-----------|:------------|:-----------|
 |1|Adam Babs|Domain Model and Requirements Model|30|
 |1|Georges Mourant|Documentation Manager|30|
-|1|Imane Chafi|Project and Database Manager|40|
+|1|Imane Chafi|Project and Database Manager|30|
 |1|Mahroo Rahman|Non-Functional Requirements Software Lead|30|
 |1|Sofia Dieguez|UML Software Lead|30|
 |2|Adam Babs| RESTful services Software Lead|30|
 |2|Georges Mourant| RESTful services Software Engineer and Documentation Manager|30|
-|2|Imane Chafi|Testing Software Lead & RESTful Software Engineer|30|
+|2|Imane Chafi|Testing Software Lead & RESTful Software Engineer|40|
 |2|Mahroo Rahman|SQA Co-Chair and Documentation assistant|30|
 |2|Sofia Dieguez|SQA Co-Chair and Documentation assistant|30|
 
