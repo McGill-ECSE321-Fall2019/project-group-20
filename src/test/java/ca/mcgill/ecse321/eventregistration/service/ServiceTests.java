@@ -26,30 +26,22 @@ import ca.mcgill.ecse321.eventregistration.dao.BillRepository;
 import ca.mcgill.ecse321.eventregistration.dao.CompanyRepository;
 import ca.mcgill.ecse321.eventregistration.dao.CourseRepository;
 import ca.mcgill.ecse321.eventregistration.dao.EventRepository;
-import ca.mcgill.ecse321.eventregistration.dao.FeedbackRepository;
 import ca.mcgill.ecse321.eventregistration.dao.PersonRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RegistrationRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RoomBookingRepository;
 import ca.mcgill.ecse321.eventregistration.dao.RoomRepository;
 import ca.mcgill.ecse321.eventregistration.dao.SchoolRepository;
-import ca.mcgill.ecse321.eventregistration.dao.SessionRepository;
-import ca.mcgill.ecse321.eventregistration.dao.SubjectRepository;
 import ca.mcgill.ecse321.eventregistration.dao.TutorRepository;
-import ca.mcgill.ecse321.eventregistration.dao.TutorReviewRepository;
 import ca.mcgill.ecse321.eventregistration.model.Bill;
 import ca.mcgill.ecse321.eventregistration.model.Company;
 import ca.mcgill.ecse321.eventregistration.model.Course;
 import ca.mcgill.ecse321.eventregistration.model.Event;
-import ca.mcgill.ecse321.eventregistration.model.Feedback;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
 import ca.mcgill.ecse321.eventregistration.model.Room;
 import ca.mcgill.ecse321.eventregistration.model.RoomBooking;
 import ca.mcgill.ecse321.eventregistration.model.School;
-import ca.mcgill.ecse321.eventregistration.model.Session;
-import ca.mcgill.ecse321.eventregistration.model.Subject;
 import ca.mcgill.ecse321.eventregistration.model.Tutor;
-import ca.mcgill.ecse321.eventregistration.model.TutorReview;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class ServiceTests {
@@ -77,18 +69,6 @@ public class ServiceTests {
 	
 	@Mock
 	private BillRepository billDao;
-	
-	@Mock
-	private FeedbackRepository feedbackDao;
-	
-	@Mock
-	private SessionRepository sessionDao;
-	
-	@Mock
-	private SubjectRepository subjectDao;
-	
-	@Mock
-	private TutorReviewRepository tutorReviewDao;
 
 	@Mock
 	private RegistrationRepository registrationDao;
@@ -110,10 +90,6 @@ public class ServiceTests {
 	private RoomBooking roomBooking;
 	private Room room;
 	private School school;
-	private Feedback feedback;
-	private Session session;
-	private Subject subject;
-	private TutorReview tutorReview;
 	private Registration registration;
 
 	@Before
@@ -137,13 +113,7 @@ public class ServiceTests {
 		when(eventDao.save(any(Event.class))).thenAnswer(returnParameterAsAnswer);
 		when(roomDao.save(any(Room.class))).thenAnswer(returnParameterAsAnswer);
 		when(billDao.save(any(Bill.class))).thenAnswer(returnParameterAsAnswer);
-		when(companyDao.save(any(Company.class))).thenAnswer(returnParameterAsAnswer);
-		when(roomBookingDao.save(any(RoomBooking.class))).thenAnswer(returnParameterAsAnswer);
-		when(feedbackDao.save(any(Feedback.class))).thenAnswer(returnParameterAsAnswer);
-		when(sessionDao.save(any(Session.class))).thenAnswer(returnParameterAsAnswer);
-		when(subjectDao.save(any(Subject.class))).thenAnswer(returnParameterAsAnswer);
-		when(tutorReviewDao.save(any(TutorReview.class))).thenAnswer(returnParameterAsAnswer);
-		
+		when(schoolDao.save(any(School.class))).thenAnswer(returnParameterAsAnswer);
 		when(registrationDao.save(any(Registration.class))).thenAnswer(returnParameterAsAnswer);
 	}
 
@@ -187,141 +157,6 @@ public class ServiceTests {
 		}
 
 		assertEquals(name, tutor.getName());
-	}
-	
-	@Test
-	public void testCreateFeedback() {
-		assertEquals(0, service.getAllFeedbacks().size());
-
-		int ID = 12321;
-		Session session = new Session();
-
-		try {
-			feedback = service.createFeedback(ID, session);
-		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
-			fail();
-		}
-
-		assertEquals(ID, feedback.getId());
-	}
-	@Test
-	public void testCreateFeedbackNull() {
-		int Id = 0;
-		Session session = new Session();
-		String error = null;
-
-		try {
-			feedback = service.createFeedback(Id, session);
-		} catch (IllegalArgumentException e) {
-			error = e.getMessage();
-		}
-
-		// check error
-		assertEquals("Session name cannot be empty!", error);
-	}
-	
-	//TutorReview
-	@Test
-	public void testCreateTutorReview() {
-		assertEquals(0, service.getAllTutorReviews().size());
-		
-		int id = 12321;
-		int rating = 4;
-		String txtReview = "Awesome session!";
-
-		try {
-			tutorReview = service.createTutorReview(rating, txtReview, id);
-		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
-			fail();
-		}
-
-		assertEquals(rating, tutorReview.getRating());
-	}
-	@Test
-	public void testCreateTutorReviewNull() {
-		int id = 0;
-		int rating = 0;
-		String txtReview = null;
-		String error = null;
-
-
-		try {
-			tutorReview = service.createTutorReview(rating, txtReview, id);
-		} catch (IllegalArgumentException e) {
-			error = e.getMessage();
-		}
-
-		// check error
-		assertEquals("Review Id cannot be empty!", error);
-	}
-	
-	//Subject
-	@Test
-	public void testCreateSubject() {
-		assertEquals(0, service.getAllSubjects().size());
-
-		int ID = 12321;
-		String name = "Human";
-
-		try {
-			subject = service.createSubject(name, ID);
-		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
-			fail();
-		}
-
-		assertEquals(ID, subject.getId());
-	}
-	@Test
-	public void testCreateSubjectNull() {
-		int Id = 0;
-		String name = null;
-		String error = null;
-
-		try {
-			subject = service.createSubject(name, Id);
-		} catch (IllegalArgumentException e) {
-			error = e.getMessage();
-		}
-
-		// check error
-		assertEquals("Subject name cannot be empty!", error);
-	}
-	
-	
-	//Session
-	@Test
-	public void testCreateSession() {
-		assertEquals(0, service.getAllSessions().size());
-
-		int ID = 12321;
-		boolean isRejected = false;
-
-		try {
-			session = service.createSession(ID, isRejected);
-		} catch (IllegalArgumentException e) {
-			// Check that no error occurred
-			fail();
-		}
-
-		assertEquals(ID, session.getId());
-	}
-	@Test
-	public void testCreateSessionNull() {
-		int Id = 0;
-		boolean isRejected = true;
-		String error = null;
-
-		try {
-			session = service.createSession(Id, isRejected);
-		} catch (IllegalArgumentException e) {
-			error = e.getMessage();
-		}
-
-		// check error
-		assertEquals("Session name cannot be empty!", error);
 	}
 	@Test
 	public void testCreateTutorNull() {
@@ -380,7 +215,7 @@ public class ServiceTests {
 	}
 	
 	
-	//Course
+	
 	@Test
 	public void testCreateCourse() {
 		assertEquals(0, service.getAllCourses().size());
@@ -507,7 +342,7 @@ public class ServiceTests {
 					assertEquals("request Number name cannot be null!", error);
 				}
 	
-	//Bill
+
 	@Test
 	public void testCreateBill() {
 		assertEquals(0, service.getAllBills().size());
@@ -536,8 +371,6 @@ public class ServiceTests {
 		// check error
 		assertEquals("Bill cannot be empty!", error);
 	}
-	
-	//Person
 	@Test
 	public void testCreatePersonNull() {
 		String name = null;
