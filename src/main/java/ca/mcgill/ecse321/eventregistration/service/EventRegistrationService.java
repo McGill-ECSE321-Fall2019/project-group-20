@@ -158,7 +158,7 @@ public class EventRegistrationService {
 				@Transactional
 				public Subject createSubject(String name, int Id) {
 					if (name == null) {
-						throw new IllegalArgumentException("Session name cannot be empty!");
+						throw new IllegalArgumentException("Subject name cannot be empty!");
 					}
 					Subject subject = new Subject();
 					subject.setId(Id);
@@ -170,15 +170,15 @@ public class EventRegistrationService {
 				@Transactional
 				public Subject getSubject(String name) {
 				    if (name == null) {
-				        throw new IllegalArgumentException("ID cannot be empty!");
+				        throw new IllegalArgumentException("Subject name cannot be empty!");
 				    }
 					Subject subject = subjectRepository.findSubjectById(name);
 					return subject;
 				}
 
 				@Transactional
-				public List<Session> getAllSubjects() {
-					return toList(sessionRepository.findAll());
+				public List<Subject> getAllSubjects() {
+					return toList(subjectRepository.findAll());
 				}
 				
 		//TutorReview
