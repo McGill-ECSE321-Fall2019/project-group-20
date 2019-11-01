@@ -6,7 +6,7 @@ This team project for ECSE321 2019 is a tutoring company software and website. T
 
 The first stable backend version deployed to heroku as a SpringBoot application can be found on https://ecse321-group20-2020.herokuapp.com/ 
 
-You can add to the url with the restful mapping to see the data as JSON objects. The url links are explained in the Restful services wiki page. 
+You can add to the url with the restful mapping to see the data as JSON objects. The url links are explained in the [Restful services wiki page.](https://github.com/McGill-ECSE321-Fall2019/project-group-20/wiki/RESTful-Service-Endpoints) 
 
 The latest builds on Travis CI works and can be seen under this link : https://travis-ci.com/McGill-ECSE321-Fall2019/project-group-20
 
