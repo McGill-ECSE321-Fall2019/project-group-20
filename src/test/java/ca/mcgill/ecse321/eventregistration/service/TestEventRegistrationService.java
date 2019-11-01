@@ -385,7 +385,7 @@ public class TestEventRegistrationService {
 		int id = 123432;
 
 		try {
-			//service.createFeedback(id, session);
+			service.createFeedback(id, session);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			fail();
@@ -393,7 +393,7 @@ public class TestEventRegistrationService {
 
 		List<Session> allsessions = service.getAllSessions();
 
-		//assertEquals(1, allsessions.size());
+		assertEquals(1, allsessions.size());
 
 		//assertEquals(123432, allsessions.get(0).getId());
 	}
@@ -516,7 +516,7 @@ public class TestEventRegistrationService {
 		int id = 22222;
 
 		try {
-			//service.createSession(id, isRejected);
+			service.createSession(id, isRejected);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			fail();
@@ -524,10 +524,10 @@ public class TestEventRegistrationService {
 
 		List<Session> allSessions = service.getAllSessions();
 
-		//assertEquals(1, allSessions.size());
-		//assertEquals(false, allSessions.get(0).isIsRejected());
+		assertEquals(1, allSessions.size());
+		assertEquals(false, allSessions.get(0).isIsRejected());
 		//assertEquals(roomBooking, allSessions.get(0).getRoomBooking());
-		//assertEquals(22222, allSessions.get(0).getId());
+		assertEquals(22222, allSessions.get(0).getId());
 	}
 
 	@Test
@@ -536,11 +536,11 @@ public class TestEventRegistrationService {
 
 		boolean isRejected = true;
 		RoomBooking roomBooking = null;
-		int id = 0;
+		int id = -1;
 		
 		String error = null;
 		try {
-			//service.createSession(id, isRejected);
+			service.createSession(id, isRejected);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -549,7 +549,7 @@ public class TestEventRegistrationService {
 		assertEquals(/*"Session cannot have an empty room Booking or a negative ID"*/ null, error);
 
 		// check no change in memory
-		//assertEquals(1, service.getAllSessions().size());
+		assertEquals(1, service.getAllSessions().size());
 
 	}
 	

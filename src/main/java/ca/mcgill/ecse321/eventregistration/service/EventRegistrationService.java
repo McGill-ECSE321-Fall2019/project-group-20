@@ -68,8 +68,6 @@ public class EventRegistrationService {
 	@Autowired
 	CourseRepository courseRepository;
 	@Autowired
-	PersonRepository studentRepository;
-	@Autowired
 	RegistrationRepository registrationRepository;
 
 	@Transactional
@@ -341,20 +339,7 @@ public class EventRegistrationService {
 		public List<Room> getAllRooms() {
 			return toList(roomRepository.findAll());
 		}
-		@Transactional
-		public Person createStudent(String name, String email, String password, String ID, boolean isRemoved) {
-			if (name == null || name.trim().length() == 0) {
-				throw new IllegalArgumentException("Person name cannot be empty!");
-			}
-			Person person = new Person();
-			person.setName(name);
-			person.setEmail(email);
-			person.setID(ID);
-			person.setPassword(password);
-			person.setIsRemoved(false);
-			studentRepository.save(person);
-			return person;
-		}
+		
 		//School
 				@Transactional
 				public School createSchool(String name) {
