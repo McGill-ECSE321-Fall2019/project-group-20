@@ -20,12 +20,14 @@ import ca.mcgill.ecse321.eventregistration.dto.EventDto;
 import ca.mcgill.ecse321.eventregistration.dto.PersonDto;
 import ca.mcgill.ecse321.eventregistration.dto.RegistrationDto;
 import ca.mcgill.ecse321.eventregistration.dto.SchoolDto;
+import ca.mcgill.ecse321.eventregistration.dto.SessionDto;
 import ca.mcgill.ecse321.eventregistration.dto.TutorDto;
 import ca.mcgill.ecse321.eventregistration.model.Course;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
 import ca.mcgill.ecse321.eventregistration.model.School;
+import ca.mcgill.ecse321.eventregistration.model.Session;
 import ca.mcgill.ecse321.eventregistration.model.Tutor;
 import ca.mcgill.ecse321.eventregistration.service.EventRegistrationService;
 
@@ -38,14 +40,14 @@ public class EventRegistrationRestController {
 	
 	//Person post mapping to create it!
 	@PostMapping(value = { "/persons/{name}", "/persons/{name}/" })
-	public PersonDto createPerson(	@PathVariable("name") String name, 
+	public PersonDto createStudent(	@PathVariable("name") String name, 
 									@RequestParam("email") String email, 
 									@RequestParam("password") String pwd,
 									@RequestParam("ID") String ID,
 									@RequestParam("isRemoved") boolean isRemoved 
 						) throws IllegalArgumentException {
 		// @formatter:on
-		Person person = service.createPerson(name, email, pwd, ID, isRemoved);
+		Person person = service.createStudent(name, email, pwd, ID, isRemoved);
 		return convertToDto(person);
 	}
 	//Tutor post mapping to create a tutor
@@ -159,40 +161,40 @@ public class EventRegistrationRestController {
 	}
 
 	@GetMapping(value = { "/events", "/events/" })
-	public List<EventDto> getAllEvents() {
-		List<EventDto> eventDtos = new ArrayList<>();
-		for (Event event : service.getAllEvents()) {
-			eventDtos.add(convertToDto(event));
+	public List<SessionDto> getAllSessions() {
+		List<SessionDto> sessionDtos = new ArrayList<>();
+		for (Session session : service.getAllSessions()) {
+			sessionDtos.add(convertToDto(session));
 		}
-		return eventDtos;
+		return sessionDtos;
 	}
 
-	@PostMapping(value = { "/register", "/register/" })
-	public RegistrationDto registerPersonForEvent(@RequestParam(name = "person") PersonDto pDto,
-		@RequestParam(name = "event") EventDto eDto) throws IllegalArgumentException {
-		Person p = service.getPerson(pDto.getName());
-		Event e = service.getEvent(eDto.getName());
-
-		Registration r = service.register(p, e);
-		return convertToDto(r, p, e);
-	}
-
-	@GetMapping(value = { "/registrations/person/{name}", "/registrations/person/{name}/" })
-	public List<EventDto> getEventsOfPerson(@PathVariable("name") PersonDto pDto) {
-		Person p = convertToDomainObject(pDto);
-		return createEventDtosForPerson(p);
-	}
+//	@PostMapping(value = { "/register", "/register/" })
+//	public RegistrationDto registerPersonForEvent(@RequestParam(name = "person") PersonDto pDto,
+//		@RequestParam(name = "event") EventDto eDto) throws IllegalArgumentException {
+//		Person p = service.getPerson(pDto.getName());
+//		Event e = service.getEvent(eDto.getName());
+//
+//		Registration r = service.register(p, e);
+//		return convertToDto(r, p, e);
+//	}
+//
+//	@GetMapping(value = { "/registrations/person/{name}", "/registrations/person/{name}/" })
+//	public List<EventDto> getEventsOfPerson(@PathVariable("name") PersonDto pDto) {
+//		Person p = convertToDomainObject(pDto);
+//		return createEventDtosForPerson(p);
+//	}
 
 	@GetMapping(value = { "/events/{name}", "/events/{name}/" })
-	public EventDto getEventByName(@PathVariable("name") String name) throws IllegalArgumentException {
-		return convertToDto(service.getEvent(name));
+	public SessionDto getSessionById(@PathVariable("id") String id) throws IllegalArgumentException {
+		return convertToDto(service.getSession(id));
 	}
 
-	private EventDto convertToDto(Event e) {
-		if (e == null) {
+	private SessionDto convertToDto(Session s) {
+		if (s == null) {
 			throw new IllegalArgumentException("There is no such Event!");
 		}
-		EventDto eventDto = new EventDto(e.getName(),e.getDate(),e.getStartTime(),e.getEndTime());
+		SessionDto eventDto = new SessionDto(s.getStudent().getName(), s.getStudent().getName(), (Date) s.getDate(),s.getStartTime(),s.getEndTime());
 		return eventDto;
 	}
 
@@ -201,7 +203,7 @@ public class EventRegistrationRestController {
 			throw new IllegalArgumentException("There is no such Person!");
 		}
 		PersonDto personDto = new PersonDto(p.getName());
-		personDto.setEvents(createEventDtosForPerson(p));
+//		personDto.setEvents(createEventDtosForPerson(p));
 		return personDto;
 	}
 	private CourseDto convertToDto(Course p) {
@@ -226,11 +228,11 @@ public class EventRegistrationRestController {
 		return schoolDto;
 	}
 
-	private RegistrationDto convertToDto(Registration r, Person p, Event e) {
-		EventDto eDto = convertToDto(e);
-		PersonDto pDto = convertToDto(p);
-		return new RegistrationDto(pDto, eDto);
-	}
+//	private RegistrationDto convertToDto(Registration r, Person p, Event e) {
+//		EventDto eDto = convertToDto(e);
+//		PersonDto pDto = convertToDto(p);
+//		return new RegistrationDto(pDto, eDto);
+//	}
 
 	private Person convertToDomainObject(PersonDto pDto) {
 		List<Person> allPersons = service.getAllPersons();
@@ -242,13 +244,13 @@ public class EventRegistrationRestController {
 		return null;
 	}
 
-	private List<EventDto> createEventDtosForPerson(Person p) {
-		List<Event> eventsForPerson = service.getEventsAttendedByPerson(p);
-		List<EventDto> events = new ArrayList<>();
-		for (Event event : eventsForPerson) {
-			events.add(convertToDto(event));
-		}
-		return events;
-	}
+//	private List<SessionDto> createSessionDtosForPerson(Person p) {
+//		List<Session> sessionsForPerson = service.getSessionsAttendedByPerson(p);
+//		List<SessionDto> sessions = new ArrayList<>();
+//		for (Session session : sessionsForPerson) {
+//			sessions.add(convertToDto(session));
+//		}
+//		return sessions;
+//	}
 	
 }
