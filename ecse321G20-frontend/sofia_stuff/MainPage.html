@@ -104,6 +104,20 @@ body {
   background: #ddd;
 }
 
+.button {
+  background-color: #1abc9c;
+  border: none;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #117460;
+}
+
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 700px) {
   .row {   
@@ -139,11 +153,14 @@ body {
   <div class="side">
     <div class="row">
         <div class="side">
-          <div class="fakeimg" style="height:200px;">Image</div>
-          <p> Join the community of tutors and students. </p>
-          <button type="button"> Join EDvantage as a tutor!</button><br>
+          <div><img src="learn.jpg" height=100% width=100% style="object-fit: contain;"></div>
+          <center><p> Join the community of tutors and students. </p>
+          <button class="button" style="width:300px">Join EDvantage as a tutor!</button>
           <br>
-          <button type="button"> Join EDvantage as a student!</button><br>
+          <br>
+          <button class="button" style="width:300px"> Join EDvantage as a student!</button>
+          <br>
+        </center>
 
 </body>
 </html>

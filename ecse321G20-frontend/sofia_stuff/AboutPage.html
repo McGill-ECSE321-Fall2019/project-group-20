@@ -73,6 +73,32 @@ body {
   flex-wrap: wrap;
 }
 
+.column3 {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+.column2 {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+.column2Helper {
+  float: left;
+  width: 16.65%;
+  padding: 5px;
+}
+
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
 /* Create two unequal columns that sits next to each other */
 /* Sidebar/left column */
 .side {
@@ -135,29 +161,41 @@ body {
   <a href="AboutPage.html" class="right">About</a>
 </div>
 
+<center><h2>EDvantage Team</h2></center>
 <div class="row">
-    <div class="side">
-      <h2>EDvantage Team</h2>
-      
-      <h3>Imane Chafi</h3>
-      <div><img src="fakeimg" height="300" width="300"></div>
-      <p>I am amazing</p><br>
-      
-      <h3>Sofia Dieguez  </h3>
-      <div><img src="poweMe.jpg" height=20% width=20% style="object-fit: contain;"></div>
-      <p>I am beautiful</p><br>
-      
-      <h3>Mahroo Rahman</h3>
-      <div><img src="fakeimg" height="300" width="300"></div>
-      <p>I am bright</p><br>
-      
-      <h3>Georges Mourant</h3>
-      <div><img src="Georges.jpeg" height=20% width=20% style="object-fit: contain;"></div>
-      <p>I am a genius</p><br>
-      
-      <h3>Adam Babs</h3>
-      <div><img src="fakeimg" height="300" width="300"></div>
-      <p>I am cool</p><br>
+
+<div class="column3">
+    <center><img src="poweMe.jpg" height=80% width=80% style="object-fit: contain;"></center>
+    <center><h3>Imane Chafi</h3></center>
+    <center><p>I am amazing</p></center>
+  </div>
+  <div class="column3">
+  <center><img src="poweMe.jpg" height=80% width=80% style="object-fit: contain;"></center>
+        <center><h3>Sofia Dieguez</h3></center>
+        <center><p>I am funny</p></center>
+
+  </div>
+  <div class="column3">
+    <center><img src="poweMe.jpg" height=80% width=80% style="object-fit: contain;"></center>
+        <center><h3>Mahroo Rahman</h3></center>
+        <center><p>I am kind</p></center>
+
+  </div>
+  <div class="column2Helper">
+  </div>
+<div class="column2">
+     <center><img src="Georges.jpeg" height=80% width=80% style="object-fit: contain;"></center>
+    <center><h3>Georges Mourant</h3></center>
+    <center><p>I am a genius</p></center>
+    
+  </div>
+  <div class="column2">
+     <center><img src="Adam.jpg" height=80% width=80% style="object-fit: contain;"></center>
+        <center><h3>Adam Babs</h3></center>
+        <center><p>I am cool</p></center>
+
+  </div>
+  <div class="column2Helper">
   </div>
   
   </body>
