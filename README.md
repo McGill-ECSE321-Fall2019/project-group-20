@@ -24,7 +24,7 @@ git push heroku master
  All meetings for the Sprint 1 iteration can be found in the github `wiki`.
  
  ## Sprint 2 - Backend Services, Behavior Modeling, and Testing
-  - Backend Implementation and Evolution of Persistence Layer [here](https://github.com/McGill-ECSE321-Fall2019/project-group-20/tree/adam/Backend/src/main/java/ca/mcgill/ecse321/tutor/controller)
+  - Backend Implementation and Evolution of Persistence Layer [here](https://github.com/McGill-ECSE321-Fall2019/project-group-20/blob/master/src/main/java/ca/mcgill/ecse321/eventregistration/controller/EventRegistrationRestController.java)
   - The Software Quality Assurance Plan and Report can be found in the [Software Quality Assurance](https://github.com/McGill-ECSE321-Fall2019/project-group-20/wiki/Software-Quality-Assurance) page from the project 'wiki'
   - Unit Testing of Backend 
   - Integration Testing of Backend Services
