@@ -16,14 +16,14 @@
         <router-view></router-view>
         <center>
           <p> Join the community of tutors and students. </p>
-          <a href="/tutorInfo">
+          <router-link to="/tutorInfo">
             <button class="button" style="width:300px">Join EDvantage as a tutor!</button>
-          </a>
+          </router-link>
           <br>
           <br>
-          <a href="/studentInfo">
+          <router-link to="/studentInfo">
             <button class="button" style="width:300px"> Join EDvantage as a student!</button>
-          </a>
+          </router-link>
           <br>
         </center>
       </div>
