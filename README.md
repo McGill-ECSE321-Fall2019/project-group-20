@@ -33,7 +33,7 @@ git push heroku master
  All meetings for the Sprint 2 iteration can be found in the github 'wiki' (meetings held after October 13th)
  
   ## Sprint 3 - Web Frontend and Architecture Modeling
-  - Architecture Modeling
+  - [Architecture Modeling](https://github.com/McGill-ECSE321-Fall2019/project-group-20/wiki/Architecture-Model)
   - Implementation of Web Frontend
   - Integration of Web Frontend with Backend Services
   - Build System, Continuous Integration, and Delivery
@@ -54,11 +54,11 @@ git push heroku master
 |2|Imane Chafi|Testing Software Lead & RESTful Software Engineer|40|
 |2|Mahroo Rahman|SQA Co-Chair and Documentation assistant|30|
 |2|Sofia Dieguez|SQA Co-Chair and Documentation assistant|30|
-|3|Adam Babs|||
-|3|Georges Mourant|||
-|3|Imane Chafi|||
-|3|Mahroo Rahman|||
-|3|Sofia Dieguez|||
+|3|Adam Babs|Software Architecture Lead|30|
+|3|Georges Mourant|Integration Engineer|30|
+|3|Imane Chafi|Integration Lead|30|
+|3|Mahroo Rahman|JavaScript Lead|30|
+|3|Sofia Dieguez|HTML & CSS Lead|30|
 
 
 # Project Wiki
