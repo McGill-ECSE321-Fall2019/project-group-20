@@ -1,4 +1,7 @@
 
+<?php
+$_SESSION['username'] = "mahroo";
+?>
 <!DOCTYPE html>
 <html>
 
