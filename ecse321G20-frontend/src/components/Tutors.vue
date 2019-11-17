@@ -7,8 +7,7 @@
       <router-link to="/tutorInfo" class="active">Become a Tutor</router-link>
       <router-link to="/contact" class="right">Contact us</router-link>
       <router-link to="/about" class="right">About</router-link>
-    </div>
-    
+    </div> 
     <!-- TutorInfo page content. -->
     <div class="row">
       <div class="side">
@@ -39,7 +38,7 @@
         <!-- Pop-up login window -->
         <div id="id01" class="modal">
 
-          <form class="modal-content animate" action="/action_page.php" method="post">
+          <form class="modal-content animate" action="/login" method="post">
             <div class="imgcontainer">
               <span onclick="document.getElementById('id01').style.display='none'" class="close"
                 title="Close Login">&times;</span>
@@ -50,10 +49,10 @@
               <label for="uname"><b>Username</b></label>
               <input type="text" placeholder="Enter Username" name="uname" required>
 
-              <label for="psw"><b>Password</b></label>
+              <label for="psw"><b>Password</b></label>psw
               <input type="password" placeholder="Enter Password" name="psw" required>
 
-              <center><button class="button" type="submit">Login</button></center>
+              <center><button value ="Login" class="button" type="submit">Login</button></center>
               <br>
               <label>
                 <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -68,14 +67,65 @@
           </form>
         </div>
       </div>
+      
     </div>
+<div id="eventregistration">
+    <h2>People</h2>
+    <table>
+      <tr>
+          <td>John</td>
+          <td>Event to attend</td>
+      </tr>
+      <tr>
+          <td>
+              <input type="text" placeholder="Person Name">
+          </td>
+          <td>
+              <button>Create</button>
+          </td>
+      </tr>
+    </table>
+    <p>
+      <span style="color:red">Error: Message text comes here</span>
+    </p>
+    <table>
+  <tr v-for="person in people" :key="person">
+      <td>{{ person.name }}</td>
+        <td>John</td>
+      <td>
+        <ul>
+          <li v-for="event in person.events" :key="event">
+            {{event.name}}
+          </li>
+        </ul>
+      </td>
+  </tr>
+  <table>
+  <!-- ... -->
+  <tr>
+    <td>
+        <input type="text" v-model="newPerson" placeholder="Person Name">
+    </td>
+    <td>
+        <button @click="createPerson(newPerson)">Create Person</button>
+    </td>
+  </tr>
+</table>
+<span v-if="errorPerson" style="color:red">Error: {{errorPerson}} </span>
+<!-- ... -->
+</table>
+  </div>
 
     <!-- Footer image. -->
     <div class="footer">
       <div><img src="../assets/tutor.png" height=550px width=100%></div>
     </div>
   </div>
+  
 </template>
+
+<script src="./registration.js">
+</script>
 
 <script>
   // Get the modal
@@ -87,6 +137,7 @@
       modal.style.display = "none";
     }
   }
+  
 </script>
 
 <style>
@@ -225,4 +276,11 @@
         width: 100%;
       }
     }
+</style>
+<style>
+  #eventregistration {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    color: #2c3e50;
+    background: #f2ece8;
+  }
 </style>

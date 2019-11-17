@@ -6,6 +6,8 @@ import Tutors from '@/components/Tutors'
 import TutorApplications from '@/components/TutorRequestForm'
 import Contact from '@/components/Contact'
 import About from '@/components/About'
+// add import after all existing imports
+import EventRegistration from '@/components/EventRegistration'
 
 Vue.use(Router)
 
@@ -39,6 +41,11 @@ export default new Router({
       path: '/about',
       name: 'About',
       component: About
-    }
+    },
+    {
+      path: '/app',
+      name: 'EventRegistration',
+      component: EventRegistration
+    } 
   ]
 })
