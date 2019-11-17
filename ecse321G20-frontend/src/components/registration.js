@@ -45,6 +45,15 @@ function PersonDto (name, id, email, availability, password) {
         .catch(e => {
           this.errorPerson = e;
         });
+        AXIOS.get(`/login`)
+        .then(response => {
+          // JSON responses are automatically parsed.
+          this.tutors = response.data
+          window.location.href = "/profile";
+        })
+        .catch(e => {
+          this.errorPerson = e;
+        });
     },
       methods: {
         createPerson: function (personName) {

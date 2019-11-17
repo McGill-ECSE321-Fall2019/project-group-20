@@ -38,7 +38,7 @@
         <!-- Pop-up login window -->
         <div id="id01" class="modal">
 
-          <form class="modal-content animate" action="/login" method="post">
+          <form class="modal-content animate" action="/login" method="get">
             <div class="imgcontainer">
               <span onclick="document.getElementById('id01').style.display='none'" class="close"
                 title="Close Login">&times;</span>

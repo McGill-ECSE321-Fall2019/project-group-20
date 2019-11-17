@@ -46,6 +46,7 @@ export default new Router({
       path: '/app',
       name: 'EventRegistration',
       component: EventRegistration
-    } 
+    },
+     
   ]
 })
