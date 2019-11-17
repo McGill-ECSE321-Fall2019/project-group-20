@@ -383,11 +383,12 @@ public class EventRegistrationService {
 	
 	//Tutor
 	@Transactional
-	public Tutor createTutor(String name, String email, String password, String ID, boolean isRemoved, String availability, boolean isVerified, double hourlyRate) {
+	public Tutor createTutor(String name, String email, String password, String ID, boolean isRemoved, String availability, boolean isVerified, double hourlyRate, String subject) {
 		if (name == null || name.trim().length() == 0) {
 			throw new IllegalArgumentException("Person name cannot be empty!");
 		}
 		Tutor person = new Tutor();
+		person.setSubject(subject);
 		person.setName(name);
 		person.setAvailability(availability);//New
 		person.setHourlyRate(hourlyRate);//New

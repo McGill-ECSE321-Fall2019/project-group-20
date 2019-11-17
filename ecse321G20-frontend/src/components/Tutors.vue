@@ -82,6 +82,7 @@
             {{event.name}}
           </li>
         </ul>
+        
       </td>
   </tr>
 </table>

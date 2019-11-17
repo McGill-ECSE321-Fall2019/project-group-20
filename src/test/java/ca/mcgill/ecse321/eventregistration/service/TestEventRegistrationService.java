@@ -329,6 +329,7 @@ public class TestEventRegistrationService {
 		assertEquals(0, service.getAllTutors().size());
 
 		String name = "Oscar";
+		String subject = "English";
 		String email = "oscar@helloworld.com";
 		String password = "123";
 		String ID = "123321";
@@ -338,7 +339,7 @@ public class TestEventRegistrationService {
 		boolean isVerified = true;
 
 		try {
-			service.createTutor(name, email, password, ID, isRemoved, availability, isVerified, hourlyRate);
+			service.createTutor(name, email, password, ID, isRemoved, availability, isVerified, hourlyRate, subject);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			fail();
@@ -355,6 +356,7 @@ public class TestEventRegistrationService {
 
 		String name = null;
 		String email = null;
+		String subject = null;
 		String password = null;
 		String ID = null;
 		String availability = null;
@@ -363,7 +365,7 @@ public class TestEventRegistrationService {
 		String error = null;
 
 		try {
-			service.createTutor(name, email, password, ID, false, availability, isVerified, hourlyRate);
+			service.createTutor(name, email, password, ID, false, availability, isVerified, hourlyRate, subject);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}

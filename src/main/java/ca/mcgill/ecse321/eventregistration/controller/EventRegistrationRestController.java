@@ -55,11 +55,13 @@ public class EventRegistrationRestController {
 		public TutorDto createTutor(	@PathVariable("name") String name,
 										@RequestParam("email") String email,
 										@RequestParam("password") String password,
+										@RequestParam("subject") String subject,
 										@RequestParam("ID") String ID,
+										@RequestParam("hourlyRate") double hourlyRate,
 										@RequestParam("availability") String availability
 							) throws IllegalArgumentException {
 			// @formatter:on
-			Tutor person = service.createTutor(name, email, password, ID, false, availability, false, 1);
+			Tutor person = service.createTutor(name, email, password, ID, false, availability, false, hourlyRate, subject);
 			return convertToDto(person);
 		}
 		

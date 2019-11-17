@@ -45,11 +45,31 @@ function PersonDto (name, id, email, availability, password) {
     this.number = number
   }
 
+  function FeedBackDto (session, id) {
+    this.session = session
+    this.id = id
+  }
+  function RoomDto (number, sessionType, isAvailable) {
+    this.number = number
+    this.sessionType = sessionType
+    this.isAvailable = isAvailable
+  }
+  function RoomBookingDto (requestNb) {
+    this.requestNb = requestNb
+  }
+
   export default {
     name: 'eventregistration',
     data () {
       return {
         tutors: [],
+        bills:[],
+        schools:[],
+        sessions:[],
+        feedbacks:[],
+        tutorReviews:[],
+        rooms:[],
+        roomBookings:[],
         newPerson: '',
         errorPerson: '',
         response: []
@@ -65,13 +85,53 @@ function PersonDto (name, id, email, availability, password) {
         .catch(e => {
           this.errorPerson = e;
         });
+        AXIOS.get(`/allCourses`)
+        .then(response => {
+          // JSON responses are automatically parsed.
+          this.courses = response.data
+        })
+        .catch(e => {
+          this.errorPerson = e;
+        });
+        AXIOS.get(`/schools`)
+        .then(response => {
+          // JSON responses are automatically parsed.
+          this.sessions = response.data
+        })
+        .catch(e => {
+          this.errorPerson = e;
+        });
     },
       methods: {
-        createPerson: function (personName) {
+        createPerson: function (subjectMatter) {
           AXIOS.post(`/tutors/`+personName, {}, {})
           .then(response => {
             // JSON responses are automatically parsed.
             this.tutors.push(response.data)
+            this.newPerson = ''
+            this.errorPerson = ''
+          })
+          .catch(e => {
+            var errorMsg = e.message
+            console.log(errorMsg)
+            this.errorPerson = errorMsg
+          });
+          AXIOS.post(`/createSchool/`+schoolName, {}, {})
+          .then(response => {
+            // JSON responses are automatically parsed.
+            this.schools.push(response.data)
+            this.newPerson = ''
+            this.errorPerson = ''
+          })
+          .catch(e => {
+            var errorMsg = e.message
+            console.log(errorMsg)
+            this.errorPerson = errorMsg
+          });
+          AXIOS.post(`/createCourse/`+courseName, {}, {})
+          .then(response => {
+            // JSON responses are automatically parsed.
+            this.courses.push(response.data)
             this.newPerson = ''
             this.errorPerson = ''
           })

@@ -22,6 +22,16 @@ public class Tutor {
 	public String getEmail() {
 	    return this.email;
 	}
+	//Subject matter that the Teacher teaches 
+	private String subject;
+
+	public void setSubject(String value) {
+	    this.subject = value;
+	}
+	public String getSubject() {
+	    return this.subject;
+	}
+	
 	private boolean isRemoved;
 
 	public void setIsRemoved(boolean value) {
