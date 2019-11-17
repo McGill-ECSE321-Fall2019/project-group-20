@@ -38,7 +38,7 @@
         <!-- Pop-up login window -->
         <div id="id01" class="modal">
 
-          <form class="modal-content animate" action="/login" method="get">
+          <form class="modal-content animate" action="/login" method="post">
             <div class="imgcontainer">
               <span onclick="document.getElementById('id01').style.display='none'" class="close"
                 title="Close Login">&times;</span>
@@ -48,7 +48,7 @@
               <label for="uname"><b>Username</b></label>
               <input type="text" placeholder="Enter Username" name="uname" required>
 
-              <label for="psw"><b>Password</b></label>psw
+              <label for="psw"><b>Password</b></label>
               <input type="password" placeholder="Enter Password" name="psw" required>
 
               <center><button value ="Login" class="button" type="submit">Login</button></center>

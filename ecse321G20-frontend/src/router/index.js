@@ -8,6 +8,9 @@ import Contact from '@/components/Contact'
 import About from '@/components/About'
 // add import after all existing imports
 import EventRegistration from '@/components/Tutors'
+import Profile from '@/components/portal/Profile'
+import Schedule from '@/components/portal/Schedule'
+
 
 Vue.use(Router)
 
@@ -47,6 +50,33 @@ export default new Router({
       name: 'EventRegistration',
       component: EventRegistration
     },
-     
+    {
+      path: '/tutorportal/',
+      name: 'Tutor - Profile',
+      component: Profile
+    },
+    {
+      path: '/tutorportal/schedule',
+      name: 'Tutor - Schedule',
+      component: Schedule
+    },
   ]
 })
+
+var isLoggedMixin = {
+  methods: {
+    checkIfLogged(){
+        var vm = this;
+        return new Promise((resolve, reject) => {
+          axios.get('/sessionStatus')
+             .then(response => {
+                resolve(response.data.user);
+             })
+             .catch(error => {
+                reject(error.response.data);
+             });
+        })
+        
+    }
+  }
+}
