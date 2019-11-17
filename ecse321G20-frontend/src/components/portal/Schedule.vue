@@ -24,7 +24,7 @@
     
     <!-- Main page content. -->
     <button class="button" onclick="document.getElementById('id03').style.display='block'"
-                style="width:100%;">Create session</button>
+                style="width:100%;">Add availability</button>
 
 
             <!--Pop-up window to create a session-->
@@ -38,19 +38,10 @@
 
                     
                     <div class="container">
-                        <label for="student"><b>Student Name</b></label>
-                        <input type="text" placeholder="Enter Student name" name="student"  v-model="newPerson" required>
+                        <label for="student"><b>Availablility : Date and time</b></label>
+                        <input type="text" placeholder="Enter Date and time" name="student"  v-model="date" required>
 
-                        <label for="subjectmatter"><b>Subject Matter</b></label>
-                        <input type="text" placeholder="Enter Subject Matter"  v-model="subjectmatter" name="subjectmatter" required>
-
-                        <label for="date"><b>Date</b></label>
-                        <input type="text" placeholder="Enter Date of session" v-model="date" name="date" required>
-
-                        <label for="sessiontype"><b>Session Type</b></label>
-                        <input type="text" placeholder="Enter Session Type" v-model="session" name="sessiontype" required>
-
-                        <center><button class = 'button' @click="createPerson(newPerson, session, subjectmatter, false, date)">Add availability</button></center>
+                        <center><button class = 'button' @click="createSchool(date)">Add availability</button></center>
                         <br>
                     </div>
 
@@ -61,6 +52,18 @@
                 </form>
             </div>
 
+<tr v-for="school in schools" :key='school' >
+
+       
+            <table>
+                <tr>
+                    <th>Availability</th>
+                </tr>
+                <tr>
+                    <td>{{school.name}}</td>
+                </tr>
+            </table>
+             </tr>
 
 
     <ul class="weekdays">
@@ -197,3 +200,5 @@
             }
         }
 </style>
+<script src="../registration.js">
+</script>

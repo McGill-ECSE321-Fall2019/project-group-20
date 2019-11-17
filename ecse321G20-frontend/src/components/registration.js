@@ -97,7 +97,7 @@ function TutorDto (name, id, email, availability, password, subject, hourlyRate)
         AXIOS.get(`/schools`)
         .then(response => {
           // JSON responses are automatically parsed.
-          this.sessions = response.data
+          this.schools = response.data
         })
         .catch(e => {
           this.errorPerson = e;
@@ -125,22 +125,12 @@ function TutorDto (name, id, email, availability, password, subject, hourlyRate)
             console.log(errorMsg)
             this.errorPerson = errorMsg
           });
-          AXIOS.post(`/createSchool/`+schoolName, {}, {})
+        },
+        createSchool: function (date) {
+          AXIOS.post(`createSchool?schoolName=`+ date)
           .then(response => {
             // JSON responses are automatically parsed.
             this.schools.push(response.data)
-            this.newPerson = ''
-            this.errorPerson = ''
-          })
-          .catch(e => {
-            var errorMsg = e.message
-            console.log(errorMsg)
-            this.errorPerson = errorMsg
-          });
-          AXIOS.post(`/createCourse/`+courseName, {}, {})
-          .then(response => {
-            // JSON responses are automatically parsed.
-            this.courses.push(response.data)
             this.newPerson = ''
             this.errorPerson = ''
           })
