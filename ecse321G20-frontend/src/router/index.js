@@ -10,12 +10,18 @@ import About from '@/components/About'
 import EventRegistration from '@/components/Tutors'
 import Profile from '@/components/portal/Profile'
 import Schedule from '@/components/portal/Schedule'
+import Sent from '@/components/Sent'
 
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [{
+  routes: [
+    {
+      path: '/Sent',
+      name: 'Sent',
+      component: Sent
+    },{
       path: '/',
       name: 'Home',
       component: Home

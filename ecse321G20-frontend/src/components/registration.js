@@ -9,12 +9,14 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
-function PersonDto (name, id, email, availability, password) {
+function PersonDto (name, id, email, availability, password, subject, hourlyRate) {
     this.name = name
     this.id = id
     this.email = email
     this.availability = availability
     this.password = password
+    this.subject = subject
+    this.hourlyRate = hourlyRate
     this.events = []
   }
 

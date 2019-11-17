@@ -43,19 +43,11 @@
           <table>
               <tr>
                   <th>Subject Matter</th>
-                  <th>Hoourly Rate ($)</th>
+                  <th>Hourly Rate ($)</th>
               </tr>
               <tr>
-                  <td>Math</td>
-                  <td>20</td>
-              </tr>
-              <tr>
-                  <td>Chemistry</td>
-                  <td>20</td>
-              </tr>
-              <tr>
-                  <td>English</td>
-                  <td>15</td>
+                  <td>{{person.subject}}</td>
+                  <td>{{person.hourlyRate}}</td>
               </tr>
             <h3>
                 Availability
@@ -73,7 +65,7 @@
 
           <div id="id02" class="modal">
 
-            <form class="modal-content animate" action="/action_page.php" method="post">
+            <form class="modal-content animate">
               <div class="imgcontainer">
                 <span onclick="document.getElementById('id02').style.display='none'" class="close"
                     title="Close Request Subject Matter">&times;</span>
@@ -92,7 +84,7 @@
                 <label for="hourlyrate"><b>Hourly Rate (optional)</b></label>
                 <input type="text" placeholder="Enter Hourly Rate (optional)" name="hourlyrate" optional>
 
-                <center><button class="button" type="submit">Request to teach new subject matter</button></center>
+                <center><button class="button" type="button" onclick="window.location.href='/../#/Sent';">Request to teach new subject matter</button></center>
                 <br>
               </div>
 
