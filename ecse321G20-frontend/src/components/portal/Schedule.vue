@@ -14,23 +14,53 @@
             <li class="prev">&#10094;</li>
             <li class="next">&#10095;</li>
             <li>
-                <h1>EDvantage Tutor Profile</h1>
+                <h1> Tutor Schedule</h1>
                 <p>We care for your <b>success</b>.</p>
                 November<br>
                 <span style="font-size:18px">2019</span>
             </li>
         </ul>
     </div>
-
-    <!-- Navigation bar -->
-    <div class="navbar">
-        <a href="TutorProfile.html">My Profile</a>
-        <a href="ScheduleTutor.html" class="active">Schedule</a>
-        <a href=#>Feedback</a>
-        <a href="MainPage.html" class="right">Logout</a>
-    </div>
-
+    
     <!-- Main page content. -->
+    <button class="button" onclick="document.getElementById('id03').style.display='block'"
+                style="width:100%;">Create session</button>
+
+
+            <!--Pop-up window to create a session-->
+            <div id="id03" class="modal">
+
+                <form class="modal-content animate">
+                    <div class="imgcontainer">
+                        <span onclick="document.getElementById('id03').style.display='none'" class="close"
+                            title="Close Create Session">&times;</span>
+                    </div>
+
+                    
+                    <div class="container">
+                        <label for="student"><b>Student Name</b></label>
+                        <input type="text" placeholder="Enter Student name" name="student"  v-model="newPerson" required>
+
+                        <label for="subjectmatter"><b>Subject Matter</b></label>
+                        <input type="text" placeholder="Enter Subject Matter"  v-model="subjectmatter" name="subjectmatter" required>
+
+                        <label for="date"><b>Date</b></label>
+                        <input type="text" placeholder="Enter Date of session" v-model="date" name="date" required>
+
+                        <label for="sessiontype"><b>Session Type</b></label>
+                        <input type="text" placeholder="Enter Session Type" v-model="session" name="sessiontype" required>
+
+                        <center><button class = 'button' @click="createPerson(newPerson, session, subjectmatter, false, date)">Add availability</button></center>
+                        <br>
+                    </div>
+
+                    <div class="container" style="background-color:whitesmoke">
+                        <button type="button" onclick="document.getElementById('id03').style.display='none'"
+                            class="cancelbtn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
 
 
     <ul class="weekdays">
@@ -76,7 +106,9 @@
         <li>30</li>
         <li>31</li>
     </ul>
+    
   </div>
+  
 </template>
 
 <script>
