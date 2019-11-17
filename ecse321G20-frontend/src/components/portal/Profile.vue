@@ -96,6 +96,8 @@
           </div>
         </div>
         <div class="main">
+          <tr v-for="person in persons" :key='person' >
+
             <h2>Tutoring Sessions</h2>
             <table>
                 <tr>
@@ -106,28 +108,15 @@
                     <th>Feedback</th>
                 </tr>
                 <tr>
-                    <td>Ernst Handel</td>
-                    <td>Chemistry</td>
-                    <td>10/03/2019</td>
-                    <td>Review</td>
-                    <td>Completed</td>
+                    <td>{{person.name}}</td>
+                    <td>{{person.email}}</td>
+                    <td>{{person.password}}</td>
+                    <td>{{person.id}}</td>
+                    <td>{{person.isRemoved}}</td>
                 </tr>
-                <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Math</td>
-                    <td>11/14/2019</td>
-                    <td>Private</td>
-                    <td>Not completed</td>
-                </tr>
-                <tr>
-                    <td>Jessica Valentine</td>
-                    <td>English</td>
-                    <td>12/11/2019</td>
-                    <td>Private</td>
-                    <td>Not completed</td>
-                </tr>
-
+            
             </table>
+             </tr>
             <br>
             <button class="button" onclick="document.getElementById('id03').style.display='block'"
                 style="width:100%;">Create session</button>

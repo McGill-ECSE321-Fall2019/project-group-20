@@ -38,12 +38,12 @@ public class EventRegistrationRestController {
 	EventRegistrationService service;
 	
 	//Person post mapping to create it!
-		@PostMapping(value = { "/persons/{name}", "/persons/{name}/" })
-		public PersonDto createStudent(	@PathVariable("name") String name, 
-										@RequestParam("email") String email, 
-										@RequestParam("password") String pwd,
-										@RequestParam("ID") String ID,
-										@RequestParam("isRemoved") boolean isRemoved 
+		@PostMapping(value = { "/persons/{studentName}", "/persons/{studentName}/" })
+		public PersonDto createStudent(	@PathVariable("studentName") String name, 
+										@RequestParam("subjectMatter") String email, 
+										@RequestParam("Date") String pwd,
+										@RequestParam("sessionType") String ID,
+										@RequestParam("feedback") boolean isRemoved 
 							) throws IllegalArgumentException {
 			// @formatter:on
 			Person person = service.createStudent(name, email, pwd, ID, isRemoved);

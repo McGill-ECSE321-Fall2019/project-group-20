@@ -9,7 +9,7 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
-function PersonDto (name, id, email, availability, password, subject, hourlyRate) {
+function TutorDto (name, id, email, availability, password, subject, hourlyRate) {
     this.name = name
     this.id = id
     this.email = email
@@ -20,12 +20,11 @@ function PersonDto (name, id, email, availability, password, subject, hourlyRate
     this.events = []
   }
 
-  function SessionDto (id, isRejected, date, startTime, endTime) {
-    this.id = id
-    this.isRejected = isRejected
-    this.date = date
-    this.startTime = startTime
-    this.endTime = endTime
+  function PersonDto (name, id, email, is_removed, password) {
+    this.name = name
+    this.email = email
+    this.is_removed = is_removed
+    this.password = password
   }
   function TutorReviewDto (id, isRejected, date, startTime, endTime) {
     this.id = id
@@ -65,7 +64,7 @@ function PersonDto (name, id, email, availability, password, subject, hourlyRate
     data () {
       return {
         tutors: [],
-        bills:[],
+        persons:[],
         schools:[],
         sessions:[],
         feedbacks:[],
@@ -87,10 +86,10 @@ function PersonDto (name, id, email, availability, password, subject, hourlyRate
         .catch(e => {
           this.errorPerson = e;
         });
-        AXIOS.get(`/allCourses`)
+        AXIOS.get(`/persons`)
         .then(response => {
           // JSON responses are automatically parsed.
-          this.courses = response.data
+          this.persons = response.data
         })
         .catch(e => {
           this.errorPerson = e;
@@ -103,13 +102,21 @@ function PersonDto (name, id, email, availability, password, subject, hourlyRate
         .catch(e => {
           this.errorPerson = e;
         });
+        AXIOS.get(`/subjectMatter`)
+        .then(response => {
+          // JSON responses are automatically parsed.
+          this.sessions = response.data
+        })
+        .catch(e => {
+          this.errorPerson = e;
+        });
     },
       methods: {
         createPerson: function (subjectMatter) {
-          AXIOS.post(`/tutors/`+personName, {}, {})
+          AXIOS.post(`/persons/`+ personName, {}, {})
           .then(response => {
             // JSON responses are automatically parsed.
-            this.tutors.push(response.data)
+            this.persons.push(response.data)
             this.newPerson = ''
             this.errorPerson = ''
           })
