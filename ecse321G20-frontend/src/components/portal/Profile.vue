@@ -96,9 +96,10 @@
           </div>
         </div>
         <div class="main">
+                 <h2>Tutoring Sessions</h2>
           <tr v-for="person in persons" :key='person' >
 
-            <h2>Tutoring Sessions</h2>
+       
             <table>
                 <tr>
                     <th>Student Name</th>
@@ -114,16 +115,6 @@
                     <td>{{person.id}}</td>
                     <td>{{person.isRemoved}}</td>
                 </tr>
-            <table>
-                          <tr>
-                    <td>
-                        <input type="text" v-model="newPerson" placeholder="Person Name">
-                    </td>
-                    <td>
-                        <button @click="createPerson(newPerson)">Create Person</button>
-                    </td>
-                </tr>
-                </table>
             </table>
              </tr>
             <br>
