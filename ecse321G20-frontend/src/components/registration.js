@@ -9,8 +9,12 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
-function PersonDto (name) {
+function PersonDto (name, id, email, is_removed, password) {
     this.name = name
+    this.id = id
+    this.email = email
+    this.is_removed = is_removed
+    this.password = password
     this.events = []
   }
   
