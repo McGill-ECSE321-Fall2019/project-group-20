@@ -7,11 +7,20 @@
         <router-link to='#'>Feedback</router-link>
         <router-link to="/" class="right">Logout</router-link>
     </div>
+    
 
     <!-- Main page content. -->
     <div class="row">
+
+        
+        
       <div class="side">
-          <h2>John Doe</h2>
+    <div id="eventregistration">
+    <h2>Tutor Profile</h2>
+    <table>
+  <tr v-for="person in tutors" :key='person' >
+      
+          <h2>{{person.name}}</h2>
 
           <!-- Star rating -->
           <span class="fa fa-star checked"></span>
@@ -29,7 +38,7 @@
               for CHEM204 and CHEM551. I graduated with a 3.9 CGPA.
               I am now doing my master's in Stem Cell Bioprocessing at McGill University.
           </p>
-          <p><b>Email:</b> john.doe@mail.mcgill.ca </p>
+          <p><b>Email:</b> {{person.email}} </p>
           <h3>Teaching subjects:</h3>
           <table>
               <tr>
@@ -48,9 +57,17 @@
                   <td>English</td>
                   <td>15</td>
               </tr>
+            <h3>
+                Availability
+            </h3>{{person.availability}}
           </table>
           <br>
-
+      
+  </tr>
+</table>
+    <p>
+    </p>
+  </div>
           <button class="button" onclick="document.getElementById('id02').style.display='block'"
               style="width:auto;">Add another subject matter</button>
 
@@ -311,3 +328,6 @@
             color: orange;
         }
 </style>
+
+<script src="../registration.js">
+</script>

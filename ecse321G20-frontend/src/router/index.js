@@ -80,3 +80,4 @@ var isLoggedMixin = {
     }
   }
 }
+

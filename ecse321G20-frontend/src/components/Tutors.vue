@@ -38,7 +38,7 @@
         <!-- Pop-up login window -->
         <div id="id01" class="modal">
 
-          <form class="modal-content animate" action="/login" method="post">
+          <form class="modal-content animate">
             <div class="imgcontainer">
               <span onclick="document.getElementById('id01').style.display='none'" class="close"
                 title="Close Login">&times;</span>
@@ -46,12 +46,12 @@
 
             <div class="container">
               <label for="uname"><b>Username</b></label>
-              <input type="text" placeholder="Enter Username" name="uname" required>
+              <input id = "name" type="text" placeholder="Enter Username" name="uname" required>
 
               <label for="psw"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="psw" required>
+              <input id = "pass" type="password" placeholder="Enter Password" name="psw" required>
 
-              <center><button value ="Login" class="button" type="submit">Login</button></center>
+              <center><button value ="Login" class="button" type="button" v-on:click="log()" >Login</button></center>
               <br>
               <label>
                 <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -71,7 +71,8 @@
     <h2>Tutors</h2>
     <table>
   <tr v-for="person in tutors" :key='person' >
-      <td>{{ person.name }}</td>
+      <td id = 'personName'>{{ person.name }}</td>
+      <td id = 'personPassword'> {{ person.password}}</td>
       <td>{{ person.email }}</td>
       <td>{{ person.id }}</td>
       <td>{{ person.availability }}</td>
@@ -85,7 +86,6 @@
   </tr>
 </table>
     <p>
-      <span style="color:red">Error: Message text comes here</span>
     </p>
   </div>
     <!-- Footer image. -->
@@ -250,8 +250,24 @@
   #eventregistration {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
-    background: #f2ece8;
+    background: hsl(24, 28%, 93%);
   }
+  
 </style>
+
+<script>
+            function login() {
+                if(document.getElementById('name') != "" && document.getElementById('pass') != "") {
+                    if(document.getElementById('name') == document.getElementById('personName') && document.getElementById('pass') == document.getElementById('personPassword')) {
+                        window.location.href = "/#/tutorportal/";
+                    } else {
+                        alert("The username and / or password is incorrect");
+                    }
+                } else {
+                    console.log("A username and password must be present");
+                }
+            }
+            
+</script>
 <script src="./registration.js">
 </script>

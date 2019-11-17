@@ -17,12 +17,32 @@ function PersonDto (name, id, email, availability, password) {
     this.password = password
     this.events = []
   }
-  
-  function EventDto (name, date, start, end) {
+
+  function SessionDto (id, isRejected, date, startTime, endTime) {
+    this.id = id
+    this.isRejected = isRejected
+    this.date = date
+    this.startTime = startTime
+    this.endTime = endTime
+  }
+  function TutorReviewDto (id, isRejected, date, startTime, endTime) {
+    this.id = id
+    this.isRejected = isRejected
+    this.date = date
+    this.startTime = startTime
+    this.endTime = endTime
+  }
+
+  function SchoolDto (name) {
     this.name = name
-    this.eventDate = date
-    this.startTime = start
-    this.endTime = end
+  }
+  function SubjectDto (name, id) {
+    this.name = name
+    this.id = id
+  }
+
+  function CourseDto (number) {
+    this.number = number
   }
 
   export default {
@@ -45,15 +65,6 @@ function PersonDto (name, id, email, availability, password) {
         .catch(e => {
           this.errorPerson = e;
         });
-        AXIOS.get(`/login`)
-        .then(response => {
-          // JSON responses are automatically parsed.
-          this.tutors = response.data
-          window.location.href = "/profile";
-        })
-        .catch(e => {
-          this.errorPerson = e;
-        });
     },
       methods: {
         createPerson: function (personName) {
@@ -69,7 +80,21 @@ function PersonDto (name, id, email, availability, password) {
             console.log(errorMsg)
             this.errorPerson = errorMsg
           });
-        }
+        },
+        log() {
+          if(document.getElementById('name') != "" && document.getElementById('pass') != "") {
+            console.log(document.getElementById('name').value);
+            console.log(document.getElementById('personName').value);
+              //if(document.getElementById('name').value == document.getElementById('personName').value && document.getElementById('pass').value == document.getElementById('personPassword').value) {
+                  window.location.href = "/#/tutorportal/";
+              //} else {
+                //  alert("The username and / or password is incorrect");
+              //}
+          } else {
+              console.log("A username and password must be present");
+          }
       }
+      }
+      
   }
 
