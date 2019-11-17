@@ -7,8 +7,7 @@
       <router-link to="/tutorInfo" class="active">Become a Tutor</router-link>
       <router-link to="/contact" class="right">Contact us</router-link>
       <router-link to="/about" class="right">About</router-link>
-    </div>
-    
+    </div> 
     <!-- TutorInfo page content. -->
     <div class="row">
       <div class="side">
@@ -39,21 +38,20 @@
         <!-- Pop-up login window -->
         <div id="id01" class="modal">
 
-          <form class="modal-content animate" action="/action_page.php" method="post">
+          <form class="modal-content animate" action="/login" method="post">
             <div class="imgcontainer">
               <span onclick="document.getElementById('id01').style.display='none'" class="close"
                 title="Close Login">&times;</span>
-              <img src="avatar.png" alt="Avatar" class="avatar">
             </div>
 
             <div class="container">
               <label for="uname"><b>Username</b></label>
               <input type="text" placeholder="Enter Username" name="uname" required>
 
-              <label for="psw"><b>Password</b></label>
+              <label for="psw"><b>Password</b></label>psw
               <input type="password" placeholder="Enter Password" name="psw" required>
 
-              <center><button class="button" type="submit">Login</button></center>
+              <center><button value ="Login" class="button" type="submit">Login</button></center>
               <br>
               <label>
                 <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -67,14 +65,35 @@
             </div>
           </form>
         </div>
-      </div>
+      </div>  
     </div>
-
+<div id="eventregistration">
+    <h2>Tutors</h2>
+    <table>
+  <tr v-for="person in tutors" :key='person' >
+      <td>{{ person.name }}</td>
+      <td>{{ person.email }}</td>
+      <td>{{ person.id }}</td>
+      <td>{{ person.availability }}</td>
+      <td>
+        <ul>
+          <li v-for="event in person.events" :key='event'>
+            {{event.name}}
+          </li>
+        </ul>
+      </td>
+  </tr>
+</table>
+    <p>
+      <span style="color:red">Error: Message text comes here</span>
+    </p>
+  </div>
     <!-- Footer image. -->
     <div class="footer">
       <div><img src="../assets/tutor.png" height=550px width=100%></div>
     </div>
   </div>
+  
 </template>
 
 <script>
@@ -87,6 +106,7 @@
       modal.style.display = "none";
     }
   }
+  
 </script>
 
 <style>
@@ -226,3 +246,12 @@
       }
     }
 </style>
+<style>
+  #eventregistration {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    color: #2c3e50;
+    background: #f2ece8;
+  }
+</style>
+<script src="./registration.js">
+</script>

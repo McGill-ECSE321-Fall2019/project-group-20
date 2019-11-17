@@ -10,6 +10,9 @@ import About from '@/components/About'
 import Profile from '@/components/portal/Profile'
 import Schedule from '@/components/portal/Schedule'
 
+// add import after all existing imports
+import EventRegistration from '@/components/Tutors'
+
 Vue.use(Router)
 Vue.use(VueSession)
 
@@ -53,7 +56,13 @@ export default new Router({
       path: '/tutorportal/schedule',
       name: 'Tutor - Schedule',
       component: Schedule
-    }
+    },
+    {
+      path: '/app',
+      name: 'EventRegistration',
+      component: EventRegistration
+    } 
+
   ]
 })
 
