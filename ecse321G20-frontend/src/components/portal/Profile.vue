@@ -167,6 +167,8 @@
 </template>
 
 <script>
+  export default isLoggedMixin;
+  
   // Get the modal
   var modal = document.getElementById('id03');
 

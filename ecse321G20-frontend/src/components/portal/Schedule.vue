@@ -80,6 +80,7 @@
 </template>
 
 <script>
+  export default isLoggedMixin;
 </script>
 
 <style>
