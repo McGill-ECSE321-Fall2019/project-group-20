@@ -42,7 +42,6 @@
             <div class="imgcontainer">
               <span onclick="document.getElementById('id01').style.display='none'" class="close"
                 title="Close Login">&times;</span>
-              <img src="avatar.png" alt="Avatar" class="avatar">
             </div>
 
             <div class="container">
@@ -69,10 +68,13 @@
       </div>  
     </div>
 <div id="eventregistration">
-    <h2>People</h2>
+    <h2>Tutors</h2>
     <table>
-  <tr v-for="person in people" :key='person' >
+  <tr v-for="person in tutors" :key='person' >
       <td>{{ person.name }}</td>
+      <td>{{ person.email }}</td>
+      <td>{{ person.id }}</td>
+      <td>{{ person.availability }}</td>
       <td>
         <ul>
           <li v-for="event in person.events" :key='event'>
@@ -82,7 +84,6 @@
       </td>
   </tr>
 </table>
-<span v-if="errorPerson" style="color:red">Error: {{errorPerson}} </span>
     <p>
       <span style="color:red">Error: Message text comes here</span>
     </p>

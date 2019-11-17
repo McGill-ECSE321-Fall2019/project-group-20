@@ -7,7 +7,7 @@ import TutorApplications from '@/components/TutorRequestForm'
 import Contact from '@/components/Contact'
 import About from '@/components/About'
 // add import after all existing imports
-import EventRegistration from '@/components/EventRegistration'
+import EventRegistration from '@/components/Tutors'
 
 Vue.use(Router)
 

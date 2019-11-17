@@ -9,11 +9,11 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
-function PersonDto (name, id, email, is_removed, password) {
+function PersonDto (name, id, email, availability, password) {
     this.name = name
     this.id = id
     this.email = email
-    this.is_removed = is_removed
+    this.availability = availability
     this.password = password
     this.events = []
   }
@@ -29,7 +29,7 @@ function PersonDto (name, id, email, is_removed, password) {
     name: 'eventregistration',
     data () {
       return {
-        people: [],
+        tutors: [],
         newPerson: '',
         errorPerson: '',
         response: []
@@ -37,10 +37,10 @@ function PersonDto (name, id, email, is_removed, password) {
     },
     created: function () {
       // Initializing people from backend
-        AXIOS.get(`/persons`)
+        AXIOS.get(`/tutors`)
         .then(response => {
           // JSON responses are automatically parsed.
-          this.people = response.data
+          this.tutors = response.data
         })
         .catch(e => {
           this.errorPerson = e;
@@ -48,10 +48,10 @@ function PersonDto (name, id, email, is_removed, password) {
     },
       methods: {
         createPerson: function (personName) {
-          AXIOS.post(`/persons/`+personName, {}, {})
+          AXIOS.post(`/tutors/`+personName, {}, {})
           .then(response => {
             // JSON responses are automatically parsed.
-            this.people.push(response.data)
+            this.tutors.push(response.data)
             this.newPerson = ''
             this.errorPerson = ''
           })
