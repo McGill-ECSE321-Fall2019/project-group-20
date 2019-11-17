@@ -5,9 +5,9 @@ module.exports = {
   build: {
     env: require('./prod.env'),
     host: 'ecse321-group20-2020.herokuapp.com',
-    port: 443,
+    port: 443, //don't forget to change this to 8080
     backendHost: 'ecse321-group20-2020.herokuapp.com',
-    backendPort: 443,
+    backendPort: 443, //don't forget to change this to 8080
     index: path.resolve(__dirname, '../dist/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',

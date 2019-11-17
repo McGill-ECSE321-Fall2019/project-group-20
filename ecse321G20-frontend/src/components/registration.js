@@ -112,8 +112,8 @@ function TutorDto (name, id, email, availability, password, subject, hourlyRate)
         });
     },
       methods: {
-        createPerson: function (subjectMatter) {
-          AXIOS.post(`/persons/`+ personName, {}, {})
+        createPerson: function (personName, id, email, is_removed, password ) {
+          AXIOS.post(`/persons/`+ personName + '?subjectMatter=English&Date=10/34/23&sessionType=Review&feedback=true')
           .then(response => {
             // JSON responses are automatically parsed.
             this.persons.push(response.data)

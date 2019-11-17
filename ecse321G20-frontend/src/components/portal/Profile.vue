@@ -114,6 +114,17 @@
                     <td>{{person.id}}</td>
                     <td>{{person.isRemoved}}</td>
                 </tr>
+                <table>
+                <!-- ... -->
+                <tr>
+                    <td>
+                        <input type="text" v-model="newPerson" placeholder="Person Name">
+                    </td>
+                    <td>
+                        <button @click="createPerson(newPerson)">Create Person</button>
+                    </td>
+                </tr>
+                </table>
             
             </table>
              </tr>
