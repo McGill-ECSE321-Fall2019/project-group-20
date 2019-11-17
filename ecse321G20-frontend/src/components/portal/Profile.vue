@@ -114,9 +114,8 @@
                     <td>{{person.id}}</td>
                     <td>{{person.isRemoved}}</td>
                 </tr>
-                <table>
-                <!-- ... -->
-                <tr>
+            <table>
+                          <tr>
                     <td>
                         <input type="text" v-model="newPerson" placeholder="Person Name">
                     </td>
@@ -125,7 +124,6 @@
                     </td>
                 </tr>
                 </table>
-            
             </table>
              </tr>
             <br>
@@ -136,26 +134,27 @@
             <!--Pop-up window to create a session-->
             <div id="id03" class="modal">
 
-                <form class="modal-content animate" action="/action_page.php" method="post">
+                <form class="modal-content animate">
                     <div class="imgcontainer">
                         <span onclick="document.getElementById('id03').style.display='none'" class="close"
                             title="Close Create Session">&times;</span>
                     </div>
 
+                    
                     <div class="container">
                         <label for="student"><b>Student Name</b></label>
-                        <input type="text" placeholder="Enter Student name" name="student" required>
+                        <input type="text" placeholder="Enter Student name" name="student"  v-model="newPerson" required>
 
                         <label for="subjectmatter"><b>Subject Matter</b></label>
-                        <input type="text" placeholder="Enter Subject Matter" name="subjectmatter" required>
+                        <input type="text" placeholder="Enter Subject Matter"  v-model="subjectmatter" name="subjectmatter" required>
 
                         <label for="date"><b>Date</b></label>
-                        <input type="text" placeholder="Enter Date of session" name="date" required>
+                        <input type="text" placeholder="Enter Date of session" v-model="date" name="date" required>
 
                         <label for="sessiontype"><b>Session Type</b></label>
-                        <input type="text" placeholder="Enter Session Type" name="sessiontype" required>
+                        <input type="text" placeholder="Enter Session Type" v-model="session" name="sessiontype" required>
 
-                        <center><button class="button" type="submit">Create Session</button></center>
+                        <center><button class = 'button' @click="createPerson(newPerson, session, subjectmatter, false, date)">Create Session</button></center>
                         <br>
                     </div>
 
