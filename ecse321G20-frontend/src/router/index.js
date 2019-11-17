@@ -6,6 +6,8 @@ import Tutors from '@/components/Tutors'
 import TutorApplications from '@/components/TutorRequestForm'
 import Contact from '@/components/Contact'
 import About from '@/components/About'
+import Profile from '@/components/portal/Profile'
+import Schedule from '@/components/portal/Schedule'
 
 Vue.use(Router)
 
@@ -39,6 +41,16 @@ export default new Router({
       path: '/about',
       name: 'About',
       component: About
+    },
+    {
+      path: '/tutorportal/',
+      name: 'Tutor - Profile',
+      component: Profile
+    },
+    {
+      path: '/tutorportal/schedule',
+      name: 'Tutor - Schedule',
+      component: Schedule
     }
   ]
 })
