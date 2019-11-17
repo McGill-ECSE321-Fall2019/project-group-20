@@ -305,188 +305,56 @@
 
     <!-- Navigation bar -->
     <div class="navbar">
-        <a href="TutorProfile.html" class="active">My Profile</a>
+        <a href="TutorProfile.html">My Profile</a>
         <a href="ScheduleTutor.html">Schedule</a>
-        <a href=#>Feedback</a>
+        <a href="FeedbackPage.html" class="active">Feedback</a>
         <a href="MainPage.html" class="right">Logout</a>
     </div>
+
+    <script >
+            function check()
+            {
+                document.getElementById('f1').innerHTML = document.myform.name.value;
+                document.getElementById('f2').innerHTML = document.myform.tutor.value;
+                document.getElementById('f3').innerHTML = document.myform.feedback.value;
+        
+            }
+        </script>
 
     <!-- Main page content. -->
     <div class="row">
         <div class="side">
-            <h2>John Doe</h2>
+         <form name="myform" >
 
-            <!-- Star rating -->
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <br>
-            <br>
-            <img src="avatar.png" alt="Avatar" class="avatar">
+                <label for="tname"><b>Tutor's Name</b></label>
+                <input type="text" placeholder="Enter Tutor's Name" name="tname" required>
 
-            <h4>About:</h4>
-            <p align="justify">I have a B.Eng in Chemical Engineering.
-                I was a TA at Waterloo University for 3 years
-                for CHEM204 and CHEM551. I graduated with a 3.9 CGPA.
-                I am now doing my master's in Stem Cell Bioprocessing at McGill University.
-            </p>
-            <p><b>Email:</b> john.doe@mail.mcgill.ca </p>
-            <h3>Teaching subjects:</h3>
+                <label for="sname"><b>Student's Name</b></label>
+                <input type="text" placeholder="Enter Student's Name" name="sname" required>
+        
+                <label for="comment"><b>Add Comments</b></label>
+                <input type="text" placeholder="Enter comments" name="comment" required>
+               
+                <center><button class="button" type="submit" onclick='check(); return false'>Submit</button></center>
+            </form>
+
+            <hr>
+            <h2>Review Entries:</h2>
             <table>
-                <tr>
-                    <th>Subject Matter</th>
-                    <th>Hoourly Rate ($)</th>
-                </tr>
-                <tr>
-                    <td>Math</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td>Chemistry</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td>English</td>
-                    <td>15</td>
-                </tr>
-            </table>
-            <br>
-
-            <button class="button" onclick="document.getElementById('id02').style.display='block'"
-                style="width:auto;">Add another subject matter</button>
-
-                <div id="id02" class="modal">
-
-                        <form class="modal-content animate" action="/action_page.php" method="post">
-                            <div class="imgcontainer">
-                                <span onclick="document.getElementById('id02').style.display='none'" class="close"
-                                    title="Close Request Subject Matter">&times;</span>
-                            </div>
-        
-                            <div class="container">
-                                <label for="requestsubjectmatter"><b>Subject Matter</b></label>
-                                <input type="text" placeholder="Enter Subject Matter" name="requestsubjectmatter" required>
-        
-                                <label for="experience"><b>Experience</b></label>
-                                <input type="text" placeholder="Enter Experience with Subject Matter" name="experience" required>
-        
-                                <label for="availability"><b>Availability (optional)</b></label>
-                                <input type="text" placeholder="Enter Availability (optional)" name="availability" optional>
-        
-                                <label for="hourlyrate"><b>Hourly Rate (optional)</b></label>
-                                <input type="text" placeholder="Enter Hourly Rate (optional)" name="hourlyrate" optional>
-        
-                                <center><button class="button" type="submit">Request to teach new subject matter</button></center>
-                                <br>
-                            </div>
-        
-                            <div class="container" style="background-color:whitesmoke">
-                                <button type="button" onclick="document.getElementById('id02').style.display='none'"
-                                    class="cancelbtn">Cancel</button>
-                            </div>
-                        </form>
-                    </div>
-        
-                    <script>
-                        // Get the modal
-                        var modal = document.getElementById('id03');
-        
-                        // When the user clicks anywhere outside of the modal, close it
-                        window.onclick = function (event) {
-                            if (event.target == modal) {
-                                modal.style.display = "none";
-                            }
-                        }
-                    </script>
-
+                    <tr>
+                        <th>Tutor Name</th>
+                        <th>Student Name</th>
+                        <th>Comments</th>
+                    </tr>
+                    <tr>
+                            <td><p id='f1'></p></td>
+                            <td><p id='f2'></p></td>
+                            <td><p id='f3'></p></td>
+                    </tr>
+                </table>
 
         </div>
-        <div class="main">
-            <h2>Tutoring Sessions</h2>
-            <table>
-                <tr>
-                    <th>Student Name</th>
-                    <th>Subject Matter</th>
-                    <th>Date</th>
-                    <th>Session Type</th>
-                    <th>Feedback</th>
-                </tr>
-                <tr>
-                    <td>Ernst Handel</td>
-                    <td>Chemistry</td>
-                    <td>10/03/2019</td>
-                    <td>Review</td>
-                    <td>Completed</td>
-                </tr>
-                <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Math</td>
-                    <td>11/14/2019</td>
-                    <td>Private</td>
-                    <td>Not completed</td>
-                </tr>
-                <tr>
-                    <td>Jessica Valentine</td>
-                    <td>English</td>
-                    <td>12/11/2019</td>
-                    <td>Private</td>
-                    <td>Not completed</td>
-                </tr>
 
-            </table>
-            <br>
-            <button class="button" onclick="document.getElementById('id03').style.display='block'"
-                style="width:100%;">Create session</button>
-
-
-            <!--Pop-up window to create a session-->
-            <div id="id03" class="modal">
-
-                <form class="modal-content animate" action="/action_page.php" method="post">
-                    <div class="imgcontainer">
-                        <span onclick="document.getElementById('id03').style.display='none'" class="close"
-                            title="Close Create Session">&times;</span>
-                    </div>
-
-                    <div class="container">
-                        <label for="student"><b>Student Name</b></label>
-                        <input type="text" placeholder="Enter Student name" name="student" required>
-
-                        <label for="subjectmatter"><b>Subject Matter</b></label>
-                        <input type="text" placeholder="Enter Subject Matter" name="subjectmatter" required>
-
-                        <label for="date"><b>Date</b></label>
-                        <input type="text" placeholder="Enter Date of session" name="date" required>
-
-                        <label for="sessiontype"><b>Session Type</b></label>
-                        <input type="text" placeholder="Enter Session Type" name="sessiontype" required>
-
-                        <center><button class="button" type="submit">Create Session</button></center>
-                        <br>
-                    </div>
-
-                    <div class="container" style="background-color:whitesmoke">
-                        <button type="button" onclick="document.getElementById('id03').style.display='none'"
-                            class="cancelbtn">Cancel</button>
-                    </div>
-                </form>
-            </div>
-
-            <script>
-                // Get the modal
-                var modal = document.getElementById('id03');
-
-                // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function (event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                }
-            </script>
-
-        </div>
     </div>
 
     <!-- Footer image. -->
