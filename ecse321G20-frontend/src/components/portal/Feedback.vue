@@ -52,7 +52,7 @@
     <div>
      <h2>My Feedbacks</h2>
      <table>
-  <tr v-for="feedback in feedbacks" :key='feedback' >
+  <tr v-for="final in feedbacks" :key='final' >
     <table>
                 <tr>
                     <th>Student Name</th>
@@ -60,9 +60,9 @@
                     <th>Comment</th>
                 </tr>
                 <tr>
-                    <td >{{feedback.id}}</td>
-                    <td>{{feedback.amount}}</td>
-                    <td>{{feedback.session_id}}</td>  
+                    <td >{{final.id}}</td>
+                    <td>{{final.amount}}</td>
+                    <td>{{final.session_id}}</td>  
                 </tr>
             </table>
   </tr>
