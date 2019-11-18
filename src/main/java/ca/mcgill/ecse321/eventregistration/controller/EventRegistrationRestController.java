@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import ca.mcgill.ecse321.eventregistration.dto.BillDto;
 import ca.mcgill.ecse321.eventregistration.dto.CourseDto;
 import ca.mcgill.ecse321.eventregistration.dto.EventDto;
 import ca.mcgill.ecse321.eventregistration.dto.PersonDto;
 import ca.mcgill.ecse321.eventregistration.dto.RegistrationDto;
 import ca.mcgill.ecse321.eventregistration.dto.SchoolDto;
 import ca.mcgill.ecse321.eventregistration.dto.TutorDto;
+import ca.mcgill.ecse321.eventregistration.model.Bill;
 import ca.mcgill.ecse321.eventregistration.model.Course;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
@@ -38,12 +40,12 @@ public class EventRegistrationRestController {
 	EventRegistrationService service;
 	
 	//Person post mapping to create it!
-		@PostMapping(value = { "/persons/{name}", "/persons/{name}/" })
-		public PersonDto createStudent(	@PathVariable("name") String name, 
-										@RequestParam("email") String email, 
-										@RequestParam("password") String pwd,
-										@RequestParam("ID") String ID,
-										@RequestParam("isRemoved") boolean isRemoved 
+		@PostMapping(value = { "/persons/{studentName}", "/persons/{studentName}/" })
+		public PersonDto createStudent(	@PathVariable("studentName") String name, 
+										@RequestParam("subjectMatter") String email, 
+										@RequestParam("Date") String pwd,
+										@RequestParam("sessionType") String ID,
+										@RequestParam("feedback") boolean isRemoved 
 							) throws IllegalArgumentException {
 			// @formatter:on
 			Person person = service.createStudent(name, email, pwd, ID, isRemoved);
@@ -55,11 +57,13 @@ public class EventRegistrationRestController {
 		public TutorDto createTutor(	@PathVariable("name") String name,
 										@RequestParam("email") String email,
 										@RequestParam("password") String password,
+										@RequestParam("subject") String subject,
 										@RequestParam("ID") String ID,
+										@RequestParam("hourlyRate") double hourlyRate,
 										@RequestParam("availability") String availability
 							) throws IllegalArgumentException {
 			// @formatter:on
-			Tutor person = service.createTutor(name, email, password, ID, false, availability, false, 1);
+			Tutor person = service.createTutor(name, email, password, ID, false, availability, false, hourlyRate, subject);
 			return convertToDto(person);
 		}
 		
@@ -72,6 +76,15 @@ public class EventRegistrationRestController {
 			}
 			return tutorDtos;
 		}
+		//Get tutors
+				@GetMapping(value = { "/bills", "/bills/" })
+				public List<Bill> getAllBills() {
+					List<Bill> tutorDtos = new ArrayList<>();
+					for (Bill tutor : service.getAllBills()) {
+						tutorDtos.add(tutor);
+					}
+					return tutorDtos;
+				}
 		
 		//Get users : 
 		@GetMapping(value = { "/persons", "/persons/" })
@@ -128,6 +141,23 @@ public class EventRegistrationRestController {
 				throw new IllegalArgumentException("Could not create course");
 			}
 		}
+		/**
+		 * Create a new course in the system.
+		 *
+		 * @param courseName The name of the course
+		 * @return A CourseDto representing the newly added course.
+		 * @throws IllegalArgumentException
+		 */
+		@PostMapping(value = { "/createBill", "/createBill/" })
+		public BillDto createBill(@RequestParam("courseName") String  id, @RequestParam("courseAmount") double  amount, @RequestParam("session_id") String  session_id) throws IllegalArgumentException {
+			try{
+				Bill bill = service.createBill( amount,id, session_id);
+				return convertToDto(bill);
+			}
+			catch(Exception e){
+				throw new IllegalArgumentException("Could not create course");
+			}
+		}
 
 		/**
 		 * View all courses in the system
@@ -155,7 +185,7 @@ public class EventRegistrationRestController {
 		 * @return true if success
 		 */
 		@DeleteMapping(value = { "/deleteCourse", "/deleteCourse/" })
-		public boolean deleteCourse(@RequestParam(name = "courseId") int cId) {
+		public boolean deleteCourse(@RequestParam(name = "courseId") String cId) {
 			service.deleteCourse(cId);
 			return true;
 		}
@@ -242,6 +272,13 @@ public class EventRegistrationRestController {
 			throw new IllegalArgumentException("There is no such Person!");
 		}
 		SchoolDto schoolDto = new SchoolDto(p.getName());
+		return schoolDto;
+	}
+	private BillDto convertToDto(Bill p) {
+		if (p == null) {
+			throw new IllegalArgumentException("There is no such Person!");
+		}
+		BillDto schoolDto = new BillDto();
 		return schoolDto;
 	}
 

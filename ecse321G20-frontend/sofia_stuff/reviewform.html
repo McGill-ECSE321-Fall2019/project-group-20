@@ -1,0 +1,26 @@
+<script >
+	function check()
+	{
+		document.getElementById('f1').innerHTML = document.myform.name.value;
+		document.getElementById('f2').innerHTML = document.myform.tutor.value;
+		document.getElementById('f3').innerHTML = document.myform.feedback.value;
+
+	}
+</script>
+<form name="myform" >
+	 <p> Tutor's Name: 
+	 	<input type="text" name="name" value="first last">
+	 	<p>Student's name:
+	 	<input type="text" name="tutor" value="first last"></p>
+
+	 	<p>Feedback:
+	 	<input type="text" name="feedback" value="feedback"></p>
+	 	<p><input type="submit" onclick = 'check(); return false'></p>
+	 	
+	 </p>
+</form>
+<hr>
+<p>Reviews:</p>
+<p id= 'f1'> </p>
+<p id= 'f2'> </p>
+<p id= 'f3'> </p>

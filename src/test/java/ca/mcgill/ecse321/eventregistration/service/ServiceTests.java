@@ -171,6 +171,7 @@ public class ServiceTests {
 		assertEquals(0, service.getAllTutors().size());
 
 		String name = "Oscar";
+		String subject = "English";
 		String email = "oscar@helloworld.com";
 		String password = "123";
 		String ID = "123321";
@@ -180,7 +181,7 @@ public class ServiceTests {
 		boolean isRemoved = false;
 
 		try {
-			tutor = service.createTutor(name, email, password, ID, isRemoved, availability, isVerified, hourlyRate);
+			tutor = service.createTutor(name, email, password, ID, isRemoved, availability, isVerified, hourlyRate, subject);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			fail();
@@ -330,12 +331,13 @@ public class ServiceTests {
 		String password = null;
 		String ID = null;
 		String availability = null;
+		String subject = null;
 		double hourlyRate = 0;
 		boolean isVerified = false;
 		String error = null;
 
 		try {
-			tutor = service.createTutor(name, email, password, ID, false, availability, isVerified, hourlyRate);
+			tutor = service.createTutor(name, email, password, ID, false, availability, isVerified, hourlyRate, subject);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -513,9 +515,11 @@ public class ServiceTests {
 		assertEquals(0, service.getAllBills().size());
 
 		double amount = 212;
+		String id = "123";
+		String session_id = "321";
 
 		try {
-			bill = service.createBill(amount);
+			bill = service.createBill(amount, id, session_id);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			fail();
@@ -526,9 +530,11 @@ public class ServiceTests {
 	public void testCreateBillnull() {
 		double number = 0;
 		String error = null;
+		String id = null;
+		String session_id = null;
 
 		try {
-			bill = service.createBill(number);
+			bill = service.createBill(number, id, session_id);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}

@@ -25,16 +25,15 @@ public class Bill {
 	public String getID() {
 	    return this.ID;
 	}
-  private Session session;	
-	 
-  @ManyToOne(optional=false)
-	   public Session getSession() {
-	      return this.session;
-	   }
-	   
-	   public void setSession(Session session) {
-	      this.session = session;
-	   }
+	private String session_id;
+
+	public void setSession_id(String session_id) {
+	    this.session_id = session_id;
+	}
+
+	public String getSession_id() {
+	    return this.session_id;
+	}
 
 	
 }
