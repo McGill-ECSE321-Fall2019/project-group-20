@@ -51,7 +51,7 @@
               <label for="psw"><b>Password</b></label>
               <input id = "pass" type="password" placeholder="Enter Password" name="psw" required>
 
-              <center><button value ="Login" class="button" type="button" v-on:click="log()" >Login</button></center>
+              <center><button  onclick="window.location.href='/#/tutorportal';" class="button" type="button">Login</button></center>
               <br>
               <label>
                 <input type="checkbox" checked="checked" name="remember"> Remember me
