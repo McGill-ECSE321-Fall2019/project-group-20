@@ -126,20 +126,6 @@ function TutorDto (name, id, email, availability, password, subject, hourlyRate)
             this.errorPerson = errorMsg
           });
         },
-        createSchool: function (date) {
-          AXIOS.post(`createSchool?schoolName=`+ date)
-          .then(response => {
-            // JSON responses are automatically parsed.
-            this.schools.push(response.data)
-            this.newPerson = ''
-            this.errorPerson = ''
-          })
-          .catch(e => {
-            var errorMsg = e.message
-            console.log(errorMsg)
-            this.errorPerson = errorMsg
-          });
-        },
         log() {
           if(document.getElementById('name') != "" && document.getElementById('pass') != "") {
             console.log(document.getElementById('name').value);

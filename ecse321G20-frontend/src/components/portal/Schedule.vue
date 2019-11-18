@@ -200,5 +200,5 @@
             }
         }
 </style>
-<script src="../registration.js">
+<script src="../trial.js">
 </script>
