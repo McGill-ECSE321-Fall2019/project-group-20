@@ -51,7 +51,8 @@
               </tr>
             <h3>
                 Availability
-            </h3>{{person.availability}}
+            </h3>
+            <button class="button" type="button" onclick="window.location.href='/#/tutorportal/schedule';">Availability</button>
           </table>
           <br>
       
