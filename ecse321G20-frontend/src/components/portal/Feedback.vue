@@ -4,7 +4,7 @@
     <div class="navbar">
         <router-link to="/tutorportal/" class="active">My Profile</router-link>
         <router-link to="/tutorportal/schedule">Schedule</router-link>
-        <router-link to='/tutorportal/feedback'>Feedback</router-link>
+        <router-link to='#'>Feedback</router-link>
         <router-link to="/" class="right">Logout</router-link>
     </div>
     
@@ -15,56 +15,19 @@
         
         
       <div class="side">
-    <div id="eventregistration">
-    <h2>Tutor Profile</h2>
+    <div id="feedback">
+    <h2>Feedback</h2>
     <table>
   <tr v-for="person in tutors" :key='person' >
-      
-          <h2>{{person.name}}</h2>
-
-          <!-- Star rating -->
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star"></span>
-          <br>
-          <br>
           
 
-          <h4>About:</h4>
-          <p align="justify">I have a B.Eng in Chemical Engineering.
-              I was a TA at Waterloo University for 3 years
-              for CHEM204 and CHEM551. I graduated with a 3.9 CGPA.
-              I am now doing my master's in Stem Cell Bioprocessing at McGill University.
-          </p>
-          <p><b>Email:</b> {{person.email}} </p>
-          <h3>Teaching subjects:</h3>
-          <table>
-              <tr>
-                  <th>Subject Matter</th>
-                  <th>Hourly Rate ($)</th>
-              </tr>
-              <tr>
-                  <td>{{person.subject}}</td>
-                  <td>{{person.hourlyRate}}</td>
-              </tr>
-            <h3>
-                Availability
-            </h3>
-            <button class="button" type="button" onclick="window.location.href='/#/tutorportal/schedule';">Availability</button>
-          </table>
-          <br>
+          
       
   </tr>
 </table>
     <p>
     </p>
   </div>
-          <button class="button" onclick="document.getElementById('id02').style.display='block'"
-              style="width:auto;">Add another subject matter</button>
-
-          <div id="id02" class="modal">
 
             <form class="modal-content animate">
               <div class="imgcontainer">
@@ -73,19 +36,16 @@
               </div>
 
               <div class="container">
-                <label for="requestsubjectmatter"><b>Subject Matter</b></label>
+                <label for="requestsubjectmatter"><b>Student Name</b></label>
                 <input type="text" placeholder="Enter Subject Matter" name="requestsubjectmatter" required>
 
-                <label for="experience"><b>Experience</b></label>
-                <input type="text" placeholder="Enter Experience with Subject Matter" name="experience" required>
-
-                <label for="availability"><b>Availability (optional)</b></label>
+                <label for="availability"><b>Rating (1-5)</b></label>
                 <input type="text" placeholder="Enter Availability (optional)" name="availability" optional>
 
-                <label for="hourlyrate"><b>Hourly Rate (optional)</b></label>
+                <label for="hourlyrate"><b>Comment? (Optional)</b></label>
                 <input type="text" placeholder="Enter Hourly Rate (optional)" name="hourlyrate" optional>
 
-                <center><button class="button" type="button" onclick="window.location.href='/../#/Sent';">Request to teach new subject matter</button></center>
+                <center><button class="button" type="button" onclick="window.location.href='/../#/Sent_Feedback';">Send Feedback</button></center>
                 <br>
               </div>
 
@@ -95,69 +55,6 @@
               </div>
             </form>
           </div>
-        </div>
-        <div class="main">
-                 <h2>Tutoring Sessions</h2>
-          <tr v-for="person in persons" :key='person' >
-
-       
-            <table>
-                <tr>
-                    <th>Student Name</th>
-                    <th>Subject Matter</th>
-                    <th>Date</th>
-                    <th>Session Type</th>
-                    <th>Feedback</th>
-                    <th>Delete?</th>
-                </tr>
-                <tr>
-                    <td>{{person.name}}</td>
-                    <td>{{person.email}}</td>
-                    <td>{{person.password}}</td>
-                    <td>{{person.id}}</td>
-                    <td>{{person.isRemoved}}</td>
-                </tr>
-            </table>
-             </tr>
-            <br>
-            <button class="button" onclick="document.getElementById('id03').style.display='block'"
-                style="width:100%;">Create session</button>
-
-
-            <!--Pop-up window to create a session-->
-            <div id="id03" class="modal">
-
-                <form class="modal-content animate">
-                    <div class="imgcontainer">
-                        <span onclick="document.getElementById('id03').style.display='none'" class="close"
-                            title="Close Create Session">&times;</span>
-                    </div>
-
-                    
-                    <div class="container">
-                        <label for="student"><b>Student Name</b></label>
-                        <input type="text" placeholder="Enter Student name" name="student"  v-model="newPerson" required>
-
-                        <label for="subjectmatter"><b>Subject Matter</b></label>
-                        <input type="text" placeholder="Enter Subject Matter"  v-model="subjectmatter" name="subjectmatter" required>
-
-                        <label for="date"><b>Date</b></label>
-                        <input type="text" placeholder="Enter Date of session" v-model="date" name="date" required>
-
-                        <label for="sessiontype"><b>Session Type</b></label>
-                        <input type="text" placeholder="Enter Session Type" v-model="session" name="sessiontype" required>
-
-                        <center><button class = 'button' @click="createPerson(newPerson, session, subjectmatter, false, date)">Create Session</button></center>
-                        <br>
-                    </div>
-
-                    <div class="container" style="background-color:whitesmoke">
-                        <button type="button" onclick="document.getElementById('id03').style.display='none'"
-                            class="cancelbtn">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
 
     <!-- Footer image. -->
@@ -312,6 +209,3 @@
             color: orange;
         }
 </style>
-
-<script src="../registration.js">
-</script>

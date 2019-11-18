@@ -4,7 +4,7 @@
     <div class="navbar">
         <router-link to="/tutorportal/">My Profile</router-link>
         <router-link to="/tutorportal/schedule" class="active">Schedule</router-link>
-        <router-link to='#'>Feedback</router-link>
+        <router-link to='/tutorportal/feedback'>Feedback</router-link>
         <router-link to="/" class="right">Logout</router-link>
     </div>
 

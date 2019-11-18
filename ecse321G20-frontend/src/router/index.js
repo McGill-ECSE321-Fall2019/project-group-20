@@ -11,7 +11,8 @@ import EventRegistration from '@/components/Tutors'
 import Profile from '@/components/portal/Profile'
 import Schedule from '@/components/portal/Schedule'
 import Sent from '@/components/Sent'
-
+import Feedback from '@/components/portal/Feedback'
+import Sent_Feedback from '@/components/Send_Feedback'
 
 Vue.use(Router)
 
@@ -65,6 +66,16 @@ export default new Router({
       path: '/tutorportal/schedule',
       name: 'Tutor - Schedule',
       component: Schedule
+    },
+    {
+      path: '/tutorportal/feedback',
+      name: 'Feedback',
+      component: Feedback
+    },
+    {
+      path: '/Sent_Feedback',
+      name: 'Sent_Feedback',
+      component: Sent_Feedback
     },
   ]
 })
