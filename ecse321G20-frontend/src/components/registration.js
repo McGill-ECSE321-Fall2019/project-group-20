@@ -126,6 +126,19 @@ function TutorDto (name, id, email, availability, password, subject, hourlyRate)
             this.errorPerson = errorMsg
           });
         },
+        deleteSession:function (name) {
+          AXIOS.delete(`/deleteCourse?courseId=`+ name)
+          .then(response => {
+            // JSON responses are automatically parsed.
+            console.log("worked!")
+            window.location.reload();
+          })
+          .catch(e => {
+            var errorMsg = e.message
+            console.log(errorMsg)
+            this.errorPerson = errorMsg
+          });
+        },
         log() {
           if(document.getElementById('name') != "" && document.getElementById('pass') != "") {
             console.log(document.getElementById('name').value);
