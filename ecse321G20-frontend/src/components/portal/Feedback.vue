@@ -60,7 +60,7 @@
                     <th>Comment</th>
                 </tr>
                 <tr>
-                    <td >{{feedback.id}}</td>
+                    <td >{{feedback.name}}</td>
                     <td>{{feedback.amount}}</td>
                     <td>{{feedback.session_id}}</td>  
                 </tr>

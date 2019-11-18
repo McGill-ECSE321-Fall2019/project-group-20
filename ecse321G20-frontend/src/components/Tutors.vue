@@ -29,14 +29,13 @@
         </center>
 
         <!-- Button to log into tutor account -->
-        <center><button class="button" onclick="document.getElementById('id01').style.display='block'"
-            style="width:300px;">Already a
+        <center>
+          <br><h2>Already a
             verified
-            tutor? <br>Log in here!</button>
+            tutor? 
+            <br>Log in here!</h2>
         </center>
 
-        <!-- Pop-up login window -->
-        <div id="id01" class="modal">
 
           <form class="modal-content animate">
             <div class="imgcontainer">
@@ -51,7 +50,7 @@
               <label for="psw"><b>Password</b></label>
               <input id = "pass" type="password" placeholder="Enter Password" name="psw" required>
 
-              <center><button value ="Login" class="button" type="button" v-on:click="log()" >Login</button></center>
+              <center><button type='button' onclick="window.location.href='/#/tutorportal';">Login</button></center>
               <br>
               <label>
                 <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -64,7 +63,7 @@
               <span class="psw">Forgot <a href="#">password?</a></span>
             </div>
           </form>
-        </div>
+
       </div>  
     </div>
 <div id="eventregistration">
@@ -95,19 +94,6 @@
   </div>
   
 </template>
-
-<script>
-  // Get the modal
-  var modal = document.getElementById('id01');
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-  
-</script>
 
 <style>
       /* Extra styles for the cancel button */
@@ -255,18 +241,7 @@
   
 </style>
 
-<script>
-            function login() {
-                if(document.getElementById('name') != "" && document.getElementById('pass') != "") {
-                    if(document.getElementById('name') == document.getElementById('personName') && document.getElementById('pass') == document.getElementById('personPassword')) {
-                        window.location.href = "/#/tutorportal/";
-                    } else {
-                        alert("The username and / or password is incorrect");
-                    }
-                } else {
-                    console.log("A username and password must be present");
-                }
-            }
-            
-</script>
 
+function newFunction() {
+  return "buttonLogin";
+}
