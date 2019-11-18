@@ -139,7 +139,19 @@ function TutorDto (name, id, email, availability, password, subject, hourlyRate)
             this.errorPerson = errorMsg
           });
         },
-         
+        log() {
+          if(document.getElementById('name') != "" && document.getElementById('pass') != "") {
+            console.log(document.getElementById('name').value);
+            console.log(document.getElementById('personName').value);
+              //if(document.getElementById('name').value == document.getElementById('personName').value && document.getElementById('pass').value == document.getElementById('personPassword').value) {
+                  window.location.href = "/#/tutorportal/";
+              //} else {
+                //  alert("The username and / or password is incorrect");
+              //}
+          } else {
+              console.log("A username and password must be present");
+          }
+      }
       }
       
   }
