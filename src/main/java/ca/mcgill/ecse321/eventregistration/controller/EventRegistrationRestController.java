@@ -157,7 +157,7 @@ public class EventRegistrationRestController {
 		 * @return true if success
 		 */
 		@DeleteMapping(value = { "/deleteCourse", "/deleteCourse/" })
-		public boolean deleteCourse(@RequestParam(name = "courseId") int cId) {
+		public boolean deleteCourse(@RequestParam(name = "courseId") String cId) {
 			service.deleteCourse(cId);
 			return true;
 		}

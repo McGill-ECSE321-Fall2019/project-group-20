@@ -248,12 +248,12 @@ public class EventRegistrationService {
 		return course;
 	}
 	  @Transactional
-	    public boolean deleteCourse(int courseId) {
-	        Course c = courseRepository.findCourseByNumber(courseId);
+	    public boolean deleteCourse(String courseId) {
+	        Person c = personRepository.findPersonByName(courseId);
 	        if (c == null) {
 	            throw new NullPointerException("No such course.");
 	        }
-	        courseRepository.deleteAll();
+	        personRepository.deleteById(courseId);
 	        return true;
 	    }
 

@@ -116,6 +116,7 @@
                     <td>{{person.password}}</td>
                     <td>{{person.id}}</td>
                     <td>{{person.isRemoved}}</td>
+                    <td><button class = 'button' @click="deleteSession(newPerson, session, subjectmatter, false, date)">Delete Session</button></td>
                 </tr>
             </table>
              </tr>
