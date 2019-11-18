@@ -68,7 +68,6 @@
       </div>  
     </div>
 <div id="eventregistration">
-    <h2>Tutors</h2>
     <table>
   <tr v-for="person in tutors" :key='person' >
       <td id = 'personName'>{{ person.name }}</td>
@@ -270,5 +269,4 @@
             }
             
 </script>
-<script src="./registration.js">
-</script>
+
