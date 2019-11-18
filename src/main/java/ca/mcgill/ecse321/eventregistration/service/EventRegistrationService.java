@@ -273,12 +273,14 @@ public class EventRegistrationService {
 	
 	//Bills
 		@Transactional
-		public Bill createBill(double amount) {
+		public Bill createBill(double amount, String id, String session_id) {
 			if (amount == 0 ) {
 		        throw new IllegalArgumentException("Bill cannot be empty!");
 		    }
 			Bill bill = new Bill();
 			bill.setAmount(amount);
+			bill.setID(id);
+			bill.setSession_id(session_id);
 			billRepository.save(bill);
 			return bill;
 		}

@@ -16,15 +16,8 @@
         
       <div class="side">
     <div id="feedback">
-    <h2>Feedback</h2>
-    <table>
-  <tr v-for="person in tutors" :key='person' >
-          
-
-          
-      
-  </tr>
-</table>
+    <h2>Create Feedback</h2>
+    
     <p>
     </p>
   </div>
@@ -37,15 +30,15 @@
 
               <div class="container">
                 <label for="requestsubjectmatter"><b>Student Name</b></label>
-                <input type="text" placeholder="Enter Subject Matter" name="requestsubjectmatter" required>
+                <input type="text" placeholder="Enter Subject Matter" v-model="name" name="requestsubjectmatter" required>
 
                 <label for="availability"><b>Rating (1-5)</b></label>
-                <input type="text" placeholder="Enter Availability (optional)" name="availability" optional>
+                <input type="text" placeholder="Enter Availability (optional)" v-model="amount" name="availability" optional>
 
                 <label for="hourlyrate"><b>Comment? (Optional)</b></label>
-                <input type="text" placeholder="Enter Hourly Rate (optional)" name="hourlyrate" optional>
+                <input type="text" placeholder="Enter Hourly Rate (optional)" v-model="session" name="hourlyrate" optional>
 
-                <center><button class="button" type="button" onclick="window.location.href='/../#/Sent_Feedback';">Send Feedback</button></center>
+                <center><button class = 'button' @click="createFeedback(name, amount, session)">Create Session</button></center>
                 <br>
               </div>
 
@@ -56,7 +49,25 @@
             </form>
           </div>
     </div>
-
+    <div>
+     <h2>My Feedbacks</h2>
+     <table>
+  <tr v-for="feedback in feedbacks" :key='feedback' >
+    <table>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Rating</th>
+                    <th>Comment</th>
+                </tr>
+                <tr>
+                    <td >{{feedback.id}}</td>
+                    <td>{{feedback.amount}}</td>
+                    <td>{{feedback.session_id}}</td>  
+                </tr>
+            </table>
+  </tr>
+</table>
+    </div>
     <!-- Footer image. -->
     <div class="footer">
         
@@ -209,3 +220,5 @@
             color: orange;
         }
 </style>
+<script src="../feedback.js">
+</script>

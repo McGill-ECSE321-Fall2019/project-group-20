@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import ca.mcgill.ecse321.eventregistration.dto.BillDto;
 import ca.mcgill.ecse321.eventregistration.dto.CourseDto;
 import ca.mcgill.ecse321.eventregistration.dto.EventDto;
 import ca.mcgill.ecse321.eventregistration.dto.PersonDto;
 import ca.mcgill.ecse321.eventregistration.dto.RegistrationDto;
 import ca.mcgill.ecse321.eventregistration.dto.SchoolDto;
 import ca.mcgill.ecse321.eventregistration.dto.TutorDto;
+import ca.mcgill.ecse321.eventregistration.model.Bill;
 import ca.mcgill.ecse321.eventregistration.model.Course;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
@@ -74,6 +76,15 @@ public class EventRegistrationRestController {
 			}
 			return tutorDtos;
 		}
+		//Get tutors
+				@GetMapping(value = { "/bills", "/bills/" })
+				public List<Bill> getAllBills() {
+					List<Bill> tutorDtos = new ArrayList<>();
+					for (Bill tutor : service.getAllBills()) {
+						tutorDtos.add(tutor);
+					}
+					return tutorDtos;
+				}
 		
 		//Get users : 
 		@GetMapping(value = { "/persons", "/persons/" })
@@ -125,6 +136,23 @@ public class EventRegistrationRestController {
 			try{
 				Course course = service.createCourse(courseNumber);
 				return convertToDto(course);
+			}
+			catch(Exception e){
+				throw new IllegalArgumentException("Could not create course");
+			}
+		}
+		/**
+		 * Create a new course in the system.
+		 *
+		 * @param courseName The name of the course
+		 * @return A CourseDto representing the newly added course.
+		 * @throws IllegalArgumentException
+		 */
+		@PostMapping(value = { "/createBill", "/createBill/" })
+		public BillDto createBill(@RequestParam("courseName") String  id, @RequestParam("courseAmount") double  amount, @RequestParam("session_id") String  session_id) throws IllegalArgumentException {
+			try{
+				Bill bill = service.createBill( amount,id, session_id);
+				return convertToDto(bill);
 			}
 			catch(Exception e){
 				throw new IllegalArgumentException("Could not create course");
@@ -244,6 +272,13 @@ public class EventRegistrationRestController {
 			throw new IllegalArgumentException("There is no such Person!");
 		}
 		SchoolDto schoolDto = new SchoolDto(p.getName());
+		return schoolDto;
+	}
+	private BillDto convertToDto(Bill p) {
+		if (p == null) {
+			throw new IllegalArgumentException("There is no such Person!");
+		}
+		BillDto schoolDto = new BillDto();
 		return schoolDto;
 	}
 

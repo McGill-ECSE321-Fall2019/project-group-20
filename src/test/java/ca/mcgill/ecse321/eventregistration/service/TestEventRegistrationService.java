@@ -109,10 +109,11 @@ public class TestEventRegistrationService {
 
 			double amount = 0;
 			Session session = new Session();
-			
+			String id = null;
+			String session_id = null;
 			String error = null;
 			try {
-				service.createBill(amount);
+				service.createBill(amount, id, session_id);
 			} catch (IllegalArgumentException e) {
 				error = e.getMessage();
 			}

@@ -515,9 +515,11 @@ public class ServiceTests {
 		assertEquals(0, service.getAllBills().size());
 
 		double amount = 212;
+		String id = "123";
+		String session_id = "321";
 
 		try {
-			bill = service.createBill(amount);
+			bill = service.createBill(amount, id, session_id);
 		} catch (IllegalArgumentException e) {
 			// Check that no error occurred
 			fail();
@@ -528,9 +530,11 @@ public class ServiceTests {
 	public void testCreateBillnull() {
 		double number = 0;
 		String error = null;
+		String id = null;
+		String session_id = null;
 
 		try {
-			bill = service.createBill(number);
+			bill = service.createBill(number, id, session_id);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
