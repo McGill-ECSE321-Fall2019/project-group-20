@@ -1,0 +1,90 @@
+class User
+{
+  name;
+    email;
+  password;
+  id;
+  Boolean isRemoved;
+}
+
+class Tutor
+{
+    isA User;
+availability;
+  Double hourlyRate;
+  Boolean isVerified;
+  }
+
+class Company
+{
+  name;
+  Double comissionRate;
+  1 -- * User;
+  * -> * Feedback;
+}
+
+class Feedback
+{
+    0..2 -- 1 Session;
+}
+
+class Session
+{
+  Boolean isRejected;
+  1<@>-* TutorReview;
+  1..* -> 1 SubjectMatter;
+}
+
+class TutorReview
+{
+}
+
+class SubjectMatter
+{
+  abstract;
+}
+
+class Course
+{
+    isA SubjectMatter;
+Integer number;
+  * -- 1 School;
+}
+
+class School
+{
+  name;
+}
+
+class Subject
+{
+    isA SubjectMatter;
+name;
+}
+
+class RoomBooking
+{
+  requestNb;
+  1 -- 1 Session;
+}
+
+class Room
+{
+  number;
+  SessionType sessionType;
+  Boolean isAvailable;
+  1 -- 1 RoomBooking;
+}
+
+class Bill
+{
+  Double amount;
+  1..* -- 1 Session;
+}
+
+class SessionType
+{
+  Group;
+  Individual;
+}
+
