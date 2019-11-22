@@ -37,7 +37,7 @@ function PersonDto (name, id, email, availability, password) {
     },
     created: function () {
       // Initializing people from backend
-        AXIOS.get(`/tutors`)
+        AXIOS.get('/tutors')
         .then(response => {
           // JSON responses are automatically parsed.
           this.tutors = response.data
@@ -48,7 +48,7 @@ function PersonDto (name, id, email, availability, password) {
     },
       methods: {
         createPerson: function (personName) {
-          AXIOS.post(`/tutors/`+personName, {}, {})
+          AXIOS.post('/tutors/' + personName, {}, {})
           .then(response => {
             // JSON responses are automatically parsed.
             this.tutors.push(response.data)

@@ -38,7 +38,7 @@
         <!-- Pop-up login window -->
         <div id="id01" class="modal">
 
-          <form class="modal-content animate" action="/login" method="post">
+          <form class="modal-content animate" action="#" method="post" v-on:click="checkLogin">
             <div class="imgcontainer">
               <span onclick="document.getElementById('id01').style.display='none'" class="close"
                 title="Close Login">&times;</span>
@@ -107,6 +107,30 @@
     }
   }
   
+  // check username and password
+  new Vue({
+    name: login,
+    data: {
+      username: '',
+      password: ''
+    },
+    methods: {
+      checkLogin(){
+        this.username = this.$refs.uname.value;
+        this.password = this.$refs.psw.value;
+        for(var i = 0; i < tutors.length; i++){
+          if(username == tutors[i].name && password == tutors[i].password){
+            // create login session
+            this.$session.start();
+            this.$session.username = username;
+            this.$session.password = password;
+            return;
+          }
+        }
+        router.push("Home");
+      }
+    }
+  })
 </script>
 
 <style>
