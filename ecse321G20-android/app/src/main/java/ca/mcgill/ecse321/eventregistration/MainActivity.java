@@ -38,10 +38,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     public void addPerson(View v) {
         error = "";
         final TextView tv = (TextView) findViewById(R.id.newperson_name);
-        HttpUtils.post("createCourse/" + tv.getText().toString(), new RequestParams(), new JsonHttpResponseHandler() {
+        HttpUtils.post("/createCourse?courseName=" + tv.getText().toString(), new RequestParams(), new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -104,4 +100,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void addSchool(View v) {
+        error = "";
+        final TextView tv = (TextView) findViewById(R.id.newschool_name);
+        HttpUtils.post("/createSchool?schoolName=" + tv.getText().toString(), new RequestParams(), new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                refreshErrorMessage();
+                tv.setText("");
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+
+
+
 }

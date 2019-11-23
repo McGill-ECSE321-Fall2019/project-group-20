@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">ecse321G20-android</string>
     <string name="action_settings">Settings</string>
-    <string name="newperson_hint">Who?</string>
-    <string name="newperson_button">Add Person</string>
+    <string name="newperson_hint">Input the course number (integer)</string>
+    <string name="newperson_button">Create Course</string>
+
+
+    <string name="newschool_hint">Input the school name</string>
+    <string name="newschool_button">Add School</string>
 </resources>
