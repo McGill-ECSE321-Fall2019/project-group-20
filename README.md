@@ -61,6 +61,16 @@ git push heroku master
 |3|Imane Chafi|Integration Lead|30|
 |3|Mahroo Rahman|JavaScript Lead|30|
 |3|Sofia Dieguez|HTML & CSS Lead|30|
+|4|Adam Babs|Android Lead|15|
+|4|Georges Mourant|Android Engineer|15|
+|4|Imane Chafi|Android Engineer|15|
+|4|Mahroo Rahman|Android Engineer|15|
+|4|Sofia Dieguez|Android Engineer|15|
+|5|Adam Babs|Presenter|5|
+|5|Georges Mourant|Vocabulary Consultant|5|
+|5|Imane Chafi|Presenter|5|
+|5|Mahroo Rahman|Presenter|5|
+|5|Sofia Dieguez|Presenter|5|
 
 
 # Project Wiki
