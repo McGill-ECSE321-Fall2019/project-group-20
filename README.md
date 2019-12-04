@@ -41,7 +41,14 @@ git push heroku master
   - Build System, Continuous Integration, and Delivery
   
  All meetings for the Sprint 3 iteration can be found in the github 'wiki' (meetings held after October 31st)
- 
+
+ ## Sprint 4 - Android App
+  - [Android User Documentation and Screenshot](https://github.com/McGill-ECSE321-Fall2019/project-group-20/wiki/Android-App)
+  - Implementation of mobile frontend in Android
+  - Code quality
+  - Build System, Continuous Integration, and Delivery
+  
+ All meetings for the Sprint 4 iteration can be found in the github 'wiki' 
   ### Table - Individual Contributions
 
 |Deliverable number|Name |Team Role| Individual Efforts (hours)|
