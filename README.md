@@ -1,5 +1,7 @@
 # ECSE321 Group 20  [![Build Status](https://travis-ci.com/McGill-ECSE321-Fall2019/project-group-20.svg?token=ERzxJp8gWsvgA1YgDGwo&branch=Tests)](https://travis-ci.com/McGill-ECSE321-Fall2019/project-group-20)
 
+The **android deliverable** can be found in the orphan branch `android` : https://github.com/McGill-ECSE321-Fall2019/project-group-20/tree/android
+
 HEROKU LINK : https://ecse321-group20-2020.herokuapp.com/
 
 For developement purposes, you can run `heroku local web` to see the application in the local servers.
